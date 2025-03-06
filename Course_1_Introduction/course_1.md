@@ -27,4 +27,12 @@ This course is the first of a series that aims to help you learn more about web 
   - There is VPS (Virtual Server )  with dedicated CPU, memory, and bandwidth resources. It will be running on a hardware server with other VPS instances but as the resources are fixed per VPS instance, your website is unlikely to be impacted by the performance of other VPS instances.
   - And then is dedicated hosting. This will be a hardware server that is dedicated to you only.And is more expensive.
   - The last type of web hosting is something you may have heard of. Cloud hosting and the Cloud has grown in popularity over the last decade and is often mentioned in various news and services you use. With Cloud hosting, your website is run in something called a Cloud environment, which spans across multiple physical and virtual servers. The main advantage of Cloud hosting is that you can use as many resources as you need without hardware limitations. However, you pay based on resource use.
-- 
+
+## Introduction to Internet Protocols
+
+IPv4 is separated in four groups: 192.168.1.0
+IPv6 is 8 groups by 4 digits: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx
+
+-Ip packages are like mail they need the senders and the recipient address, also include other infos.
+- When delivery a data is possible to be damage/corropted or out of order or can lost.and for this we hace transmition protocols (like **TCP** or **UDP**(user datagram protocol)) to solve this issues.
+  - TCP is server to device to assure that the 
