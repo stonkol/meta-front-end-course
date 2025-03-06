@@ -14,7 +14,9 @@ This course is the first of a series that aims to help you learn more about web 
 - Explain what React is
 - Describe the applications and characteristics of the most popular UI frameworks
 
-## Networks
+## Module 1
+
+### Networks
 - Client <-> server
 - Web server is stored in a data center.
 - there are all around the word. there are different
@@ -28,11 +30,27 @@ This course is the first of a series that aims to help you learn more about web 
   - And then is dedicated hosting. This will be a hardware server that is dedicated to you only.And is more expensive.
   - The last type of web hosting is something you may have heard of. Cloud hosting and the Cloud has grown in popularity over the last decade and is often mentioned in various news and services you use. With Cloud hosting, your website is run in something called a Cloud environment, which spans across multiple physical and virtual servers. The main advantage of Cloud hosting is that you can use as many resources as you need without hardware limitations. However, you pay based on resource use.
 
-## Introduction to Internet Protocols
+### Introduction to Internet Protocols
 
+#### IP
 IPv4 is separated in four groups: 192.168.1.0
 IPv6 is 8 groups by 4 digits: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx
 
 -Ip packages are like mail they need the senders and the recipient address, also include other infos.
+
+#### Transfer Protocols
+
 - When delivery a data is possible to be damage/corropted or out of order or can lost.and for this we hace transmition protocols (like **TCP** or **UDP**(user datagram protocol)) to solve this issues.
-  - TCP is server to device to assure that the 
+  - TCP is server to device to solve all three of the previously mentioned issues but at the cost of a small delay when sending the data.
+  - UDP solves the corrupt packet issue but packets can still arrive out of order or not arrive at all.
+
+#### HTTP and HTTPS
+
+The HTTP method describes the type of action that the client must performed. The primary or the most commonly used HTTP methods are, GET, POST, PUT, and DELETE.
+
+1. `GET` used to retrieve information from the given server.
+1. `POST` request is used to send data to the server.
+1. `PUT` method updates whatever currently exists on the web server with something else.
+1. `DELETE` method removes the resource.
+
+versions 1.1 and 2.0 are the most common.
