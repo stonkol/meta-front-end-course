@@ -188,3 +188,9 @@ All data sent over SSH is encrypted. This means that third parties cannot unders
 #### SSH File Transfer Protocol (SFTP)
 
 The data is transmitted insecurely when using the File Transfer Protocol. This means that third parties may understand the data that you are sending. This is not right if you transmit company files such as software and databases. To solve this, the SSH File Transfer Protocol, alternatively called the Secure File Transfer Protocol, can be used to transfer files over the SSH protocol. This ensures that the data is transmitted securely. Most FTP clients also support the SFTP protocol.
+
+### Webpages, websites and pages
+
+The terms website and web application are often used interchangeably. The key difference between a website, and web application is the level of interactivity, and dynamic content. The easy way to remember this is that a website is more informative and a web application is more interactive.
+Web application can be used to create dynamic content, such as a blog or a social media platform. And
+web pages at a particular domain make up a website, and that the key difference between websites, and web applications is the level of interactivity, and dynamic content.
