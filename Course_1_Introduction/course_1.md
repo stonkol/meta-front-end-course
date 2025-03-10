@@ -209,7 +209,7 @@ Here is a list of resources that may be helpful as you continue your learning jo
 
 ### What is Hyper Text Markup Language?
 
-#### Html syntax
+#### HTML syntax
 
 ##### Headers
 
@@ -284,4 +284,220 @@ A `<div>` tag defines a content division in a HTML document. It acts as a generi
       <p>This is a paragraph inside a div that’s inside another div</p>
    </div>
 </div>
+```
+
+##### Text Field
+
+- There is POST and GET methods.
+
+```html
+<form action="/registration" method="POST">
+```
+
+###### Password Username
+You can create labels for input types with the label tag, you use the text input type for a text input like a user name. For a password, you use the password input type.
+
+```html
+<form>
+    <label for="username">Username</label><br>
+    <input type="text" id="username" name="username">
+    <label for="password">Password</label><br>
+    <input type="password" id="password" name="password" />
+    <input type="submit" value="Submit" />
+</form>
+```
+
+###### CheckBox
+
+Multiple can be selected
+
+```html
+<label for="vehicle1">I have a bike</label>
+<input type="checkbox" name="vehicle1" value="Bike">
+```
+
+###### Radio Button
+
+Only one can be selected
+
+```html
+<input type="radio" id="male" name="gender" value="male">
+<label for="male">Male</label><br>
+<input type="radio" id="female" name="gender" value="female">
+<label for="female">Female</label><br>
+<input type="radio" id="other" name="gender" value="other">
+<label for="other">Other</label>
+```
+
+### DOM (Document Object Model)
+
+Imagine your favorite social media site. If it was just an HTML document, users would be able to scroll the page, look at pictures and read text but they wouldn't be able to log in like posts or get notifications for new messages. In order to allow users to do these things, they need to be able to interact with objects on the page such as the reaction icons or the comment button.
+an HTML document must be represented in a certain way, so that `JavaScript` code can query and update it, to do this we use the document object model.
+
+![dom tree](dom_tree.webp)
+
+### Web accessibility
+
+It does not only visual dissaibiliet, but physical, audio, cognitive/neurological disabilities. To ensure that your website is accessible to all users, you should follow the Web Content Accessibility Guidelines (WCAG) 2.1.
+
+Screen reader software, speech recognition software, subtitles and scripts, and other assistive technologies.
+
+- To improve it:
+  - Use semantic HTML elements
+  - Provide alternative text for images
+  - Ensure proper color contrast
+  - Use ARIA(Accessible Rich Internet Applications) attributes for complex interactions
+
+- ARIA in HTML (W3C via [Github](https://w3c.github.io/html-aria/))
+- ARIA [Authoring Practices](https://www.w3.org/TR/wai-aria-practices-1.2/) (W3C)
+
+### Styling
+
+```css
+h1 {
+    color: aquamarine;
+}
+```
+
+1. The selector is the *h1*.
+1. Everything between the curly brackets is called the declaration block. 
+1. *Color* is the Property.
+1. *Blue* is the Value.
+
+#### 1. Element Selectors
+
+Based on element type.
+`p { color: blue; }`
+
+#### 2. ID Selectors
+
+The ID selector uses the id attribute of an HTML element. Since the id is unique within a webpage, it allows the developer to select a specific element for styling.
+
+```css
+#latest { 
+  background-color: purple; 
+}
+```
+
+#### 3. Class Selectors
+
+he CSS rule has been applied to all elements with the specified class name.
+
+```css
+.navigation { 
+  margin: 2px;
+}
+```
+
+#### 4. Element with Class Selector
+
+A more specific method for selecting HTML elements is by first selecting the HTML element, then selecting the CSS class or ID.
+
+```css
+p.introduction { 
+  margin: 2px;
+}
+```
+
+#### 5. Descendant Selectors
+
+Descendant selectors are useful if you need to select HTML elements that are contained within another selector.
+
+```css
+#blog h1 {
+  color: blue;
+}
+```
+
+#### 6. Child Selector
+
+Child selectors are more specific than descendant selectors. They only select elements that are *immediate descendants* (children) of a selector (the parent).
+
+```css
+#blog > h1 {
+  color: blue;
+}
+```
+
+#### 7. Pseudo-Class
+
+A special keyword called a pseudo-class allows developers to select elements based on their state. Don't worry too much about what that means right now. For now, let's look at how the hover pseudo-class allows you to style an element when the mouse cursor hovers over the element.
+
+The simplest example of this is changing the color of a hyperlink when it is hovered over. To do this, you add the `:hover` pseudo-class to the end of the selector. In the following example, adding `:hover`  to the a element will change the color of the hyperlink to orange when it is hovered over
+
+```css
+a:hover {
+  color: orange;
+}
+```
+
+### Color in CSS
+
+By RGB value, RGBA value, HSL value, hex value and predefined color names.
+
+#### 1. RGB value
+Each value is defined as a number between 0 and 255, representing the intensity of that color.
+
+`p { color: rgb(255, 0, 0); }`
+
+RGBA is an extension of RGB that add an alpha (A) channel. The alpha channel represents the opacity, or transparency, of the color.
+
+`p { color: rgba(255, 0, 0, 0.8); }`
+
+#### 2. HSL value
+
+HSL is a newer color model defined as Hue (H), Saturation (S) and Lightness (L). The aim of the model is to simplify mental visualization of the color that the value represents.
+
+`p { color: hsl(125, 78.10%, 37.60%);}`
+
+#### 3. Hex value
+
+Colors can be specified using a hexadecimal value. If you're unfamiliar with hexadecimal, think of it as a different number set.
+For example, the color red which is RGB 255,0,0 would be written as hexadecimal #FF0000.
+
+#### 4. Predefined color names
+
+Modern web browsers support 140 predefined color names. These color names are for convenience purposes and can be mapped to equivalent hex/RGB/HSL values.
+
+`silver`
+
+### Text in CSS
+
+#### 1. Text Color
+
+`p {  color: red;}`
+
+#### 2. Text Font and Size
+
+To set the font used by text in CSS you use the font-family property.
+
+`p { font-family: "Courier New", monospace;}`
+
+#### 3. Text Transformation
+
+Text transformation is useful if you want to ensure the correct capitalization of the text content.
+
+`p {text-transform: uppercase;}`
+
+The most commonly used values for the text-transform property are:  uppercase,  lowercase,  capitalize  and none. The default value used is none, which means the text displays as it was written in the HTML document.
+
+#### Text Decoration
+
+useful to apply additional decoration to text such as underlining and line-through (strikethrough).
+
+`p {text-decoration: underline;}`
+
+It is possible to set the color, thickness and styling of the decoration too.
+
+`p {text-decoration: underline red solid 5px;}`
+
+These properties can be individually set using the text-decoration-line, text-decoration-color, text-decoration-style and text-decoration-thickness properties. 
+
+```css
+p { 
+  text-decoration-line: underline;
+  text-decoration-color: red;
+  text-decoration-style: solid;
+  text-decoration-thickness: 5px;
+}
 ```
