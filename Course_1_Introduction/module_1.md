@@ -194,3 +194,17 @@ The data is transmitted insecurely when using the File Transfer Protocol. This m
 The terms website and web application are often used interchangeably. The key difference between a website, and web application is the level of interactivity, and dynamic content. The easy way to remember this is that a website is more informative and a web application is more interactive.
 Web application can be used to create dynamic content, such as a blog or a social media platform. And
 web pages at a particular domain make up a website, and that the key difference between websites, and web applications is the level of interactivity, and dynamic content.
+
+### Additional Resources
+
+Here is a list of resources that may be helpful as you continue your learning journey.
+
+1. HTTP Overview [(Mozilla)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview)
+1. [Introduction to Networking](https://www.amazon.com/Introduction-Networking-How-Internet-Works/dp/1511654945/) by Dr.Charles R Severance
+1. Chrome Developer Tools Overview [(Google)](https://developer.chrome.com/docs/devtools/overview/)
+1. (https://firefox-source-docs.mozilla.org/devtools-user/index.html)
+1. Getting Started with Visual Studio Code  [(Microsoft)](https://code.visualstudio.com/docs)
+
+## Module 2
+
+### What is Hyper Text Markup Language?
