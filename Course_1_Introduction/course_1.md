@@ -208,3 +208,80 @@ Here is a list of resources that may be helpful as you continue your learning jo
 ## Module 2
 
 ### What is Hyper Text Markup Language?
+
+#### Html syntax
+
+##### Headers
+
+```html
+<h1>Heading 1</h1>
+<h2>Heading 2</h2>
+<h3>Heading 3</h3>
+<h4>Heading 4</h4>
+<h5>Heading 5</h5>
+<h6>Heading 6</h6>
+<p>
+   This paragraph<br>
+   contains a lot of lines
+   but they are ignored. <strong>don't feed him chocolate</strong>
+</p>
+```
+
+##### Strong tags
+
+Can be used to indicate that a range of text has importance.
+`No matter how much the dog barks: <strong>don't feed him chocolate</strong>.`
+
+##### Bold tags
+
+should be used to draw attention but not to indicate that something is more important.
+`The three core technologies of the Internet are <b>HTML</b>, <b>CSS</b> and <b>Javascript</b>.`
+
+##### Emphasis tags
+
+can be used to add emphasis to text.
+`Wake up <em>now</em>!`
+
+##### Italics tags
+
+can be used to offset a range of text. Italics represent off-set text and should be used for technical terms, titles, a thought or a phrase from another language. Screen readers will not announce any difference if an italics tag is used.
+`My favourite book is <i>Dracula</i>.`
+
+##### Lists
+
+Lists can be unordered using the `<ul>` tag. List items are specified using the `<li>` tag,
+
+```html
+<ul>
+   <li>Tea</li>
+   <li>Sugar</li>
+   <li>Milk</li>
+</ul>
+```
+
+Lists can also be ordered (1. 2. 3.) using the `<ol>` tag. Again, list items are specified using the `<li>` tag.
+```html
+<ol>
+   <li>Rocky</li>
+   <li>Rocky II</li>
+   <li>Rocky III</li>
+</ol>
+```
+
+#### Divs Tags
+
+A `<div>` tag defines a content division in a HTML document. It acts as a generic container and has no effect on the content unless it is styled by CSS.
+
+```html
+<div>
+   <p>This is a paragraph inside a div</p>
+</div>
+
+<!-- can also be nested-->
+
+<div>
+   <div>
+      <p>This is a paragraph inside a div that’s inside another div</p>
+   </div>
+</div>
+```
