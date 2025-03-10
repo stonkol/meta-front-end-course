@@ -360,7 +360,7 @@ h1 {
 ```
 
 1. The selector is the *h1*.
-1. Everything between the curly brackets is called the declaration block. 
+1. Everything between the curly brackets is called the declaration block.
 1. *Color* is the Property.
 1. *Blue* is the Value.
 
@@ -374,8 +374,8 @@ Based on element type.
 The ID selector uses the id attribute of an HTML element. Since the id is unique within a webpage, it allows the developer to select a specific element for styling.
 
 ```css
-#latest { 
-  background-color: purple; 
+#latest {
+  background-color: purple;
 }
 ```
 
@@ -384,7 +384,7 @@ The ID selector uses the id attribute of an HTML element. Since the id is unique
 he CSS rule has been applied to all elements with the specified class name.
 
 ```css
-.navigation { 
+.navigation {
   margin: 2px;
 }
 ```
@@ -394,7 +394,7 @@ he CSS rule has been applied to all elements with the specified class name.
 A more specific method for selecting HTML elements is by first selecting the HTML element, then selecting the CSS class or ID.
 
 ```css
-p.introduction { 
+p.introduction {
   margin: 2px;
 }
 ```
@@ -491,13 +491,30 @@ It is possible to set the color, thickness and styling of the decoration too.
 
 `p {text-decoration: underline red solid 5px;}`
 
-These properties can be individually set using the text-decoration-line, text-decoration-color, text-decoration-style and text-decoration-thickness properties. 
+These properties can be individually set using the text-decoration-line, text-decoration-color, text-decoration-style and text-decoration-thickness properties.
 
 ```css
-p { 
+p {
   text-decoration-line: underline;
   text-decoration-color: red;
   text-decoration-style: solid;
   text-decoration-thickness: 5px;
 }
 ```
+
+### Box model
+
+How to use the box model in CSS to create an appealing layout and allow users eyes to easily flow between content.
+
+When an HTML document and CSS style sheet are downloaded, the web browser needs to know how to display the elements on the screen.
+To do this, it allocates a rectangle or **box** to each element. CSS rules are applied to the **boxes of the elements** *(This is known as the box model)*. Every box consists of four parts.
+1. The content
+1. the padding
+1. the border
+1. the margin.
+The content is the actual content of the element, like the text or the image. Its size is known as the content width and content height. Browsers are clever and by default, they will calculate the width and height based on the content itself.
+
+#### The Padding
+
+The padding extends the content size. Its size is known as the padding box width and the padding box height.
+The thickness of the padding is determined by the padding top, padding bottom, padding left and padding right. **The padding box** width can be calculated as content width plus padding left side plus padding right side.
