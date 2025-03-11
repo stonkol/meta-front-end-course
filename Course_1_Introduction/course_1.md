@@ -514,7 +514,77 @@ To do this, it allocates a rectangle or **box** to each element. CSS rules are a
 1. the margin.
 The content is the actual content of the element, like the text or the image. Its size is known as the content width and content height. Browsers are clever and by default, they will calculate the width and height based on the content itself.
 
-#### The Padding
+#### 1. The Padding
 
 The padding extends the content size. Its size is known as the padding box width and the padding box height.
 The thickness of the padding is determined by the padding top, padding bottom, padding left and padding right. **The padding box** width can be calculated as content width plus padding left side plus padding right side.
+
+#### 2. The Border
+
+The border extends the padding size. Its size is known as the border box width and the border box height.
+**The border box** width can be calculated as padding width plus border left side plus border right side.
+
+#### 3. The Margin
+
+The margin extends the border area to separate the element from its neighboring elements. Its size is known as the margin box width, a margin box height.
+The thickness of the margin is determined by the margin top, margin bottom, margin left and margin right. **The margin box** width can be calculated as border width plus margin left side plus margin right side.
+
+#### 4. Conclusion
+
+To easily remember this four, think of the content as yourself. The padding is like the thickness of your clothes. The border is like the silhouette or outline and the margin is the personal space between you and another person.
+
+### Document Flow
+
+#### block vs. inline
+
+- Block elements are displayed as blocks, meaning they start on a new line and take up the full width of their container.
+- Inline elements are displayed inline, meaning they do not start on a new line and only take up as much width as necessary, so can be placed next to each other side by side.
+
+#### Alignment basics
+
+- Alignment refers to the positioning of content within its container.
+- Horizontal alignment can be achieved using the text-align property.
+- Vertical alignment can be achieved using the vertical-align property.
+
+The `justify` alignment spreads the text out so that every line of the text has the same width.
+
+To **align the element to the center**, set its `margin` property to `auto`. The auto will tell the browser to calculate the margin automatically based on the space available. The child element will be centered within the parent element.
+
+To be more precise, in CSS you can set only the left and right margins to auto. This allows you to set the top and bottom margins to specific values if needed.
+
+```css
+.child {
+  display: block;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+```
+
+### Additional resources
+
+[CSS Reference (Mozilla)](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
+HTML and CSS: Design and build websites by [Jon Duckett](https://www.amazon.com/HTML-CSS-Design-Build-Websites/dp/1118008189/)
+[CSS Definitive Guide](https://www.amazon.com/CSS-Definitive-Guide-Visual-Presentation/dp/1449393195/) by Eric Meyer
+
+### What we learned in this module
+
+1. HTML purpose
+1. HTML tags
+1. HTML attributes
+1. CSS rules
+1. Box Model
+1. Document structure
+1. Document flow
+
+## 3. Module 3: Working with libraries
+
+### 3.1 Intro
+
+1. How to include CSS and JavaScript libraries in your HTML file
+1. explain what dependencies are
+1. purpose of a package manager and JavaScript handlers
+
+Bootstrap is a popular CSS framework that provides pre-designed components and styles for building responsive websites.
+
+You should include a link tap in the html head section.
