@@ -588,3 +588,73 @@ HTML and CSS: Design and build websites by [Jon Duckett](https://www.amazon.com/
 Bootstrap is a popular CSS framework that provides pre-designed components and styles for building responsive websites.
 
 You should include a link tap in the html head section.
+
+Complications of using libraries can arise from libraries can depend on other libriaries, a *depency tree*. If a project have a lot of dependencies it will take too long to download, setup and so on. And how do you make sure you use the same version of the dependencies as your coworkers? Thats when a **package managers**(we also refere depencies as packages) we can use package manager can help you manage your dependencies. A package manager is a tool that automatically downloads and installs dependencies.
+
+The most popular package manager for JavaScript is [npm](https://www.npmjs.com/).
+
+Now that all your dependencies are downloaded, you need to include them in your HTML file. But adding all of them into an HTML file would take forever. This is where you will use a bundling tool. The purpose of a bundler is to automatically combine them into a single file. If you're bundle is significantly large, many bundles can split your dependencies into multiple bundles. There are many bundle is available such as Gulp and Webpack.
+
+### 3.2 Responsive Design
+
+Given all the possibilities and complicating factors, it would be challenging to develop websites that appear correctly on all kinds of devices if it wasn't for responsive design. Responsive design is a set of three practices that allows a website to automatically change its visuals. It is the combination of three techniques, flexible grids, fluid images and media queries.
+
+#### 3.2.1 Flexible Grids
+
+flexible grids are made up of columns, gutters and margins. The space between the columns is called the gutter and the spaces between the content and the left and right edges of the screen are called margins. Instead of defining website Element sizes based on pixels, flexible grids are defined in percentage values, allowing them to adjust depending on screen size.
+
+#### 3.2.2 Fluid Images
+
+Fluid images are images that scale with the size of the screen. They are defined in percentage values, allowing them to adjust depending on screen size.
+
+- like using `max-width`
+
+#### 3.2.3 Media Queries
+
+Media queries are used to apply different styles to a website depending on the size of the screen. They are defined in CSS and are used to apply different styles to a website depending on the size of the screen. Media queries are defined in CSS and are used to apply different styles to a website depending on the size of the screen.
+
+- `@media (min-width: 768px) {}`
+
+#### 3.2.4 Breakpoints
+
+Breakpoints are used to apply different styles to a website depending on the size of the screen. They are defined in CSS and are used to apply different styles to a website depending on the size of the screen. Breakpoints are defined in CSS and are used to apply different styles to a website depending on the size of the screen.
+Can be used on fixed, fluid or hybrid grid layouts.
+
+##### 3.2.4.1 Fixed Grid Layouts
+
+Fixed grid layouts are defined in fixed pixel values, allowing them to adjust depending on screen size.
+> for example:
+> `auto width blank space | fixed width column 1 | fixed width column 2 | fixed width column 3 | auto width blank space`
+
+##### 3.2.4.2 Fluid Grid Layouts
+
+Fluid grid layouts are defined in percentage values, allowing them to adjust depending on screen size.
+> for example:
+>`auto width blank space | fixed width column 1 | fixed width column 2 | fixed width column 3 | auto width blank space`
+
+##### 3.2.4.3 Hybrid Grid Layouts
+
+Hybrid grid layouts are a combination of fixed and fluid grid layouts. They are defined in percentage values, allowing them to adjust depending on screen size.
+
+### 4. Bootstrap
+
+1. Bootstrap is often described as a way to *"build fast, responsive sites"* and it is a "feature-packed, powerful, and extensible frontend toolkit".
+1. Some people refer to it as a **"front-end" framework**, and some are trying to be more specific by referring to it as a "CSS framework" or a “CSS library”.
+1. Modern web development is all about **components**. Small pieces of reusable code that allow you to build websites quickly. Bootstrap comes with multiple components for very fast construction of multiple components, or parts of components.
+1. Bootstrap is very popular amongst developers as it saves development time and provides a way for developers to build visually appealing prototypes and websites.
+
+#### 4.1. Bootstrap Grid
+
+It use a 12 column grid system. Each column has a width of 100% / 12 = 8.333333333333334%. The grid system is responsive and adapts to different screen sizes.
+
+```cpp
+| 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
+|   2   |   2   |   2   |   2   |   2   |   2   |
+|     3     |     3     |     3     |     3     |
+|     4          |      4      |        4       |
+|            6          |           6           |
+|                       12                      |
+```
+
+Here is will set this div to be a column with a width of 12 columns on small screens and 6 columns on large screens.
+`<div class="col-12 col-lg-6">`
