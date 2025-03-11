@@ -658,3 +658,9 @@ It use a 12 column grid system. Each column has a width of 100% / 12 = 8.3333333
 
 Here is will set this div to be a column with a width of 12 columns on small screens and 6 columns on large screens.
 `<div class="col-12 col-lg-6">`
+
+#### 4.2 Bootstrap Components
+
+Bootstrap comes with multiple components for very fast construction of multiple components, or parts of components.
+
+#### 4.3 Bootstrap Utilities
