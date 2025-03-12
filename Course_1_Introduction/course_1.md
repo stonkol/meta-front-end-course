@@ -737,4 +737,83 @@ Bundling is the process of combining multiple JavaScript files into a single fil
 
 Lazy loading is the process of loading content only when it is needed. This is done to improve performance. Lazy loading can be done using tools like React Lazy or Vue Lazy.
 
-### What is React?
+### 3.3 What is React?
+
+1. React is focused on working with components, which makes it simple to build functional user interfaces on web and mobile.
+1. One of the most popular libraries.
+1. From 2013.
+1. Developers use React to develop single page applications and you can also develop mobile applications with React native. When you develop an app, you can choose to use React to develop the user interface. But building an application requires more than that. You must also consider the navigation and how the app will request data from a web server. Therefore React is used in conjunction with other JavaScript libraries during development.
+1. what makes React so useful is that it allows developers to write less code to create functionality. This in turn makes it easier to maintain code in the long term and simplifies testing.
+1. **Components**: React components are the building blocks of React applications. They are reusable pieces of code that can be used to create complex user interfaces. Components can be created using JavaScript classes or functions.
+1. There are in fact many open source libraries that provide pre made components for React projects. For example, video player, maps, etc.
+
+#### 3.3.1 React isn’t an MVC framework
+
+React is a library for building composable user interfaces. It encourages the creation of reusable UI components which present data that changes over time.
+
+#### 3.3.2 React doesn’t use templates
+
+Traditionally, web application UIs are built using templates or HTML directives. These templates dictate the full set of abstractions that you are allowed to use to build your UI.
+
+#### 3.3.3 Meta created JSX
+An optional syntax extension, in case you prefer the readability of HTML to raw JavaScript.
+
+#### 3.3.4 React updates are dead simple
+
+In a traditional JavaScript application, you need to look at what data changed and imperatively make changes to the DOM to keep it up-to-date.
+
+When your component is first initialized, the `render` method is called, generating a lightweight representation of your view. From that representation, a string of markup is produced and injected into the document. When your data changes, the `render` method is called again. In order to perform updates as efficiently as possible, we diff the return value from the previous call to `render` with the new one and generate a minimal set of changes to be applied to the DOM.
+
+The data returned from render is neither a string nor a DOM node — it’s a lightweight description of what the DOM should look like.
+
+We call this process `reconciliation`. Check out
+this [jsFiddle](https://jsfiddle.net/uf3sr8L7/) to see an example of reconciliation in action.
+
+Because this re-render is so fast (around 1ms for TodoMVC), the developer doesn’t need to explicitly specify data bindings. We’ve found this approach makes it easier to build apps.
+
+#### 3.3.5 HTML is just the beginning
+
+Because React has its own lightweight representation of the document, we can do some pretty cool things with it:
+
+- Facebook has dynamic charts that render to <canvas> instead of HTML.
+- Instagram is a “single page” web app built entirely with React and Backbone.Router. Designers regularly contribute React code with JSX.
+- We’ve built internal prototypes that run React apps in a web worker and use React to drive native iOS views via an Objective-C bridge.
+- You can run React on the server for SEO, performance, code sharing and overall flexibility.
+- Events behave in a consistent, standards-compliant way in all browsers (including IE8) and automatically use event delegation.
+
+Head on over to [reactjs](https://reactjs.org) to check out what we have built.
+
+### 3.4 How React works
+
+#### 3.4.1 React Virtual DOM
+
+React builds a representation of the browser Document Object Model or DOM in memory called the virtual DOM. As components are updated, React checks to see if the component’s HTML code in the virtual DOM matches the browser DOM. If a change is required, the browser DOM is updated. If nothing has changed, then no update is performed.
+
+#### 3.4.2 Reconciliation
+
+Here are the steps involved in React’s reconciliation process:
+
+1. The virtual DOM is updated.
+1. The virtual DOM is compared to the previous version of the virtual DOM and checks which elements have changed.
+1. The changed elements are updated in the browser DOM.
+1. The displayed webpage updates to match the browser DOM.
+
+As updating the browser DOM can be a slow operation, this process helps to reduce the number of updates to the browser DOM by only updating when it is necessary.
+
+But even with this process, if a lot of elements are updated by an event, pushing the update to the browser DOM can still be expensive and cause slow performance in the web application.
+
+The React team invested many years of research into solving this problem. The outcome of that research is what’s known as the **React Fiber Architecture**.
+
+Perhaps there is text currently displayed on the bottom of the page that also updates when the button is clicked. Wouldn’t that be a higher priority to update than the non-visible text?
+
+### 3.5 Component Hierarchy
+
+React components can be organized into a hierarchy. This hierarchy can be visualized as a tree structure, with the root component at the top and child components branching out from it.
+
+React applications have at least 1 component called the **Root component**.
+
+### Additional Resources
+
+1. React [Official Website](https://reactjs.org/)
+2. Choosing between Traditional Web Apps and Single Page Apps [Microsoft](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/choose-between-traditional-web-and-single-page-apps)
+3. React Source Code [Github](https://github.com/facebook/react)
