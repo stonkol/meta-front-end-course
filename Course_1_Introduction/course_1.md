@@ -663,4 +663,78 @@ Here is will set this div to be a column with a width of 12 columns on small scr
 
 Bootstrap comes with multiple components for very fast construction of multiple components, or parts of components.
 
-#### 4.3 Bootstrap Utilities
+#### 4.3 Bootstrap Documentation
+
+[website](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
+
+##### 4.3.1 Switches
+
+Bootstrap includes CSS rules to style checkbox input elements as switches.
+
+```html
+<div class="form-check form-switch">
+  <input class="form-check-input" type="checkbox">
+</div>
+```
+
+##### 4.3.2  Input Groups
+
+Input groups are useful for providing additional content to the input field. For example, if you wanted to request the user to input a US dollar amount, you can use an input group to show the dollar symbol and cents amount.
+
+```html
+<div class="input-group">
+  <span class="input-group-text">$</span>
+  <input type="text" class="form-control">
+  <span class="input-group-text">.00</span>
+</div>
+```
+
+##### 4.3.3 Floating Labels
+
+Floating labels help provide form information to the user as part of the input itself. These are different from regular form placeholders. The information stays visible if the user is interacting with the element or if the element has content.
+
+```html
+<div class="form-floating">
+  <input type="email" class="form-control" id="addressInput" placeholder="Address">
+  <label for="addressInput">Address</label>
+</div>
+```
+
+##### 4.4.4 Components
+
+Some of these components require Javascript to work, while others only require CSS classes applied to HTML elements. The Components section of the documentation explains these requirements on each component page and provides many code examples.
+
+#### Additional Resources
+
+[Bootstrap Official Website](https://getbootstrap.com/)
+
+[Bootstrap 5 Foundations](https://www.amazon.com/Bootstrap-Foundations-Mr-Daniel-Foreman/dp/B0948GRS8W/) by Daniel Foreman
+
+[Responsive Web Design with HTML5 and CSS](https://www.amazon.com/Responsive-Web-Design-HTML5-CSS/dp/1839211563/)  by Ben Frain
+
+[Bootstrap Themes](https://themes.getbootstrap.com/)
+
+
+## Module 3
+
+### 3.1 Static and dynamic content
+
+- **Static Content**: Static content is content that does not change. It is content that is the same for all users. For example, a website's header and footer are static content.
+- **Dynamic Content**: Dynamic content is content that changes. It is content that is different for each user. For example, a website's user profile is dynamic content. Usually is slower to generate. It usually uses caching to improve performance, instead of generating content dynamically for every request. Caching means the web server keeps a copy of dynamic content. If the content is requested again, the web server can immediately send this cached version instead of passing the request again to the application server. On the first request for dynamic content, the web server checks if the content exists in the cache. If it does not exist, the content is requested from the application server and stored in the cache.
+
+Web server communicate with an application server (backend) to provide dynamic content. Application server communicate with a database to retrieve data.
+
+### 3.2 Single Page application (SPA)
+
+
+It means that the application is a single page, and the user does not need to reload the page to navigate between different pages. Instead, the application uses JavaScript to dynamically update the content of the page.
+
+#### 3.2.1 Bundling
+
+Bundling is the process of combining multiple JavaScript files into a single file. This is done to reduce the number of HTTP requests made by the browser, which can improve performance. Bundling can be done using tools like Webpack or Rollup.
+
+#### 3.2.2 Lazy Loading
+
+Lazy loading is the process of loading content only when it is needed. This is done to improve performance. Lazy loading can be done using tools like React Lazy or Vue Lazy.
+
+### What is React?
