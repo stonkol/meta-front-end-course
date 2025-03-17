@@ -8,7 +8,7 @@
 
 - It can sometimes be inconsistent compared to other languages.
 
-## Intro JS
+## 1. Module 1: Intro JS
 
 ### Variables
 
@@ -109,8 +109,6 @@ while(counter > 0){
 
 #### Do...While Loop
 
-
-
 ```js
 do {
   // code to execute at least once, then continue while condition is true
@@ -135,7 +133,9 @@ for (var year = 2023; year < 2025; year++) {
 }
 ```
 
-#### Functions
+### 2. Arrays, Objects, and Functions
+
+#### 2.1 Functions
 
 ##### Example 1
 
@@ -176,3 +176,201 @@ function listArrayItems(arr) {
     }
 }
 ```
+
+### Objects
+
+#### Brackets notation
+
+Objects can also be created using the object literal syntax and the brackets notation.
+
+```js
+var person = {
+  name: 'John',
+  age: 30,
+  city: 'New York'
+};
+
+console.log(person['name']); // Output: John
+console.log(person['age']); // Output: 30
+console.log(person['city']); // Output: New York
+```
+
+#### Dot notation
+
+Objects can also be created using the object literal syntax and the dot notation.
+
+```js
+var person = {};
+person.name = 'John';
+person.age = 30;
+person.city = 'New York';
+
+console.log(person.name); // Output: John
+console.log(person.age); // Output: 30
+console.log(person.city); // Output: New York
+
+// can both access and update properties on objects using either the dot notation or the brackets notation.
+
+person["age"] = 31;
+person.age = 32;
+```
+
+### Arrays are Objects
+
+Arrays are objects in JavaScript. They have properties and methods just like objects. For example, the `length` property returns the number of elements in an array.
+
+```js
+var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'pink'];
+console.log(colors.length); // Output: 7
+```
+
+One of the most commonly used built-in methods on arrays are the push() and the pop() methods.
+```js
+colors.push('black'); // add item
+colors.pop(); // remove last item
+```
+
+### Math object
+
+Math object provides a set of mathematical functions and constants.
+
+#### Number constants
+
+```js
+console.log(Math.PI); // Output: 3.141592653589793
+console.log(Math.E); // Output: 2.718281828459045
+console.log(Math.SQRT2); // Output: 1.4142135623730951
+```
+
+#### Rounding Methods
+
+```js
+console.log(Math.round(3.5)); // Output: 4
+console.log(Math.floor(3.5)); // Output: 3
+console.log(Math.ceil(3.5)); // Output: 4
+console.log(Math.trunc(3.5)); // Output: 3 – trims the decimal, leaving only the integer
+```
+#### Arithmetic and calculus methods
+
+```js
+console.log(Math.pow(2, 3)); // Output: 8
+console.log(Math.sqrt(16)); // Output: 4
+console.log(Math.abs(-10)); // Output: 10
+console.log(Math.log(10)); // Output: 2.302585092994046
+```
+
+#### Random
+
+```js
+console.log(Math.random()); // Output: a random number between 0 and 1
+console.log(Math.random() * 10); // Output: a random number between 0 and 10
+console.log(Math.floor(Math.random() * 10)); // Output: a random integer between 0 and 9
+```
+
+#### String
+
+```js
+'Hello, World!'.length; // Output: 13
+console.log('Hello, World!'.toUpperCase(); // !
+'Hello, World!'.toLowerCase(); // hello, world!
+'Hello, World!'.charAt(0); // H
+'Hello, World!'.indexOf('World'); //  7
+'Hello, World!'.replace('World', 'Universe'); // Hello, Universe!
+```
+
+```js
+"ho-ho-ho".indexOf('o'); // 1
+"Wo".concat("rl").concat("d"); // 'World'
+"ho-ho-ho".split("-"); // ['ho', 'ho', 'ho']
+```
+
+> [!important] Remember
+> Use the object literal syntax: {}.
+> Use the array literal syntax: [].
+
+### typeof
+
+```js
+typeof 42; // 'number'
+typeof 'hello'; // 'string'
+typeof true; // 'boolean'
+typeof undefined; // 'undefined'
+typeof null; // 'object'
+typeof {}; // 'object'
+typeof []; // 'object'
+typeof function() {}; // 'function'
+typeof h; // undefined (because h is not defined)
+```
+
+### 1.3 Bugs And Error
+
+In JS you can use try catch blocks to handle errors.
+
+#### 1.3.1 Try catch blocks
+
+```js
+try {
+  throw new Error();
+} catch (err) {
+  console.log(err);
+}
+console.log('This line now runs.');
+```
+
+```js
+try {
+  console.log(a + b)
+} catch (err) {
+  console.log(err);
+  console.log('An error occurred.');
+  console.log('The error was saved in the error log.');
+}
+```
+
+#### 1.3.2 Syntax, logical and runtime errors
+
+- Here are some of the most common errors in JavaScript:
+
+1. ReferenceError  `Uncaught ReferenceError: a is not defined`
+2. SyntaxError `Uncaught SyntaxError: Unexpected token +`
+3. TypeError `Uncaught TypeError: Cannot read properties of undefined (reading 'length')`
+4. RangeError `Uncaught RangeError: Maximum call stack size exceeded`
+
+- There are some other errors in JavaScript. These other errors include:
+
+1. AggregateError `Uncaught AggregateError: Multiple errors`
+2. Error `Uncaught Error: An error occurred`
+3. InternalError `Uncaught InternalError: Internal error`
+4. URIError `Uncaught URIError: URI malformed`
+
+#### 1.3.3 Undefined, null and empty values
+
+Undefined, null and empty values are all considered falsy values in JavaScript. This means that they will evaluate to false when used in a boolean context.
+
+##### **Undefined**
+is a primitive value that represents an *uninitialized* variable or a *missing property*.
+
+```js
+var noise;
+console.log(noise); // undefined
+```
+
+##### **Null**
+is a primitive value that represents the *absence of an object*.
+
+```js
+var letters = 'abc';
+letters.match(/d/); // null
+```
+
+##### **Empty**
+Empty values are values that **have no content**, such as an empty string or an empty array.
+
+```js
+var emptyArray = [];
+console.log(emptyArray.length); // 0
+console.log(emptyArray[0]); // undefined
+```
+
+> [!info] Best Practices
+> always assign your variables with values when you declare them.
