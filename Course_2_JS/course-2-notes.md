@@ -16,11 +16,8 @@ Use the console on the browser to test your code.
 
 ```js
 "john"
-
 var person;
-
 var person = "John";
-
 console.log("hello", person);
 ```
 
@@ -103,12 +100,16 @@ for (initialization; condition; increment/decrement) {
 #### While Loop
 
 ```js
-while (condition) {
-  // code to execute while condition is true
-}
-```
+var counter = 10;
+
+while(counter > 0){
+  console.log(counter)
+  counter--;
+}```
 
 #### Do...While Loop
+
+
 
 ```js
 do {
@@ -116,10 +117,62 @@ do {
 } while (condition);
 ```
 
-#### For...In Loop
+#### Nested Loops
 
 ```js
-for (variable in object) {
-  // code to execute for each property in object
+for (var i = 0; i < 5; i++) {
+  for (var j = 0; j < 5; j++) {
+    console.log(i, j);
+  }
+}
+```
+```js
+for (var year = 2023; year < 2025; year++) {
+  console.log(year);
+  for (var month = 1; month <= 12; month++) {
+    console.log(month);
+  }
+}
+```
+
+#### Functions
+
+##### Example 1
+
+```js
+function giveMeKiwi(nm) {
+  console.log(nm, ' kiwi');
+}
+
+giveMeKiwi(nm);
+```
+##### Example 2
+
+Here are my arr items with a number in front of each item:
+
+```js
+// function that takes an array as input and display all items of this array
+function listArrayItems(arr) {
+    for (var i = 0; i < arr.length; i++) {
+        console.log(i, arr[i])
+    }
+}
+var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'pink'];
+listArrayItems(colors);
+```
+
+##### Example 3
+
+Here are even add one or more conditions, such as:
+
+```js
+function listArrayItems(arr) {
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] == 'red') {
+            console.log(i*100, "tomato!")
+        } else {
+            console.log(i*100, arr[i])
+        }
+    }
 }
 ```
