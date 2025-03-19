@@ -374,3 +374,37 @@ console.log(emptyArray[0]); // undefined
 
 > [!info] Best Practices
 > always assign your variables with values when you declare them.
+
+## Module 3 Functional Programming
+
+Functional programming is a programming paradigm that emphasizes the use of functions as the primary building blocks of programs. It is based on the idea that functions are first-class citizens, meaning that they can be passed as arguments to other functions, returned as values from functions, and assigned to variables.
+
+Functional programming is often used in conjunction with other programming paradigms, such as object-oriented programming, to create more modular and reusable code.
+
+### 3.1 Return Values from Function
+
+A function that returns a double of the number
+
+```js
+function double(num) {
+  return num * 2;
+}
+```
+
+A function that builds an object with a specific value
+```js
+function objectMaker(val){
+  return{
+    prop:val
+  }
+}
+```
+
+```js
+objectMaker(20); //{prop: 20}
+```
+
+can even combine custom function calls as follow
+```js
+objectMaker( doubleIt(100) ); //{prop: 200}
+```
