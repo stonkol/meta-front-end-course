@@ -408,3 +408,86 @@ can even combine custom function calls as follow
 ```js
 objectMaker( doubleIt(100) ); //{prop: 200}
 ```
+
+### 3.2 Scope
+
+Scope refers to the visibility and accessibility of variables within a program. In JavaScript, there are two types of scope: global scope and local scope.
+
+Global scope refers to variables that are declared outside of any function or block. These variables are accessible from anywhere in the program.
+
+Local scope refers to variables that are declared inside a function or block. These variables are only accessible within the function or block in which they are declared.
+
+```js
+var globalVar = 'I am global';
+
+function myFunction() {
+  var localVar = 'I am local';
+  console.log(globalVar); // 'I am global'
+  console.log(localVar); // 'I am local'
+}
+
+console.log(globalVar); // 'I am global'
+console.log(localVar); // ReferenceError: localVar is not defined
+```
+
+### 3.3 The functional programming paradigm
+
+There are actually several styles of coding, also known as paradigms. A common style is called functional programming, or FP for short.
+
+#### 3.3.1 Functional programming (FP)
+
+In FP, we use functions extensively and often work with immutable values. Immutability is a key principle, meaning variables are not modified after their initial assignment.
+
+- When writing FP code, we keep data and functionality separate and pass data into functions only when we want something computed.
+
+- In functional programming, functions return new values and then use those values somewhere else in the code.
+
+Another style is object-oriented programming (OOP).
+
+#### 3.3.2 Object-oriented programming (OOP)
+
+OOP is a programming paradigm that uses objects to represent real-world entities and their interactions. OOP emphasizes the use of classes and objects to organize code and promote code reuse.
+
+- In OOP, objects are instances of classes, which define their properties and behaviors.
+
+- OOP promotes code reuse through inheritance and polymorphism.
+
+- OOP also supports encapsulation, which means that the internal state of an object is hidden from the outside world.
+
+#### 3.3.3 First-class functions
+
+It is often said that functions in JavaScript are “first-class citizens”. What does that mean? It means that a function in JavaScript is just another value that we can:
+
+1. pass to other functions
+2. save in a variable
+3. return from other functions
+
+In other words, a function in JavaScript is just a value - from this vantage point, almost no different from a string or a number.
+
+#### 3.3.4 Pure functions and side-effects
+
+Pure functions are functions that always return the same output for the same input and have no side effects. Side effects are changes to the program state that are not reflected in the function's return value.
+
+- Pure functions are easier to reason about and test because they do not depend on external state.
+- Side effects can make code harder to reason about and test because they can change the program state in unexpected ways.
+- To avoid side effects, we can use techniques like immutability and functional programming.
+
+Another rule for a function to be considered pure is that it should not have side-effects. A side-effect is any instance where a function makes a change outside of itself.
+
+This includes:
+1. changing variable values outside of the function itself, or even relying on outside variables
+2. calling a Browser API (even the console itself!)
+3. calling Math.random() since the value cannot be reliably repeated
+4. calling Date.now() since the value cannot be reliably repeated
+
+### 3.4 Scoping with var let and const
+
+Scoping refers to the visibility of variables within a program. In JavaScript, variables can be scoped to a function, block, or module.
+
+#### 3.4.1 diff
+
+- Variables declared with `var` are function-scoped, meaning they are visible within the function they are declared in.
+- Variables declared with `let` and `const` are block-scoped, meaning they are visible within the block they are declared in.
+- Variables declared with `const` are immutable, meaning their value cannot be changed after they are declared. And need to be assigned when declaring it.
+
+`let` and `const` are more strict and you cannot use them in your code before you declare them. You can redeclare them using the variable keyword like you can with `var`. Finally, they are scoped to the block, even within if statements and loops, like the far or while loops.
