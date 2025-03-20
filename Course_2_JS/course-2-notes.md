@@ -491,3 +491,146 @@ Scoping refers to the visibility of variables within a program. In JavaScript, v
 - Variables declared with `const` are immutable, meaning their value cannot be changed after they are declared. And need to be assigned when declaring it.
 
 `let` and `const` are more strict and you cannot use them in your code before you declare them. You can redeclare them using the variable keyword like you can with `var`. Finally, they are scoped to the block, even within if statements and loops, like the far or while loops.
+
+### 3.5 Object-Oriented Programming (OOP)
+
+In programming, there is something known as the programming paradigms. You can think of this as a classification, a style or just a general way to write code. OOP revolves around the idea of organizing our programs using objects to group related data and functionality. This is in contrast to the functional programming approach, where the data used in the app needs to be kept separate from functions that operate on that data.
+
+|     Feature       |     OOP Use Cases         |        FP Use Cases       |
+|-------------------|---------------------------|---------------------------|
+| **Modularity**    | Large-scale, complex systems |  Not a primary focus   |
+| **Data Handling** | Mutable (changing state)  | Immutable(no side effects)|
+| **Concurrency**   |    Less efficient         |     Highly efficient      |
+| **Ease of Debugging** | Easier with encapsulated objects      | Easier with pure functions      |
+| **Learning Curve** | Steeper due to concepts like inheritance | Simpler but requires a functional mindset |
+
+- **Modularity:** OOP is better suited for large-scale systems due to its modular design, while FP doesn't focus on modularity as much.
+- **Data Handling:** OOP allows for mutable data, whereas FP emphasizes immutability.
+- **Concurrency:** FP is more efficient for concurrent tasks because it avoids shared state.
+- **Ease of Debugging:** Both paradigms offer ease of debugging, but in different ways—OOP through encapsulation and FP through pure functions.
+- **Learning Curve:** OOP has a steeper learning curve due to complex concepts like inheritance, while FP requires understanding functional concepts but is generally simpler.
+
+#### 3.5.1 Example 1
+
+```js
+// with OOP approach, you create an object and store all data related to that object in it. Including variables, functions and output statements.
+
+purchase1.shoesPrice; //100
+purchase1.stateTax; //1.2
+
+var purchase1 = {
+  shoes: 100,
+  stateTax: 1.2,
+  totalPrice: function() {
+    var calculation = purchase1.shoes + purchase1.stateTax;
+    console.log('Total price:', calculation);
+  }
+};
+
+// the advantge is that you can create as many objects as you want
+var purchase2 = {
+  shoes: 50,
+  stateTax: 1.2,
+  totalPrice: function() {
+    var calculation = purchase2.shoes + purchase2.stateTax;
+    console.log('Total price:', calculation);
+  }
+};
+```
+You can also use `.this` (this object)
+```js
+var purchase2 = {
+  shoes: 50,
+  stateTax: 1.2,
+  totalPrice: function() {
+    var calculation = this.shoes + this.stateTax;
+    console.log('Total price:', calculation);
+  }
+};
+```
+
+#### 3.5.2 Example 2
+
+##### FP version:
+
+```js
+var shoes = 100;
+var stateTax = 1.2;
+
+function totalPrice(shoes, tax){
+  return shoes*tax;
+}
+
+var toPay = totalPrice(shoes, stateTax);
+
+console.log(toPay);
+```
+
+##### OOP version
+
+```js
+var purchase1 ={
+  shoes:100,
+  stateTax: function(){
+    var calculation = purchase1.shoes * purchase1.stateTax;
+    console.log('Total price:', calculation);
+  }
+}
+purchase1.totalPrice(); //100
+
+var purchase2 ={
+  shoes:50,
+  stateTax: function(){
+    var calculation = purchase2.shoes * purchase2.stateTax;
+    console.log('Total price:', calculation);
+  }
+}
+purchase1.totalPrice(); //50
+```
+
+then we can use `.this` (this object) method, it is an improvement over the code above so to reduce waste. Allowing to reude code.
+
+```js
+var purchase1 = {
+  shoes: 100,
+  stateTax: 1.2,
+  totalPrice: function() {
+    var calculation = this.shoes + this.stateTax;
+    console.log('Total price:', calculation);
+  }
+};
+purchase1.totalPrice(); //100
+
+var purchase2 = {
+  shoes: 50,
+  stateTax: 1.2,
+  totalPrice: function() {
+    var calculation = this.shoes + this.stateTax;
+    console.log('Total price:', calculation);
+  }
+};
+purchase2.totalPrice(); //50
+```
+
+Although you are reusing existing code. You are repetiting the same method. thts when  making templates for objects comes in. In js one of the most elegant waysto efficiently build new objects by is by using classes.
+
+### 3.6 Classes
+
+Is a blue print to repetitive use to build new objects.
+
+```js
+class Car {
+
+  // each class should have a constructor method, where you can put as many parameters as you want. The role of the constructor function is to assign the passed in parameters to the future objects properties.
+
+  constructor (color, speed) {
+    this.color = color;
+    this.speed = speed;
+  }
+
+  // After the constructor is defined, you add as many methods as you want. It's important to remember that you don't use the function keyword here.
+
+  turboOn() {
+    console.log("turbo is on");
+  }
+}
