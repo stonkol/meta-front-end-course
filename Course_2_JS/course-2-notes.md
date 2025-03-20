@@ -510,6 +510,53 @@ In programming, there is something known as the programming paradigms. You can t
 - **Ease of Debugging:** Both paradigms offer ease of debugging, but in different ways—OOP through encapsulation and FP through pure functions.
 - **Learning Curve:** OOP has a steeper learning curve due to complex concepts like inheritance, while FP requires understanding functional concepts but is generally simpler.
 
+#### 3.5.0 The Principles of OOP
+
+The four fundamental OOP principles are inheritance, encapsulation, abstraction and polymorphism.
+
+##### 3.5.0.1 Inheritance
+
+Inheritance is a mechanism that allows a *class to inherit properties and methods from another class*. This promotes code reuse and helps to create a hierarchy of classes.
+```js
+class Animal { /* ...class code here... */ };
+class Mammal extends Animal { /* ...class code here... */ };
+class Elephant extends Mammal { /* ...class code here... */ };
+```
+
+##### 3.5.0.2 Encapsulation
+
+Encapsulation is the practice of *hiding the internal details* of an object and exposing only the necessary information through a well-defined interface. This helps to protect the integrity of the object and makes it easier to maintain and modify.
+```js
+"abc".toUpperCase();
+```
+
+##### 3.5.0.3 Abstraction
+
+Abstraction is the process of *simplifying complex systems by breaking them down into smaller, more manageable components*. This helps to reduce complexity and makes it easier to understand and work with the system.
+
+##### 3.5.0.4 Polymorphism
+
+Polymorphism is the ability of an object to *take on many forms*. This allows objects of different classes to be treated as objects of a common superclass, making it *easier to write generic code* that can work with multiple types of objects.
+
+A bicycle has a bell. It could be said that the bell is a property of the bicycle object. This bell could also be rung. However, the reason, the intention, and the result of somebody ringing the bell on a bicycle is not the same as ringing the bell on a door.
+
+```js
+const bicycle = {
+    bell: function() {
+        return "Ring, ring! Watch out, please!";
+    }
+}
+const door = {
+    bell: function() {
+        return "Ring, ring! Come here, please!";
+    }
+}
+
+bicycle.bell(); // "Ring, ring! Watch out, please!"
+door.bell();    // "Ring, ring! Come here, please!"
+```
+
+
 #### 3.5.1 Example 1
 
 ```js
@@ -619,18 +666,24 @@ Although you are reusing existing code. You are repetiting the same method. thts
 Is a blue print to repetitive use to build new objects.
 
 ```js
+
+//JavaScript does not require class names to be capitalized, but it is a widely accepted best practice to start class names with a capital letter and use PascalCase. This convention helps distinguish classes from other variables or functions in your code.
 class Car {
 
   // each class should have a constructor method, where you can put as many parameters as you want. The role of the constructor function is to assign the passed in parameters to the future objects properties.
-
   constructor (color, speed) {
     this.color = color;
     this.speed = speed;
   }
 
   // After the constructor is defined, you add as many methods as you want. It's important to remember that you don't use the function keyword here.
-
   turboOn() {
     console.log("turbo is on");
   }
 }
+
+// create an instance of the class using the keyword `new` and optional arguments based on how the class is defined.
+const car1 = new Car('red', 120);
+
+// you can access the Car methods and properties.
+car1.turboOn();
