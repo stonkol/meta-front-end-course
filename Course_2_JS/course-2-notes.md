@@ -517,6 +517,11 @@ The four fundamental OOP principles are inheritance, encapsulation, abstraction 
 ##### 3.5.0.1 Inheritance
 
 Inheritance is a mechanism that allows a *class to inherit properties and methods from another class*. This promotes code reuse and helps to create a hierarchy of classes.
+
+I'm modeling objects from the real world by constructing relationships between Animal, Mammal, and Elephant. Each of them is a separate class, a blueprint for specific object instances that can be constructed as needed.
+
+To set up the inheritance relation between classes in JavaScript, I can use the `extends` keyword, as in:
+
 ```js
 class Animal { /* ...class code here... */ };
 class Mammal extends Animal { /* ...class code here... */ };
@@ -556,6 +561,48 @@ bicycle.bell(); // "Ring, ring! Watch out, please!"
 door.bell();    // "Ring, ring! Come here, please!"
 ```
 
+At this point, one can conclude that the exact same name of the method can have the exact opposite intent, based on what object it is used for. Now, to make this code truly polymorphic, I will add another function declaration:
+
+Declaring a ringTheBell() function. It accepts a thing parameter - which I expect to be an object, namely, either the bicycle object or the door object.
+```js
+function ringTheBell(thing) {
+    console.log(thing.bell());
+}
+
+ringTheBell(bicycle); // Ring, ring! Watch out, please!
+ringTheBell(door); // "Ring, ring! Come here, please!"
+```
+
+###### Example of polymorphism using classes
+
+The super keyword calls methods from the parent class. In the Eagle class, super.useWings() invokes the useWings() method from the Bird class, allowing the Eagle class to extend its behavior by adding "Barely flapping!" after calling the parent method.
+
+The Penguin and Eagle sub-classes both inherit from the Bird super-class.
+
+The Eagle sub-class inherits the useWings() method from the Bird class, but extends it with an additional console log. The Penguin sub-class doesn't inherit the useWings() method - instead, it has its own implementation, although the Penguin class itself does extend the Bird class.
+
+```js
+class Bird {
+    useWings() {
+        console.log("Flying!");
+    }
+}
+class Eagle extends Bird {
+    useWings() {
+        super.useWings();
+        console.log("Barely flapping!");
+    }
+}
+class Penguin extends Bird {
+    useWings() {
+        console.log("Diving!");
+    }
+}
+var baldEagle = new Eagle();
+var kingPenguin = new Penguin();
+baldEagle.useWings(); // "Flying! Barely flapping!"
+kingPenguin.useWings(); // "Diving!"
+```
 
 #### 3.5.1 Example 1
 
@@ -687,3 +734,127 @@ const car1 = new Car('red', 120);
 
 // you can access the Car methods and properties.
 car1.turboOn();
+```
+
+### 3.7 Constructor
+
+#### 3.7.1 Using Constructor Functions
+
+Constructor functions, commonly referred to as just "constructors", are special functions that allow us to build instances of these built-in native objects. All the constructor functions are capitalized.
+
+To use a constructor function, I must prepend it with the operator new.
+
+#### 3.7.2 Objects Without Constructors
+
+Running `new Math()` throws an `Uncaught TypeError`, informing us that *Math is not a constructor*.
+
+Other built-in objects that don't have constructors, such as the Math object, don't need a constructor. They're just **static objects** whose properties and methods can be accessed directly, from the built-in object itself. In other words, there is no point in building an instance of the built-in Math object to be able to use its functionality.
+
+For example, if I want to use the pow method of the Math object to calculate exponential values, there's no need to build an instance of the Math object to do so. To illustrate, to get the number 2 to the power of 5, I'd run:
+
+```js
+Math.pow(2,5); // --> 32
+```
+
+There's no need to build an instance of the Math object since nothing needs to be stored in that specific object's instance.
+
+#### 3.7.3 Custom Constructor Functions
+
+```js
+function Icecream(flavor) {
+    this.flavor = flavor;
+    this.meltIt = function() {
+        console.log(`The ${this.flavor} icecream has melted`);
+    }
+}
+
+let kiwiIcecream = new Icecream("kiwi");
+let appleIcecream = new Icecream("apple");
+kiwiIcecream; // --> Icecream {flavor: 'kiwi', meltIt: ƒ}
+appleIcecream; // --> Icecream {flavor: 'apple', meltIt: ƒ}
+```
+I've just built two instance objects of Icecream type.
+
+The most common use case of new is to use it with one of the built-in object types.
+
+### 3.7.4 Performance and Best Practices with Constructors
+
+Note that using constructor functions on all built-in objects is sometimes not the best approach. This is especially true for object constructors of primitive types, namely: String, Number, and Boolean.
+
+```js
+
+let apple = new String("apple");
+apple; // --> String {"apple"}
+
+let pear = "pear";
+pear; // --> "pear"
+```
+The `pear` variable is a string literal, that is, a primitive JavaScript value, which will always be more performant than the `apple` variable, which is an object.
+
+Besides being more performant, due to the fact that each object in JavaScript is unique, you can't compare a String object with another String object, even when their values are identical.
+
+In other words, if you compare new String('plum') === new String('plum'), you'll get back false, while "plum" === "plum" returns true. You're getting the false when comparing objects because it is not the values that you pass to the constructor that are being compared, but rather the memory location where objects are saved.
+
+Besides not using constructors to build object versions of primitives, you are better off not using constructors when constructing plain, regular objects.
+
+#### 3.7.5 Alternative Patterns and Literals
+
+##### 3.7.5.1 Object Creation: Use {} Instead of new Object()
+
+Using {} (object literal syntax) is shorter, easier to read, and widely used in JavaScript. Both {} and new Object() create the same type of object, but {} is preferred for simplicity.
+```js
+// Preferred way
+const user = {};
+
+// Less common way
+const user = new Object();
+```
+
+##### 3.7.5.2 Regular Expressions: Two Ways to Create Them
+
+A Regular Expression (RegExp) is a tool to search for patterns in strings. For example, you can use it to find numbers, letters, or specific words.
+
+1. Using the RegExp Constructor:
+  - You can create a regular expression with new RegExp().
+  - Example:
+    ```javascript
+    const regex = new RegExp("\\d"); // Matches any digit
+    ```
+2. Using Pattern Literal Syntax (/.../):
+  - This is simpler and more commonly used.
+  - Example:
+    ```javascript
+    const regex = /\d/; // Matches any digit
+    ````
+
+##### 3.7.5.3 Example of Regular Expressions in Action
+
+Here’s how you can use a regular expression to find digits in a string:
+```javascript
+const str = "I have 2 apples.";
+
+// /\d/ is the pattern literal that looks for any digit.
+const regex = /\d/; // Pattern literal for a digit
+
+// .match() checks the string against the pattern.
+const result = str.match(regex); // Finds the first match
+console.log(result); // Output: ["2"]
+```
+
+### Inheritance
+
+```js
+var bird = {
+  hasWings: true,
+  canFly: true,
+  hasFeathers: true
+}
+
+// they use the bird object as a prototype
+var eagle1 = Object.create(bird);
+console.log("eagle1: ", eagle1);
+
+console.log("eagle1 has wings:", eagle1.hasWings);
+console.log("eagle1 can fly:", eagle1.canFly);
+console.log("eagle1 has feathers:", eagle1.hasFeathers);
+```
