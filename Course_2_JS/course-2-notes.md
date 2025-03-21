@@ -841,7 +841,7 @@ const result = str.match(regex); // Finds the first match
 console.log(result); // Output: ["2"]
 ```
 
-### Inheritance
+### 3.8 Inheritance
 
 ```js
 var bird = {
@@ -854,7 +854,36 @@ var bird = {
 var eagle1 = Object.create(bird);
 console.log("eagle1: ", eagle1);
 
-console.log("eagle1 has wings:", eagle1.hasWings);
-console.log("eagle1 can fly:", eagle1.canFly);
-console.log("eagle1 has feathers:", eagle1.hasFeathers);
+console.log("eagle1 has wings:", eagle1.hasWings); //eagle1 has wings: true
+console.log("eagle1 can fly:", eagle1.canFly); //eagle1 can fly: true
+console.log("eagle1 has feathers:", eagle1.hasFeathers); //eagle1 has feathers: true
+
+var penguin1 = Object.create(bird);
+penguin1.canFly = false;
+console.log("penguin1: ", penguin1);
+console.log("penguin1 can fly:", penguin1.canFly);
+//output: penguin1: { canFly: false }
+```
+
+The prototype is an object that can have properties to be shared by multiple other objects.
+
+### 3.9 Creating classes
+
+The `constructor` will be used to build properties on the future object instance of the `Train` class.
+
+let's say that there are only two properties that each object instance of the `Train` class should have at the time it gets instantiated: `color` and `lightsOn`.
+
+```js
+class Train{
+  // The constructor will be used to build properties on the future object instance of the Train class.
+  constructor(color, lightsOn){
+    this.color = color;
+    this.lightsOn = lightsOn;
+  }
+}
+```
+
+To actually build a new instance of the Train class, I need to use the following syntax:
+```js
+new Train()
 ```
