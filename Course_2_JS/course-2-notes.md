@@ -883,7 +883,95 @@ class Train{
 }
 ```
 
+#### Building a Train
+
 To actually build a new instance of the Train class, I need to use the following syntax:
 ```js
 new Train()
+```
+
+You can continue building instances of the Train class. They are still separate objects even if you give them exactly the same properties.
+```js
+var mySecondTrain = new Train('blue', false);
+var myThirdTrain = new Train('blue', false);
+```
+
+#### Creating methods
+
+Now, there are four methods on your Train class:
+toggleLights(), lightsStatus(),  getSelf() and getPrototype().
+
+```js
+class Train {
+  constructor(color,lightsOn){
+    this.color = color;
+    this.lightOn = lightsOn;
+  }
+  toggleLights(){
+    this.lightOn = !this.ligthOn;
+  }
+  lightsStatus(){
+    console.log('Lights on?', this.lightOn);
+  }
+  getSelf(){
+    console.log(this);
+  }
+  getPrototype(){
+    var proto = Object.getPrototypeOf(this);
+    console.log(proto);
+  }
+}
+```
+
+1. The `toggleLights` method uses the logical not operator, `!`. This operator will change the value stored in the `lightsOn` property of the future instance object of the Train class; hence the `!this.lightsOn`. And the `=` operator to its left means that it will get assigned to `this.lightsOn`, meaning that it will become the new value of the lightsOn property on that given instance object.
+2. The `lightsStatus()` method on the Train class just reports the current status of the lightsOn variable of a given object instance.
+3. The `getSelf()` method prints out the properties on the object instance it is called on.
+4. The `getPrototype()` console logs the prototype of the object instance of the Train class. The prototype holds all the properties shared by all the object instances of the `Train` class. To get the prototype, you'll be using JavaScript's built-in `Object.getPrototypeOf()` method, and passing it `this` - meaning, the object instance inside of which this method is invoked.
+
+Now you can build a brand new train using this updated Train class:
+`var train4 = new Train('red', false);`
+
+```js
+train4.toggleLights(); // undefined
+train4.lightsStatus(); // Lights on? true
+train4.getSelf(); // Train {color: 'red', lightsOn: true}
+train4.getPrototype(); // {constructor: f, toggleLights: f, lightsStatus: f, getSelf: f, getPrototype: f}
+```
+
+#### Subclassing
+
+To inherit from one class to a new sub-class, JavaScript provides the extends keyword, which works as follows:
+
+```js
+class HighSpeedTrain extends Train {
+}
+```
+
+Now you can describe how the HighSpeedTrain works. Again, you can start by defining its constructor function:
+
+```js
+class HighSpeedTrain extends Train {
+    constructor(passengers, highSpeedOn, color, lightsOn) {
+        super(color, lightsOn);
+        this.passengers = passengers;
+        this.highSpeedOn = highSpeedOn;
+    }
+}
+```
+The super keyword is used to call the constructor of the super-class and initialize properties inherited from it in the sub-class. By using the super keyword in the constructor of the HighSpeedTrain class, I ensure that the properties of the Train super-class are properly initialized in the HighSpeedTrain sub-class.
+
+#### Changing methods of the super-class
+
+imagine you realized that you don't like how the toggleLights() method from the super-class works, and you want to implement it a bit differently in the sub-class. You can add it inside the HighSpeedTrain class.
+
+```js
+toggleHighSpeed() {
+    this.highSpeedOn = !this.highSpeedOn;
+    console.log('High speed status:', this.highSpeedOn);
+}
+toggleLights() {
+    super.toggleLights();
+    super.lightsStatus();
+    console.log('Lights are 100% operational.');
+}
 ```
