@@ -883,7 +883,7 @@ class Train{
 }
 ```
 
-#### Building a Train
+#### 3.9.1 Building a Train
 
 To actually build a new instance of the Train class, I need to use the following syntax:
 ```js
@@ -896,7 +896,7 @@ var mySecondTrain = new Train('blue', false);
 var myThirdTrain = new Train('blue', false);
 ```
 
-#### Creating methods
+#### 3.9.2Creating methods
 
 Now, there are four methods on your Train class:
 toggleLights(), lightsStatus(),  getSelf() and getPrototype().
@@ -938,7 +938,7 @@ train4.getSelf(); // Train {color: 'red', lightsOn: true}
 train4.getPrototype(); // {constructor: f, toggleLights: f, lightsStatus: f, getSelf: f, getPrototype: f}
 ```
 
-#### Subclassing
+#### 3.9.4 Subclassing
 
 To inherit from one class to a new sub-class, JavaScript provides the extends keyword, which works as follows:
 
@@ -960,7 +960,7 @@ class HighSpeedTrain extends Train {
 ```
 The super keyword is used to call the constructor of the super-class and initialize properties inherited from it in the sub-class. By using the super keyword in the constructor of the HighSpeedTrain class, I ensure that the properties of the Train super-class are properly initialized in the HighSpeedTrain sub-class.
 
-#### Changing methods of the super-class
+#### 3.9.5 Changing methods of the super-class
 
 imagine you realized that you don't like how the toggleLights() method from the super-class works, and you want to implement it a bit differently in the sub-class. You can add it inside the HighSpeedTrain class.
 
@@ -975,3 +975,144 @@ toggleLights() {
     console.log('Lights are 100% operational.');
 }
 ```
+
+#### 3.9.6 Combine Super Class and your own Methods
+
+You've added this third line to show that you can combine the "borrowed" method code from the super-class with your own custom code in the sub-class.
+
+Now you're ready to build some train objects.
+```js
+var train5 = new Train('blue', false);
+var highSpeed1 = new HighSpeedTrain(200, false, 'green', false);
+```
+
+#### 3.9.7 Using class instance as another class's constructor's property
+
+```js
+class StationaryBike {
+    constructor(position, gears) {
+        this.position = position
+        this.gears = gears
+    }
+}
+
+class Treadmill {
+    constructor(position, modes) {
+        this.position = position
+        this.modes = modes
+    }
+}
+
+class Gym {
+    constructor(openHrs, stationaryBikePos, treadmillPos) {
+        this.openHrs = openHrs
+        this.stationaryBike = new StationaryBike(stationaryBikePos, 8)
+        this.treadmill = new Treadmill(treadmillPos, 5)
+    }
+}
+
+var boxingGym = new Gym("7-22", "right corner", "left corner")
+
+console.log(boxingGym.openHrs)
+//output -> 7-22
+
+console.log(boxingGym.stationaryBike)
+// output -> StationaryBike { position: 'right corner', gears: 8 }
+
+console.log(boxingGym.treadmill)
+// output -> Treadmill { position: 'left corner', modes: 5 }
+```
+
+This code allows me to instantiate a new instance object of the Gym class, and then when I inspect it, I get the following information:
+1. the openHrs property is equal to "7-22" (that is, 7am to 10pm)
+2. the stationaryBike property is an object of the StationaryBike type, containing two properties: position and gears
+3. the treadmill property is an object of the Treadmill type, containing two properties: position and modes
+
+### 3.10 Default Parameters
+
+#### 3.10.1 Example 1
+
+```js
+function noDefaultParams(number) {
+    console.log('Result:', number * number)
+}
+
+noDefaultParams(); // Result: NaN
+```
+
+JavaScript doesn't throw an error but instead returns a `NaN` (Not a Number) because `number` is `undefined` by default.
+
+Consider now, the following improvement, using default parameters:
+
+```js
+function withDefaultParams(number = 10) {
+    console.log('Result:', number * number)
+}
+withDefaultParams(); // Result: 100
+```
+
+Default params allow me to build a function that will run with default argument values even if I don't pass it any arguments, while still being flexible enough to allow me to pass custom argument values and deal with them accordingly.
+
+This example might highlight the reason sometimes weird error messages appear when some software is used - perhaps the developers just didn't have enough time to build it better.
+
+#### 3.10.2 Example 2
+
+```js
+class WithDefaultParams {
+    constructor(num1 = 1, num2 = 2, num3 = 3, string1 = "Result:", bool1 = true) {
+        this.num1 = num1;
+        this.num2 = num2;
+        this.num3 = num3;
+        this.string1 = string1;
+        this.bool1 = bool1;
+    }
+    calculate() {
+        if(this.bool1) {
+            console.log(this.string1, this.num1 + this.num2 + this.num3);
+            return;
+        }
+        return "The value of bool1 is incorrect"
+    }
+}
+var better = new WithDefaultParams();
+better.calculate(); // Result: 6
+```
+
+This approach improves the developer experience of my code, because I no longer have to worry about feeding the WithDefaultParameters class with all the arguments. For quick tests, this is great, because I no longer need to worry about passing the proper arguments.
+
+Default parameters also make it easier to build inheritance hierarchies. For example, in subclass constructors, you can pass only the properties specific to the subclass, while still using the defaults from the superclass constructor. Additionally, this approach really shines when building inheritance hierarchies using classes, as it makes it possible to provide only the custom properties in the sub-class, while still accepting all the default parameters from the super-class constructor.
+
+### 3.11 Designing an OO Program
+
+            Animal
+         /         \
+       Cat        Bird
+     /     \         \
+HouseCat  Tiger    Parrot
+
+There are two keywords that are essential for OOP with classes in JavaScript.
+
+These keywords are extends and super.
+
+#### 3.11.1 Coding the `Animal` Class
+
+```js
+class Animal {
+  constructor(color ='yellow', energy = 100){
+    this.color = color;
+    this.energy = energy;
+
+  }
+  isActive(){
+    if (this.energy>0){
+      this.energy -= 20;
+      console.log('Energy is decreasing, currently at:', this.energy);
+    } else if(this.energy == 0){
+      this.sleep();
+    }
+  }
+  sleep(){
+    this.energy +=20;
+
+  }
+}
