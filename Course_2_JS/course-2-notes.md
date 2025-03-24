@@ -1113,6 +1113,95 @@ class Animal {
   }
   sleep(){
     this.energy +=20;
-
+    console.log('Energy is increasing, currently at:', this.energy);
+  }
+  getColor(){
+    console.log(this.color);
   }
 }
+```
+
+#### 3.11.2 Coding the `Cat` and `Bird` Class
+
+Each animal object, no matter which one it is, will share the properties of color and energy.
+
+```js
+class Cat extends Animal{
+  constructor(sound = 'purr', canJumpHigh = true, canClimbTrees = 1, color, energy){
+    super(color, energy);
+    this.sound = sound;
+    this.canClimbTrees = canClimbTrees;
+    this.canJumpHigh = canJumpHigh;
+  }
+  makesound(){
+    console.log(this.sound);
+  }
+}
+class Bird extends Animal{
+  constructor(sound='gururu', canFly= true, color, energy){
+    super(color, energy);
+    this.sound = sound;
+    this.canFly = canFly;
+  }
+  makesound(){
+    console.log(this.sound);
+  }
+}
+```
+
+#### 3.11.3 Add HouseCat, Tiger, and Parrot.
+
+```js
+class HouseCat extends Cat {
+    constructor(houseCatSound = "meow", sound,canJumpHigh,canClimbTrees, color,energy) {
+        super(sound,canJumpHigh,canClimbTrees, color,energy);
+        this.houseCatSound = houseCatSound;
+    }
+    // makeSound method takes a parameter `option`
+    makeSound(option) {
+        if (option) {
+            super.makeSound(); // Calls the parent class's makeSound if option is true
+        }
+        console.log(this.houseCatSound); // Always prints the HouseCat sound
+    }
+}
+
+class Tiger extends Cat {
+    constructor(tigerSound = "Roar!", sound,canJumpHigh,canClimbTrees, color,energy) {
+        super(sound,canJumpHigh,canClimbTrees, color,energy);
+        this.tigerSound = tigerSound;
+    }
+    // makeSound method takes a parameter `option`
+    makeSound(option) {
+        if (option) {
+            super.makeSound(); // Calls the parent class's makeSound if option is true
+        }
+        console.log(this.tigerSound); // Always prints the Tiger sound
+    }
+}
+
+class Parrot extends Bird {
+    constructor(canTalk = false, sound,canFly, color,energy) {
+        super(sound,canFly, color,energy);
+        this.canTalk = canTalk;
+    }
+    // makeSound method takes a parameter `option`
+    makeSound(option) {
+        if (option) {
+            super.makeSound(); // Calls the parent class's makeSound if option is true
+        }
+        if (this.canTalk) {
+            console.log("I'm a talking parrot!"); // If canTalk is true, it talks
+        }
+    }
+}
+```
+
+1. In the HouseCat and Tiger classes, the makeSound() method requires a parameter (option) to determine whether to invoke the parent class’s makeSound() method. For example, passing true invokes the parent class's makeSound() method, while false does not.
+2. Similarly, for the Parrot class, the makeSound() method also takes an option parameter, and the functionality changes based on whether the canTalk() property is true.
+
+#### 3.11.4 Build Objects
+
+Now that we've set up this entire inheritance structure, we can build various animal objects.
+
+For example, I can build two parrots: one that can talk, and the other that can't.
