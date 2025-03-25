@@ -1237,3 +1237,28 @@ leo.makeSound(false); // meow
 
 // leo, both purr and meow now:
 leo.makeSound(true); // purr, meow
+```
+
+### 3.12 De-struturing
+
+De-structuring is a way to extract values from arrays or objects into individual variables.
+
+#### 3.12.1 Example: de-structuring PI
+
+You only con de-structure something that already exists. For example PI in Math
+```js
+// output the PI out of Math
+let {PI} = Math;
+PI; // 3.141592653589793
+
+let {pi} = Math;
+pi; // undefined
+
+PI === Math.PI; // true
+PI === pi; // false
+
+PI = 1;
+PI === Math.PI; // false
+PI === pi; // false
+PI === 1; // true
+```
