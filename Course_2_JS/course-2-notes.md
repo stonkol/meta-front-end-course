@@ -1627,3 +1627,30 @@ const fruits2 = [...fruits1];
 fruits1.pop();
 console.log(fruits1, "not", fruits2);
 ```
+
+### 3.18 Jasvascript Modules
+
+CommonJS is a module system for Node.js that allows developers to break their code into separate files and reuse them in other files. It uses the `require()` function to import modules and the `module.exports` object to export modules.
+
+### 3.19 DOM manipulation
+
+1. You type the url on the browser
+2. The browser fetch(save) the HTML and CSS files
+3. The browser parses the HTML and CSS into a DOM tree
+4. The browser renders the DOM tree on the screen
+5. The browser executes the JavaScript code
+
+#### 3.19.1 Elements tab
+Used to interact with the DOM elements
+Access throught the devtools in the browser
+Provides interaction with the DOM elements with a GUI
+
+#### 3.19.2 Console tab
+Used to interact with the DOM elements
+Access JS via the console tab
+`document.body.innerText = "Hello World"`
+
+#### 3.19.3 Sources tab
+Used to interact with the DOM elements
+Access throught the devtools in the browser
+Provides interaction with the DOM elements with a GUI
