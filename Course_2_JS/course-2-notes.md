@@ -1348,6 +1348,7 @@ car2[newKey] = newValue;
 
 console.log(car2); // { speed: 200, color: 'red', brand: 'Toyota' }
 ```
+<br>
 
 #### 3.14 For-of loops and Objects
 
@@ -1426,3 +1427,54 @@ Some additional use cases of template literals are nested template literals and 
 ```js
 console.log(`${first} - and I got curious. ${second}`);
 ```
+<br>
+
+### 3.16 Data structures
+
+#### 3.16.1 some Data Structures types
+Arrays, objects, and functions are all examples of data structures in JavaScript. JS is more limited in data types. The most common data types are nthe you may encounter are Objects, Arrays, Maps, Sets.
+
+##### A Arrays
+
+Arrays are a collection of elements that can be accessed by their index. Arrays are mutable, meaning that their elements can be changed. It is normal to use loops to access the data.
+
+##### B Objects
+
+Now you may recall that an object is unaltered, noniterable collection of key-value pairs and you use objects when you need to store and later access a value under a key. Ex. you need to write object orientated, R00P code.
+
+##### C Maps
+
+It is like an array because it is iterable. Don't confuse with an object. With maps any value can be used as a key. With objects, keys can only be strings or symbols. With maps every key is unique and every value is associated with a key, they are made up of iterable key value pairs.
+
+
+##### D Sets
+
+Sets are a collection of unique values. Sets are mutable, meaning that their elements can be changed.
+
+#### 3.16.2 Data Structures examples
+
+##### A. The `forEach()` method
+
+allows you to loop over each of their members.
+```js
+const fruits = ['kiwi','mango','apple','pear'];
+function appendIndex(fruit, index) {
+    console.log(`${index}. ${fruit}`)
+}
+fruits.forEach(appendIndex);
+
+//  0. kiwi
+//  1. mango
+//  2. apple
+//  3. pear
+```
+
+Very often, the function that the forEach() method needs to use is passed in directly into the method call, like this:
+```js
+const veggies = ['onion', 'garlic', 'potato'];
+veggies.forEach( function(veggie, index) {
+    console.log(`${index}. ${veggie}`);
+});
+```
+
+##### B. The `filter()` method
