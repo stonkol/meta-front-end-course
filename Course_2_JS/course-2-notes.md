@@ -1257,8 +1257,172 @@ pi; // undefined
 PI === Math.PI; // true
 PI === pi; // false
 
+
 PI = 1;
 PI === Math.PI; // false
 PI === pi; // false
 PI === 1; // true
+```
+
+### 3.13 `For of` loops and objects
+
+To begin, it's important to know that a for of loop cannot work on an object directly, since an object is not iterable. For example:
+```js
+const car = {
+    speed: 100,
+    color: "blue"
+}
+
+for(prop of car) {
+    console.log(prop) // Uncaught TypeError: car is not iterable
+}
+```
+
+Contrary to objects, arrays are iterable. For example:
+```js
+const colors = ['red','orange','yellow']
+for (var color of colors) {
+    console.log(color); // red  orange  yellow
+}
+```
+
+#### 3.13.1 `for...of` loop iterates over the values
+
+The for...of loop iterates over the values in an array (or other iterable objects like strings, sets, and maps). It provides an easy way to loop through each element, making the code cleaner and more readable.
+Luckily, you can use the fact that a for of loop can be run on arrays to loop over objects.
+
+##### How?
+
+Before you can properly answer this question, you first need to review three built-in methods: Object.keys(), Object.values(), and Object.entries().
+
+Once you use these methods to convert an object into an iterable form (like an array), you can then use the for...of loop to iterate over it.
+
+#### 3.13.2 Built-in methods
+
+##### A. `Object.keys()` method
+
+It receives an object as its parameter:
+```js
+const car2 = {
+    speed: 200,
+    color: "red"
+}
+console.log(Object.keys(car2)); // [ 'speed', 'color' ]
+```
+
+##### B. `Object.values()` method
+
+It receives an object as its parameter:
+```js
+const car2 = {
+    speed: 200,
+    color: "red"
+}
+console.log(Object.values(car2)); // [ 200, 'red' ]
+```
+
+##### C. `Object.entries()` method
+
+It lists both the keys and the values:
+```js
+const car2 = {
+    speed: 200,
+    color: "red"
+}
+console.log(Object.entries(car2)); // [ [ 'speed', 200 ], [ 'color', 'red' ] ]
+```
+
+##### D. dynamic key-value pairs
+
+You can use the Object.keys(), Object.values(), and Object.entries() methods to dynamically create key-value pairs in an object. For example:
+```js
+const car2 = {
+    speed: 200,
+    color: "red"
+}
+
+const newKey = 'brand';
+const newValue = 'Toyota';
+
+car2[newKey] = newValue;
+
+console.log(car2); // { speed: 200, color: 'red', brand: 'Toyota' }
+```
+
+#### 3.14 For-of loops and Objects
+
+```js
+const car = {
+  engine: true,
+  steering: true,
+  speed: "slow"
+}
+const sportCar = Object.create(car);
+sportsCar.spend = "fast";
+console.log("The sportCar object:", sportsCar);
+
+// for-in is unrealiable
+for (prop in sportsCar){
+  console.log(prop); // speed /n engine
+}
+
+// for-of is reliable. Do not output the inherited properties
+for (prop of Object.keys(sportsCar)){
+  console.log(prop + ": " + sportsCar[prop]); // speed: fast
+}
+```
+
+### 3.15 Template literals examples
+
+Up until ES6, the only way to build strings in JavaScript was to delimit them in either single quotes or double quotes:
+```js
+'Hello, World!'
+"Hello, World!"
+
+//ES6 introduced the use of backtick characters as delimiters
+`Hello, World!`
+```
+
+#### 3.15.1 Differences between a template and regular string
+
+There are several ways in which a template string is different from a regular string.
+First, it allows for variable interpolation:
+```js
+let greet = "Hello";
+let place = "World";
+
+console.log(`${greet} ${place} !`) //Hello World !
+//display both variables using template literals
+```
+
+It allows programmers to embed variables directly in between the backticks, without the need to use the + operator and the single or double quotes to delimit string literals from variables. In other words, in ES5, the above example would have to be written as follows:
+```js
+var greet = "Hello";
+var place = "World";
+console.log(greet + " " + place + "!"); //display both variables without using template literals
+```
+
+#### 3.15.2 Span multiple lines
+
+Template strings can span multiple lines
+```js
+`Hello,
+World
+!
+`
+```
+
+#### 3.15.2 perform arithmetic
+
+the reason why it's possible to interpolate variables in template literals is because this syntax actually allows for expression evaluation.
+```js
+console.log(`${1 + 1 + 1 + 1 + 1} stars!`);
+```
+
+Some additional use cases of template literals are nested template literals and tagged templates.
+
+#### 3.15.3 Working with template literals
+
+```js
+console.log(`${first} - and I got curious. ${second}`);
 ```
