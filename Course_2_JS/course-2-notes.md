@@ -1475,6 +1475,155 @@ const veggies = ['onion', 'garlic', 'potato'];
 veggies.forEach( function(veggie, index) {
     console.log(`${index}. ${veggie}`);
 });
+
+// 0. kiwi
+// 1. mango
+// 2. apple
+// 3. pear
 ```
 
 ##### B. The `filter()` method
+
+It filters your arrays based on a specific test.
+
+```js
+const nums = [0,10,20,30,40,50];
+nums.filter( function(num) {
+    return num > 20;
+    console.log(result);
+})
+
+// [30,40,50]
+```
+
+##### C. The `map()` method
+
+This method is used to map each array item over to another array's item, based on whatever work is performed inside the function that is passed-in to the map as a parameter.
+
+```js
+const nums = [0,10,20,30,40,50];
+nums.map( function(num) {
+    return num * 2;
+    console.log(result);
+})
+
+// [0,20,40,60,80,100]
+```
+
+#### 3.16.3 Working with Objects in JavaScript
+
+```js
+const result = [];
+const drone = {
+    speed: 100,
+    color: 'yellow'
+}
+const droneKeys = Object.keys(drone);
+droneKeys.forEach( function(key) {
+    result.push(key, drone[key])
+})
+console.log(result) //['speed',100,'color','yellow']
+```
+
+#### 3.16.4 Working with Maps in JavaScript
+
+A map can feel very similar to an object in JS. However, it doesn't have inheritance. No prototypes! This makes it useful as a data storage.
+
+```js
+let bestBoxers = new Map();
+bestBoxers.set(1, "The Champion");
+bestBoxers.set(2, "The Runner-up");
+bestBoxers.set(3, "The third place");
+
+console.log(bestBoxers);
+//Map(3) {1 => 'The Champion', 2 => 'The Runner-up', 3 => 'The third place'}
+```
+
+To get a specific value, you need to use the get() method.
+`bestBoxers.get(1); // 'The Champion'`
+
+#### 3.16.5 Working with Sets in JavaScript
+
+The Set constructor can, for example, accept an array. This means that we can use it to quickly filter an array for unique members.
+```js
+const repetitiveFruits = ['apple','pear','apple','pear','plum', 'apple'];
+const uniqueFruits = new Set(repetitiveFruits);
+
+console.log(uniqueFruits); //{'apple', 'pear', 'plum'}
+```
+
+### 3.17 Spread and Rest Operator
+
+#### 3.17.1 Spread Operator
+
+The advantage is you don't have to list each member of the array. Syntax is also clearer.
+```js
+showItinerary(...top7);
+```
+
+### 3.17.2 Rest Operator
+
+```js
+const top7 =["the colosseum","the eiffel tower","the statue of liberty","the great wall of china","the taj mahal","the petra","the piazza venice"];
+
+const [first, second, third, ...secondVisit] = top7;
+// so now i extracted the constants into four variables. making an subarray
+```
+
+```js
+function addTaxToPrices(taxRate, ...itemsBought){
+  return itemsBOught.map(item => item * taxRate)
+}
+
+let shoppingCart = addTaxToPrices(1.1, 42, 59, 36);
+//1.1 is the tax rate, while the next variables are the items bought.
+
+console.log(shoppingCart); //[46.2, 64.9, 40.32]
+```
+
+#### 3.17.3 `push()` method
+
+```js
+let veggies = ['onion', 'parsley'];
+veggies = [...veggies, 'carrot', 'beetroot'];
+console.log(veggies); // ['onion', 'parsley', 'carrot', 'beetroot'];
+```
+
+#### 3.17.4 Convert a string to an array using the spread operator
+
+```js
+const myName = 'John';
+const myNameArray = [...myName];
+console.log(myNameArray); // ['J', 'o', 'h', 'n']
+```
+
+#### 3.17.5 Join arrays and objects using the spread operator
+
+```js
+const fruits = ['apple', 'pear', 'plum'];
+const berries = ['blueberry', 'strawberry'];
+const fruitsAndBerries = [...fruits, ...berries]; // concatenate
+
+console.log(fruitsAndBerries);
+// ['apple', 'pear', 'plum', 'blueberry', 'strawberry'];
+```
+
+#### 3.17.6 Copy either an object or an array into a separate one
+
+```js
+const car1 = {
+    speed: 200,
+    color: 'yellow'
+}
+const car2 = {...car1};
+car1.speed = 201;
+
+console.log(car1.speed, car2.speed); //201, 200.
+```
+
+```js
+const fruits1 = ['apples', 'pears'];
+const fruits2 = [...fruits1];
+fruits1.pop();
+console.log(fruits1, "not", fruits2);
+```
