@@ -1674,7 +1674,7 @@ Although CSS has developed significantly over the years, it is still JavaScript 
 5. Verify form input before sending it to the backend of a webapp,
 6. and more!
 
-### 3.21 JS Selector
+#### 3.20.1 JS Selector
 
 You can use the console in the browser to access the DOM.
 ```js
@@ -1695,7 +1695,7 @@ document.getElementById('heading')
 document.getElementByClassName('txt')
 ```
 
-### 3.33 Event Handling
+#### 3.20.2 Event Handling
 
 ```js
 document.addEventListener('click', function() {
@@ -1716,3 +1716,62 @@ function handleClickHeading('heading'){
 }
 target.addEventListener('click', handleClickHeading)
 ```
+
+#### 3.20.3  Web page content update
+
+to capture user input you can use `prompt()`
+```js
+let answer = prompt('What is your name?');
+
+// Once you have the user-provided input inside the answer variable, you can manipulate it any way you need to.
+// For example, you can output the typed-in information on the screen, as an <h1> HTML element.
+if (typeof(answer)) === 'string'){
+  var h1 = documnet.createElement('h1')
+  h1.innerText = answer;
+  document.body.innerText = '';
+  documnet.body.appendChild(h1);
+}
+```
+This is probably the quickest and easiest way to capture user input on a website, but doing it this way is not the most efficient approach, especially in more complex scenarios.
+
+##### This is where `HTML forms` come in.
+
+You can code a script which will take an input from an HTML form and display the text that a user types in on the screen.
+
+You'll begin by coding out a "test solution" to the task at hand:
+```js
+var h1 = document.createElement('h1')
+h1.innerText = "Type into the input to make this text change"
+
+var input = document.createElement('input')
+input.setAttribute('type', 'text')
+
+document.body.innerText = '';
+document.body.appendChild(h1);
+document.body.appendChild(input);
+```
+
+So, you're essentially doing the same thing that you did before, only this time you're also dynamically adding the `input` element, and you're setting its HTML `type` attribute to `text`. That way, when you start typing into it, the letters will be showing in the `h1` element above.
+
+However, you're not there quite yet. At this point, the code above, when run on a live website, will add the h1 element with the text "Type into the input to make this text change", and an empty input form field under it.
+
+##### update text content with the value of the input field
+
+Now, the only thing that you still need to do to complete the code is to update the text content of the h1 element with the value you got from the input field.
+
+```js
+var h1 = document.createElement('h1')
+h1.innerText = "Type into the input to make this text change"
+
+var input = document.createElement('input')
+input.setAttribute('type', 'text')
+
+document.body.innerText = '';
+document.body.appendChild(h1);
+document.body.appendChild(input);
+
+input.addEventListener('change', function() {
+    h1.innerText = input.value
+})
+```
+After this update, whatever you type into the input, after pressing the ENTER key, will be shown as the text inside the h1 element.
