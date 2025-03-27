@@ -1654,3 +1654,65 @@ Access JS via the console tab
 Used to interact with the DOM elements
 Access throught the devtools in the browser
 Provides interaction with the DOM elements with a GUI
+
+### 3.20 JS Interactivity
+
+Did you know that JavaScript's initial purpose was to provide interactivity in the browser? In other words, it was the "set of controls" that would allow web developers to control the behavior of the webpages and even the browsers that these webpages worked on.
+
+Initially, in the late 1990s, there was plain JavaScript that had to be tweaked to suit individual browsers.
+
+Then, by the mid-2000s, the jQuery library came out, with the idea of writing less code, but doing more with it. It "leveled the playing field" as it allowed developers to use a single code-base for various browsers.
+
+This trend continued and many other frameworks such as React, Vue, Angular, D3, and more came along. Together with npm and Node.js, the JavaScript ecosystem is not slowing down.
+
+Although CSS has developed significantly over the years, it is still JavaScript that allows users to:
+
+1. Get their geolocation,
+2. Interact with maps,
+3. Play games in the browser,
+4. Handle all kinds of user-triggered events, regardless of the device,
+5. Verify form input before sending it to the backend of a webapp,
+6. and more!
+
+### 3.21 JS Selector
+
+You can use the console in the browser to access the DOM.
+```js
+document.querySelector('p')
+// returns the first p element in the DOM:
+// <p class="txt"> "this is the text in the p....." </p>
+
+document.querySelectorAll('p')
+// it return all the `p` elements in the DOM
+// NodeList(2) [p.txt, p.txt]
+// > 0: p.txt
+// > 1: p.txt
+// length: 2
+
+document.getElementById('heading')
+// this will get an element by its ID
+
+document.getElementByClassName('txt')
+```
+
+### 3.33 Event Handling
+
+```js
+document.addEventListener('click', function() {
+  console.log('clicked');
+});
+```
+
+```js
+const target = document.querySelector('body');
+
+function handleClick(){
+  console.log('clicked the body')
+}
+target.addEventListener('click', handleClick)
+
+function handleClickHeading('heading'){
+  console.log('clicked the heading')
+}
+target.addEventListener('click', handleClickHeading)
+```
