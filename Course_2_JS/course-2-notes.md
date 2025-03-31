@@ -1805,10 +1805,28 @@ lowerCase("Word"); //output "word"
 
 #### 4.1.3 Start a new project
 
-Create a npm file (npm init) in a project
+To create a npm file `package.json` in a project run:
+```sh
+npm init
+```
 ```json
 {
   "name": "my-cool-package",
   "version": "1.0.0"
 }
 ```
+
+The `package.json` file holds all the instructions on all the node modules that are pulled from the npm repository of open source modules. There are about 11 million modules in the npm repository. It means that you can get thousands of hours worth of other developers' coding by running the npm install command and adding the package name.
+
+Examples of libraries you can install include:
+- React `npm i react`
+- Webpack `npm i webpack`
+- Bootstrap `npm i bootstrap-vue`
+- Angular Core `npm i @angular/core`
+- and more...
+
+The `package.json` file updates when you install a new package. It keeps track of everything you need to have installed in your project. It makes it more portable.
+
+For example, if you have built a project with a specific number of different node packages, they're all listed inside the package.json file. All you need to do is share this file with, for example, your co-workers. They can have the exact same setup on their machines simply by running the command npm install. This install command reads the contents of the package.json and installs all the necessary packages, also referred to as dependencies.
+
+### What is testing?
