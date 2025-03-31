@@ -1775,3 +1775,40 @@ input.addEventListener('change', function() {
 })
 ```
 After this update, whatever you type into the input, after pressing the ENTER key, will be shown as the text inside the h1 element.
+
+## 4. Node and NPM
+
+### 4.1 Intro
+
+Here you will learn about Node.js and Node Package Manager (npm). And you will explore how to install npm packages and how to work with package.json. Furthermore, you will learn about testing in JavaScript and you'll code a simple unit test in Jest.
+
+#### 4.1.1 Use locally
+
+```sh
+# check if you have
+node -v
+npm -v
+
+# execute js code
+node app.js
+
+# install node module
+npm install lower-case
+```
+
+#### 4.1.2 Use an mpn module in your code
+
+```js
+import { lowerCase, localLowerCase} from "lower-case";
+lowerCase("Word"); //output "word"
+```
+
+#### 4.1.3 Start a new project
+
+Create a npm file (npm init) in a project
+```json
+{
+  "name": "my-cool-package",
+  "version": "1.0.0"
+}
+```
