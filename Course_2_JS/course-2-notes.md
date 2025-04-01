@@ -1829,4 +1829,120 @@ The `package.json` file updates when you install a new package. It keeps track o
 
 For example, if you have built a project with a specific number of different node packages, they're all listed inside the package.json file. All you need to do is share this file with, for example, your co-workers. They can have the exact same setup on their machines simply by running the command npm install. This install command reads the contents of the package.json and installs all the necessary packages, also referred to as dependencies.
 
-### What is testing?
+### 4.2 What is testing?
+
+#### 4.2.1 Tests as expectation-document code
+
+COnciseness, CLarity, Repeateability
+
+##### JEST
+```js
+fucntion concatStrings(strA, strB){
+  return strA + strB;
+}
+
+expect(concatStrings("123","456")).toBE("123456");
+```
+
+##### Red-green
+When a test fail you say it is *red* and when it passed is *green*.
+
+It's most likely that some of your tests will be red and some of them will be green. Red tests are a guide as to how you need to improve your code to cater for unmet expectations. As you continue to refine your code in response to red tests, it becomes a cyclical activity. This is often described as the **red-green-refactor cycle**.
+
+This cycle is the basis of the test-driven development or TDD approach to programming. First, you write a failing test, then you write your source code so that the previously failing test now passes. Finally, you optimize your source code without changing its results. There are many advantages of having code that tests other code. For example, you can run it as many times as you want. You can run the testing code automatically.
+
+### 3.3 Testing in JavaScript
+
+For project manager on a software project testing might mean that a specific piece of software works well with other parts of your system for a software engineer. Testing might mean writing code that doesn't break the existing functionality is bug free and satisfies the requirements as set out in a given task based on what your motivations are.
+
+#### 3.3.1 e2e
+End to End testing is use the software as the users will use it in **real life**. Meaning that you need to open a broser and test your website there, for eaxmple clicking and filling a form, adding an item to the basket or login-in. It didnt need to be a programmer to test it and it it the most *time consuming* one.
+
+#### 3.3.2 Integration
+
+It test how separte parts of your code work together. For example, you might test that a function returns the correct value when called with certain arguments.
+There are software, for exmple **React testing library** and **Enzyme** to test your code, it is less time consuming and cheap than e2e.
+
+#### 3.3.3 Unit
+
+This is even less resource coonsuming than e2e and Integration. Unit testing is the process of testing the smallest units of your source code in isolation. A good example of this is functions. A unit is the smallest piece of code that you can test separately from the rest of the app. Practically the smallest unit of testable code in Js is usually a `function` or a `method`. It is *self-contained*, *fast to run* and *easy to write*.
+
+### 3.4 Intro to Jest
+
+Js didnt have a build in testing functionality, so you need to use a framework, like Jest, Jasmine, Mocha, Karma, qUnit.
+
+Jest is often use to test code like React, it is maintained by *Meta*. It is js based. It can also test `Babel`, `Typescript`, `Node`, `Angular` and `Vue`.
+
+#### 3.4.1 Code coverage
+Jest also supports **code coverage**, If I say that I have an 80 percent code coverage, that means that only one-fifth of my entire code base is not covered by tests. But even if I have 100% code coverage it doesn't mean your code have been tested by every possible expectation.
+
+> ![NOTE]
+>  As a rule, the higher the percentage of code coverage, the lower the amount of time required to write new tests
+
+#### 3.4.2 Mocking Feature
+
+Mocking is a technique used in unit testing to replace real dependencies with fake or dummy versions. This allows you to isolate the code you are testing and focus on its behavior in specific scenarios.
+
+Mocking is especially helpful because very often web applications are built by teams of developers. Some developers work on the backend of a feature and others work on the front end. This could result in bottlenecks.
+
+But the great thing about Jest is that you use it's mock functions without any additional installations. In Jest you use mocking by employing Jest mock functions. It's also easy to test asynchronous code in Jest. There are no difficult setups and tests are relatively easy to code even for newcomers to the framework
+
+#### 3.4.3 Snapshot Testing
+Jest allows you to perform snapshot testing. Snapshot testing is used by developers to verify that there are no regressions in the DOM of our apps after some changes to the code base are made.
+
+### 3.5 Install and use
+
+#### 3.5.1 Add Jest as a Development Dependency
+
+Terminal and execute this command to install Jest:
+```sh
+npm install jest --save-dev
+```
+
+After install confirm the presence of the following entry:
+```json
+"devDependencies": {
+  "jest": "^29.7.0"
+}
+```
+And it will also create a `node-lock.json` file and `node_modules` folder.
+
+#### 3.5.2 Update the test Script
+
+In the package.json file, locate the "scripts" section and update the "test" entry as follows:
+```js
+"scripts": {
+  "test": "jest"
+}
+```
+
+#### 3.5.3 Code a function
+
+Implement a JavaScript function to perform a basic calculation and export it for use in a separate module.
+
+##### For example:
+
+1. Implement the timesTwo function which take a number as input and return the number multiplied by 2.
+2. Export the function as a module:
+  `module.exports = timesTwo;`
+
+#### 3.5.4 Write a test
+
+Write a unit test using Jest's `test()` and `expect()` functions
+
+##### For example:
+
+to verify the correctness of the `timesTwo()` function.
+
+#### 3.5.5 Run the Tests
+
+1. Use the test() function with the description: "returns the number times 2".
+2. Ensure the test checks that calling `timesTwo(10)` returns **20**.
+```js
+test('retruns the number times 2', () => {
+  expect(timesTwo(10).toBe(20);
+});
+```
+Run the tests using the command `npm test`.
+
+##### For example:
