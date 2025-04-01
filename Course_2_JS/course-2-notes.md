@@ -1936,13 +1936,52 @@ to verify the correctness of the `timesTwo()` function.
 
 #### 3.5.5 Run the Tests
 
+##### For example:
+
 1. Use the test() function with the description: "returns the number times 2".
 2. Ensure the test checks that calling `timesTwo(10)` returns **20**.
 ```js
-test('retruns the number times 2', () => {
-  expect(timesTwo(10).toBe(20);
+test('returns the number times 2', () => {
+  expect(timesTwo(10)).toBe(20);
 });
 ```
 Run the tests using the command `npm test`.
 
-##### For example:
+### 3.5.6 TDD(Test-Driven Development)
+
+TDD is a software development approach where you write tests before writing the actual code. This ensures that the code meets the requirements and is easy to maintain.
+
+```js
+test('returns true if statusOfKeys exists', function() {
+  expect(statusOfKeys).toBeDefined();
+});
+
+function statusOfKeys();
+```
+One of the basics of TDD is to write as less code as possible to let your test pass.
+
+#### Steps of using the TDD
+1. Read the requirements and understand what needs to be implemented.
+2. Write a test that fails because the function does not exist.
+3. Update the source code by implement the function to make the test pass.
+4. Run test that passes.
+4. Refactor the code if necessary.
+5. Repeat steps 1-4 until all requirements are met.
+
+This process is usually explained in three words. **Red, Green. Re factor**, red represents the failing test. Green on the other hand, represents the passing test after you make updates to the source code.
+
+### 3.5.7 Additional Resources
+
+Here is a list of resources that may be helpful as you continue your learning journey.
+
+[MDN: Server-side website programming](https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps)
+
+Nodejs.org [docs website](https://nodejs.org/en/docs/)
+
+[Jest testing framework website](https://jestjs.io/)
+
+[Cypress testing framework](https://www.cypress.io/)
+
+[npm website](https://www.npmjs.com/)
+
+[Unit testing in JavaScript](https://www.browserstack.com/guide/unit-testing-in-javascript)
