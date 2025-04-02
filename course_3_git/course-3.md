@@ -324,6 +324,8 @@ cp              # copy files and directories
 mv              # move files and directories
 cat             # Allows reading or concatenation of a file
 less            # Displays the contents of a file one page at a time. Press [Q] to exit.
+grep            # Global regular expression, allows for searching contents of files or folders
+
 ```
 
 in the *nix world `Ctrl + C` will stop the current process
