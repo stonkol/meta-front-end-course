@@ -287,7 +287,25 @@ As you become more advanced in using the command line, you will be able to perfo
 
 You can write scripts to automate various tasks, control user access to files and programs, stop, start and restart programs. Create aliases of only a few characters long to initiate very long commands, download files from the Internet, run various software, and finally, run and control self-contained virtual software, which is also known as containerization.
 
-#### 2.1.2 Important commands
+#### 2.1.2 Example of a command workflow
+
+```sh
+cd ~/Desktop
+mkdir my_jsproject
+cd myproject
+touch example.js
+code example.js     # open file in vscode
+```
+
+### 2.2 What is Unix?
+
+Having a grip on UNIX commands specifically is a great skill to have in today's software development world.Unix preceded Linux and was developed by Ken Thompson and Dennis Ritchie and team at AT&T Labs in 1969. Linux came much later on and was originally developed as a hobby by Linus Torvalds, hence the name Linux.
+
+Windows allowed non-technical users to perform tasks without having to learn a list of commands. But you, as an aspiring developer, will get to use Unix commands to develop those tasks.
+
+it's important to note that each command has a set of helper instructions. These helpers give detailed information about how the commands can be run and how something we call flags can be passed. One of these helpers is the `man` command.
+
+#### 2.2.1 Important commands
 
 ```sh
 cd ~/Desktop    # go Desktop
@@ -295,4 +313,17 @@ cd ..           # last directory
 touch my.txt    # create a new file
 mkdir my_dir    # create a new directory
 history         # view command history
+
+man             # display manual pages
+
+ls              # list files and directories
+ls -l           # list files and directories with details
+ls -a           # list all files and directories including hidden ones
+pwd             # print working directory
+cp              # copy files and directories
+mv              # move files and directories
+cat             # Allows reading or concatenation of a file
+less            # Displays the contents of a file one page at a time. Press [Q] to exit.
 ```
+
+in the *nix world `Ctrl + C` will stop the current process
