@@ -122,3 +122,24 @@ tests, and more.
 1. **HEAD**: representing your current working directory, the HEAD pointer can be moved to different branches, tags, or commits when using `git checkout`.
 
 ### 1.2 Systems of version control
+
+#### 1.2.1 Centralize Version Control System
+
+Centralized version control systems, or *CVCS* for short, contain a server and a client. The server contains the main repository that houses the full history of versions of the code base.
+
+Developers working on projects using a centralized system need to pull down the code from the server to their local machine. This essentially means that viewing the history of changes requires that you are connected to the server in order to retrieve and view them.
+
+#### 1.2.2 Distributed Version Control Systems
+
+*DVCS* for short, are similar to the centralized model. You still need to pull code down from the server to view the latest changes. The key difference is that **every user is a server and not a client**. This means that every time you pull down code from the distributed model, you have the entire history of changes on your local system.
+
+#### 1.2.3 CVCS vs DVCS
+
+CVCS is that they are considered easier to learn than their distributed counterparts and it gives more access controls to users. The disadvantage is that they can be slower given that you need to establish a connection to the server to perform any actions. With DVCS, you don't need to be connected to the server to add your changes or view a file's history. It works as if you are actually connected to the server directly but on your own local machine.
+
+
+#### 1.2.4 History
+
+Version Control has a long history going back to the 1980s. In fact, version control systems were created before the Internet!
+
+One of the first significant Version Control Systems was the **Concurrent Versions System (CVS)**. It was first developed in 1986 by Walter F. Tichy at Purdue University and released publicly in 1990.
