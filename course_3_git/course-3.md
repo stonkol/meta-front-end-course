@@ -310,6 +310,7 @@ it's important to note that each command has a set of helper instructions. These
 ```sh
 cd ~/Desktop    # go Desktop
 cd ..           # last directory
+cd ../dir2      # go to a sibling folder
 touch my.txt    # create a new file
 mkdir my_dir    # create a new directory
 history         # view command history
@@ -321,11 +322,96 @@ ls -l           # list files and directories with details
 ls -a           # list all files and directories including hidden ones
 pwd             # print working directory
 cp              # copy files and directories
-mv              # move files and directories
+mv              # move files and directories and change file names
 cat             # Allows reading or concatenation of a file
+wc              # word count
 less            # Displays the contents of a file one page at a time. Press [Q] to exit.
 grep            # Global regular expression, allows for searching contents of files or folders
-
+chmod [120]     # Change permissions of a file or directory, with 3 digits
 ```
 
 in the *nix world `Ctrl + C` will stop the current process
+
+#### 2.2.2 Editing files in Bash
+
+There are many options for editing files in Bash. The most common is usually VI or Vim. VI stands for visual editor. It's used for making edits and changes to a file and saving them. It's similar to what you may have used in applications like Word.
+
+VIM is a better version of VI with some improvements - hence its name: visual editor improved.
+
+##### Normal Mode
+
+Default mode when you open a file. In this mode, you can navigate through text, search for words, delete or copy lines, and perform other operations.
+```sh
+h           # Move left
+j           # Move down
+k           # Move up
+l           # Move right
+/[search]   # Search for a word or phrase.
+```
+
+### 2.3 Pipes
+
+Pipes allow you to connect the output of one command to the input of another command. This is useful for chaining commands together to perform complex operations.
+
+```sh
+ls | wc -w                      # 2 (nm of files)
+cat file1.txt | wc -w           # 181 (number of words)
+cat file1.txt file.md | wc -w   # 320 (nm words of 2 files)
+ls | grep my_file               # list files+dir and then pipe the output to `grep` to search for a specific file/dir
+```
+
+### 2.4 Redirection
+
+The basic workflow of any Linux command is that it takes an input and gives an output. The standard input device is the keyboard. The standard output device is the screen.
+
+There are three types of IO or input/output redirections. **Standard input** = `0`, **standard output** = `1`, and **standard error** = `2`.
+
+Redirection allows you to redirect the output of a command to a file or another command.
+
+```sh
+ls > file.txt                   # Redirect the output of `ls` to a file named `file.txt`
+cat fi.txt file.md > file.txt   # Redirect the output of `cat` to a file named `file.txt`
+ls >> file.txt                  # Append the output of `ls` to a file named `file.txt`
+cat f1.txt file.md >> file.txt  # Append the output of `cat` to a file named `file.txt`
+ls -l /bin 2> error.txt         # Output an error tp error.txt
+```
+
+### 2.5 Grep
+
+```sh
+less                            # Display a file in a pager
+grep Sam name_list.txt          # Display a list of names that begin with "Sam" in the file name_list.txt, it is case sensitive.
+grep -i Sam name_list.txt       # Display a list of names that have "Sam" and "sam", using `-i` we ignore case sensitive
+grep -w Sam name_list.txt       # Display a list of names that have "Sam" and "sam", using `-w` we match whole words, so only words that only have "Sam" is returned, for example Samantha will not appear.
+grep -r my_file /path/to/dir    # Search for a specific word recursively in a directory
+```
+
+### 2.6 Additional Resources
+
+[Agile methodologies](https://www.planview.com/resources/guide/agile-methodologies-a-beginners-guide/)
+
+
+Installing git on mac and windows, [detailed instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+
+[Bash Reference Manual](https://www.gnu.org/software/bash/manual/html_node/index.html#SEC_Contents)
+
+[Bash Redirections](https://www.gnu.org/software/bash/manual/html_node/Redirections.html#Redirections)
+
+[Bash Cheatsheet](https://devhints.io/bash)
+
+
+[Grep Cheatsheet](https://devhints.io/grep)
+
+
+[Grep Manual](https://man7.org/linux/man-pages/man1/grep.1.html)
+
+[History and Timeline of Unix](https://unix.org/what_is_unix/history_timeline.html)
+
+[History of Vim](https://en.wikipedia.org/wiki/Vim_(text_editor))
+
+[How to work with relative and absolute paths](https://www.geeksforgeeks.org/absolute-relative-pathnames-unix/)
+
+[Unix Commands Cheatsheet](https://cheatography.com/jluis/cheat-sheets/bash-and-unix-commands/)
+
+
+[Vim Cheatsheet](https://vim.rtorr.com/)
