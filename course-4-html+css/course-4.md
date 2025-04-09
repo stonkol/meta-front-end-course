@@ -129,7 +129,7 @@ It's good practice to contain the blog post content inside of the article elemen
 1. `<source>` Specifies media resources for `<picture>`, `<audio>` and `<video>` elements.
 1. `<svg>` Used to define Scalable Vector Graphics within a web page.
 
-### Table tags
+### 1.2.9 Table tags
 
 1. `<table>` Defines a table element to display table data within a web page.
 1. `<thead>` Represents the header content of a table. Typically contains one <tr> element.
@@ -141,3 +141,247 @@ It's good practice to contain the blog post content inside of the article elemen
 1. `<caption>` Defines the caption of a table element.
 1. `<colgroup>` Defines a semantic group of one or more columns in a table for formatting.
 1. `<col>` Defines a semantic column in a table.
+
+## 1.3 Metadata
+
+A major part of launching a website is a process called search engine optimization or SEO.
+
+a search engine visits your website, it analyzes the html document and media content. If it finds a link to another html document, it follows the link to that document and continues following links until it is finished analyzing the entire website. Based on the results of the analysis and the content on your website, the search engine will rank the website for various search terms.
+
+### 1.3.1 Basic meta tags For SEO
+`<Meta>` tags influence website ranking. `<Meta>` tags define metadata about a web page. It's data about other data which in this case is data about the web page. Meta tags are added inside the `<head>` element of your html document and as you know, nothing inside the head element is displayed in the web browser. **BUT**, one of the major search engines now ignores this metadata and another uses keywords metadata as a spam indicator because of this, it's recommended not to include this metadata in modern web pages.
+
+1. `<meta name="description"/>` brief description of the web page
+1. `<meta name=”title”/>` title of the web page
+1. `<meta name="author" content="name">` author of the web page
+1. `<meta name="language" content="english">` language of the web page
+1. `<meta name="robots" content="index,follow" />` tells search engines how to crawl or index a certain page
+1. `<meta name="google"/>` tells Google not to show the sitelinks search box for your page when showing search results
+1. `<meta name="googlebot" content=”notranslate” />` tells Google you don’t want to provide an automatic translation for your page if the user uses a different language
+1. `<meta name="revised" content="Sunday, July 18th, 2010, 5:15 pm" />` specifies the last modified date and time on which you have made certain changes
+1. `<meta name="rating" content="safe for kids">` specifies the expected audience for your page
+1. `<meta name="copyright" content="Copyright 2022">` specifies a Copyright
+
+### 1.3.2 Viewport
+
+The `"viewport"` metadata is important when designing responsive web pages. when a web pages viewed on a phone or tablet, the device will by default attempt to render the web page as if it is being viewed on a desktop. This results in a poor browsing experience for the user. The solution is to define view ports metadata.  The most used value for the mobile experiences is to set the width to device dash with and the initial scale to 1.0
+
+1. `<meta name="format-detection" content="telephone=yes"/>` indicates that telephone numbers should appear as hypertext links that can be clicked to make a phone call
+1. `<meta name="HandheldFriendly" content="true"/>` specifies that the page can be properly visualized on mobile devices
+1. `<meta name="viewport" content="width=device-width, initial-scale=1.0"/>` specifies the area of the window in which web content can be seen
+
+### 1.3.3 Name
+
+The name of the property can be anything you like, although browsers usually expect a value they understand and can take an action upon. An example would be `<meta name="author" content="name">` to state the author of the page.
+
+### 1.3.4 Content
+
+The content field specifies the property's value. For example, you can use `<meta name="language" content="english">`, to specify the language of the webpage to search engines.
+
+### 1.3.5 Charset
+
+The charset is a special field that lets you specify the character encoding used for the page so that the browser can display it properly. The most frequently used is utf-8, and you would add it to your HTML header as follows: `<meta charset="UTF-8">`
+
+### 1.3.6 HTTP-equiv
+
+This field stands for HTTP equivalent, and it’s used to simulate HTTP response headers. This is rare to see, and it’s recommended to use HTTP headers over HTML http-equiv meta tags. For example, the next tag would instruct the browser to refresh the page every 30 minutes: `<meta http-equiv="refresh" content="30">`
+
+1. `<meta http-equiv="content-type" content="text/html">` specifies the format of the document returned by the server
+1. `<meta http-equiv="default-style"/>`  specifies the format of the styling document
+1. `<meta http-equiv="refresh"/>` specifies the duration of the page before it’s considered stale
+1. `<meta http-equiv=”Content-language”/>` specifies the language of the page
+1. `<meta http-equiv="Cache-Control" content="no-cache">` instructs the browser how to cache your page
+
+## 1.4 Layout design
+
+### 1.4.1 Top navbar layout
+
+Websites often have a top navbar layout to provide a set of essential anchor links to the user. These typically link to the main areas of the website, such as product pages, careers pages or contact pages. This provides the visitor to the website with a consistent navigation experience.
+
+### 1.4.2 Carousel layout
+
+Product-focused websites often use a large carousel on their homepage to highlight their featured products, discounts and offers. The carousel contains content items that will rotate through the carousel area at a fixed interval.
+
+### 1.4.3 Blog layout
+
+The blog layout is used to feature multiple content items of differing importance. It is often seen on news websites where new articles will appear on the page each day based on current events.
+
+### 1.4.4 Dashboard layout
+
+Dashboard layouts are often used in enterprise software for managing various web applications. They typically feature a sidebar for navigation with the main content area containing forms for configuration or reporting data such as graphs and tables. This trendy layout provides a good user experience for business users.
+
+## 1.5 UX with meta tags
+
+When you share a link, most social networks generate a preview of the link to let users know what the linked webpage is about.
+
+By using Meta tags to control what information is displayed to users, you can get more clicks when you share your websites. But the Meta tags web developers use for this purpose are different from the traditional SEO Meta tags that you learned about earlier in this lesson. Traditional SEO Meta tags are oriented towards search results, not direct links.
+
+To address this challenge, Facebook established the **Open Graph Protocol** in 2010. The Open Graph Protocol is a set of Metadata rules that allow web pages to describe themselves to social networks.
+
+It is also located inside the `<head></head>`, Open Graph Protocol will always start with `og:...`
+```html
+<head>
+  <meta property="og:title" content="My first web page" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="www.example.com" />
+  <meta property="og:title" content="www.example.com/jpg" />
+</head>
+```
+
+## 1.6 Forms and validation
+
+Forms are a fundamental part of any website. They allow users to interact with the site and provide feedback or information. However, forms can be difficult to use and can lead to errors if not properly validated.
+
+To ensure that forms are used correctly, it is important to validate them. Validation can be done on the client-side using JavaScript or on the server-side using PHP or other server-side languages.
+
+Server-side validation is more secure because it prevents malicious users from tampering with your website's code and submitting invalid data to your server. When the form data is received by the web server, the backend will validate the data before processing it. This validation can run more complex checks, such as checking the data against a database, or validating the data against business requirements.
+
+HTML has several input types that are validated by the web browser.
+```html
+<input type="email">
+<input type="tel">
+<input type="url">
+<input type="date">
+<input type="time">
+<input type="number">
+<input type="range">
+```
+
+## 1.7 Input Types
+
+### 1.7.1 Button
+
+This displays a clickable button and it’s mostly used in HTML forms to activate a script when clicked. `<input type="button" value="Click me" onclick="msg()" />`
+
+you can also define buttons with the <button> tag, with the added benefit of being able to place content like text or images inside the tag.
+```html
+<button onclick="alert('Are you sure you want to continue?')">
+    <img src="https://yourserver.com/button_img.jpg"
+        alt="Submit the form" height="64" width="64">
+</button>
+```
+
+### 1.7.2 Checkbox
+
+Defines a check box allowing single values to be selected or deselected. They are used to let a user select one or more options of a limited number of choices.
+
+```html
+<input type="checkbox" id="dog" name="dog" value="Dog">
+<label for="dog">I like dogs</label>
+<input type="checkbox" id="cat" name="cat" value="Cat">
+<label for="cat">I like cats</label>
+```
+
+### 1.7.3 Radio
+
+Displays a radio button, allowing only a single value to be selected out of multiple choices. They are normally presented in radio groups, which is a collection of radio buttons describing a set of related options that share the same "name" attribute.
+
+```html
+<input type="radio" id="light" name="theme" value="Light">
+<label for="light">Light</label>
+<input type="radio" id="dark" name="theme" value="Dark">
+<label for="dark">Dark</label>
+```
+
+### 1.7.4 Submit
+
+Displays a submit button for submitting all values from an HTML form to a form-handler, typically a server. The form-handler is specified in the form’s "action" attribute:
+
+```html
+<form action="myserver.com" method="POST">
+...
+<input type="submit" value="Submit" />
+</form>
+```
+
+### 1.7.5 Text
+
+Defines a basic single-line text field that a user can enter text into.
+
+```html
+<input type="text" id="fname" name="fname">
+```
+
+### 1.7.6 Password
+
+Defines a single-line text field whose value is obscured, suited for sensitive information like passwords.
+
+```html
+<input type="password" id="pwd" name="pwd">
+```
+
+### 1.7.7 Date
+
+Displays a control for entering a date with no time (year, month and day).
+```html
+<label for="dob">Date of birth:</label>
+<input type="date" id="dob" name="date of birth">
+```
+
+### 1.7.8 Datetime-local
+
+Defines a control for entering a date and time, including the year, month and day, as well as the time in hours and minutes.
+
+```html
+<label for="birthdaytime">Birthday (date and time):</label>
+<input type="datetime-local" id="birthdaytime" name="birthdaytime">
+```
+
+### 1.7.9 Email
+
+Defines a field for an email address. It’s similar to a plain text input, with the addition that it validates automatically when submitted to the server.
+
+```html
+<label for="email">Enter your email:</label>
+<input type="email" id="email" name="email">
+```
+
+### 1.7.10 File
+
+Displays a control that lets the user select and upload a file from their computer. To define the types of files permissible you can use the "accept" attribute. Also, to enable multiple files to be selected, add the "multiple" attribute.
+
+```html
+<label for="myfile">Select a file:</label>
+<input type="file" id="myfile" name="myfile">
+```
+
+### 1.7.11 Hidden
+
+Defines a control that is not displayed but whose value is still submitted to the server.
+
+```html
+<input type="hidden" id="custId" name="custId" value="3487">
+```
+
+### 1.7.12 Image
+
+Defines an image as a graphical submit button. You should use the “src” attribute to point to the location of your image file.
+
+```html
+<input type="image"src="submit_img.png" alt="Submit" width="48" height="48">
+```
+
+### 1.7.13 Number
+
+Defines a control for entering a number. You can use attributes to specify restrictions, such as min and max values allowed, number intervals or a default value.
+
+```html
+<input type="number" id="quantity" name="quantity" min="1" max="5">
+```
+
+### 1.7.14 Range
+
+Displays a range widget for specifying a number between two values. The precise value, however, is not considered important. This is typically represented using a slider or dial control. To define the range of acceptable values, use the “min” and “max” properties.
+
+```html
+<label for="volume">Volume:</label>
+<input type="range" id="volume" name="volume" min="0" max="10">
+```
+
+### 1.7.15 Reset
+
+Displays a button that resets the contents of the form to their default values.
+
+```html
+<input type="reset">
+```
