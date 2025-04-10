@@ -473,4 +473,104 @@ input:focus:invalid {
     <option value="Safari">
 </datalist>
 <input list="browsers">
-  ```
+```
+
+### 1.7.27 Optgroup
+
+The `<optgroup>` HTML element creates a grouping of options within a `<select>` element.
+
+```html
+<label for="dino-select">Choose a dinosaur:</label>
+<select id="dino-select">
+  <optgroup label="Theropods">
+    <option>Tyrannosaurus</option>
+    <option>Velociraptor</option>
+    <option>Deinonychus</option>
+  </optgroup>
+  <optgroup label="Sauropods">
+    <option>Diplodocus</option>
+    <option>Saltasaurus</option>
+    <option>Apatosaurus</option>
+  </optgroup>
+</select>
+```
+
+### 1.7.28 `<textarea>`
+
+Defines a multi-line input field, typically to allow the user to input longer textual data. The common attributes for this element include:
+
+- `cols` defines the width of the text area, the default value is 20
+- `form` the form element the text area is associated with
+- `maxlength` when specified, limits the maximum number of characters that can be entered in the text area
+- `minlength` the minimum number of characters that the user should enter
+- `readonly` once set, the user cannot modify the contents
+- `rows` defines the number of visible text lines for the text area
+The following line of code defines a text area of 10 visible lines and nearly 30 characters wide where the user can input a maximum of 200 characters:
+
+```html
+<textarea name="response" rows="10" cols="30" maxlength="200">
+...
+</textarea>
+```
+
+## 1.8 Form submission
+
+the web browser communicates with a web server using a HTTP request response cycle. This means that the web browser sends requests to the web server, and the web server sends back a response.
+
+There are two ways a form can send data to the web server using the HTTP `GET` method or the HTTP `POST` method.
+
+### 1.8.1 GET Method
+
+```html
+<form method="get">
+    ...
+</form>
+```
+After the users clicked on the Login button, the form data is sent as part of the request URL. The user data is appended to the end of the URL in the web browser navigation bar. The web server receives the HTTP GET request, and extracts the form data from the URL.
+
+While this is an easy way to submit data, it has three key problems:
+1. The length of a URL is limited to around 2,000 characters.
+2. The length of a requested URL is also limited on some web servers. (Apache and Engine X lenght are 4096)
+3. Security. As part of the URL, it is stored in the browser history and possibly in the request logs on the web server. Not suitable for transmitting personal information
+
+> The form will default to the HTTP `GET` method when the method attribute is not provided.
+
+### 1.8.2 POST Method
+
+```html
+<form method="post">
+    ...
+</form>
+```
+When the form is submitted, the form data is inserted into the content of the HTTP request. When the submit button is pressed, it will send an HTTP post request with the data contained in the body of the request.
+
+The HTTP post method is more **secure** than the HTTP GET method. However, the data could still be read by a third party listening to the HTTP request. To secure this completely, HTTPS is used to encrypt the data so that only the sender and receiver can understand the data.
+
+### 1.8.3 Submit
+
+You add a form to your web page using the form tag. But how the form is submitted is determined by two essential attributes: `action` and `method`.
+
+#### 1.8.3.1 `action` attribute
+
+It specifies to which web address the form must be sent. This is address is location of server-side code that will process the request.
+```html
+<form action="/login">
+</form>
+```
+
+- It can be:
+
+1. A full URL address such as `https://meta.com`
+2. An absolute path such as `/login`
+  1. It starts with a forward slash, will use the base address of the current website, such as `https://meta.com` and combine it with the absolute path. Then the form will be submitted to `https://meta.com/login`.
+  1. If the address is `https://meta.com/company-info/` and `/login` is the absolute path, the submission address will still be `https://meta.com/login`.
+3. A relative path such as `login`.
+  1. if the web browser is currently on the web page `https://meta.com/company-info/`, and the relative path is set to `login`, the form will be submitted to `https://meta.com/company-info/login`.
+
+However, not only `<forms>` are the only way to submit data to the web server. There are JavaScript and front-end libraries, for submitting HTTP requests directly via code and send data as part of the HTTP request body in a text format called `.json` (JavaScript Object Notation).
+
+## 1.9 Browser differences
+
+Different elements of the website may look different in diffferent broser. To solve it CSS allows you to define the visual styling of HTML elements.
+
+there are a lot of resources that simplify the styling of forms. Popular libraries and frameworks such as Bootstrap, Tailwind CSS, and Foundation provides CSS rules for forms, uninsured visual consistency across different devices and browsers.
