@@ -571,6 +571,145 @@ However, not only `<forms>` are the only way to submit data to the web server. T
 
 ## 1.9 Browser differences
 
-Different elements of the website may look different in diffferent broser. To solve it CSS allows you to define the visual styling of HTML elements.
+Different elements of the website may look different in different browsers. To solve this, CSS allows you to define the visual styling of HTML elements.
 
-there are a lot of resources that simplify the styling of forms. Popular libraries and frameworks such as Bootstrap, Tailwind CSS, and Foundation provides CSS rules for forms, uninsured visual consistency across different devices and browsers.
+There are many resources that simplify the styling of forms. Popular libraries and frameworks such as Bootstrap, Tailwind CSS, and Foundation provide CSS rules for forms, ensuring visual consistency across different devices and browsers.
+
+## 1.10 Media Elements
+
+### 1.10.1 Video and Audio Source
+
+```html
+<video src="video.mp4" type="video/mp4" controls></video>
+<audio src="audio.ogg" type="audio/ogg" controls></audio>
+```
+
+Can specify the width and height of the video. Also can use player controls by adding `controls`. And also can use `loop` to loop the media. And `mute` to mute the media.
+```html
+<video width="320" height="240">
+    <source src="dance.mp4" type="video/mp4">
+    <source src="dance.ogg" type="video/ogg">
+</video>
+```
+
+### 1.10.2 Embedded
+
+```html
+<h1>Intro Music</h1>
+<video width="320" height="240"  controls>
+    <source src="video.mp4" type="video/mp4">
+</video>
+<p>Our company......</p>
+<audio loop controls>
+    <source src="intro-vid.mp3" type="video/mp3">
+</audio>
+```
+
+### 1.10.3 Image
+
+You can also specify the width and height of the image using the width and height attributes. But what happens if the photo doesn’t load? Perhaps the file was accidentally deleted, or you mistyped the file name.
+```html
+<img src="photo.png" width="640" height="480">
+<img src="photo.png" width="320" alt="My Profile Photo">
+```
+
+It is important to ensure that screen reader accessibility software can interpret images displayed in the web browser. To support this, the `<img>` tag is combined with the `<figure>` and `<figcaption>` tags to provide a description of the image. The `<img>` tag is added inside the `<figure>` tag and the `<figcaption>` is specified after it.
+
+```html
+<figure>
+   <img src="photo.png" width="320" alt="My Profile Photo">
+   <figcaption>A photo of myself on a beach in 2015</figcaption>
+</figure>
+```
+
+Videos and audio, the web browser only supports specific file types.::
+
+- **.APNG** – Animated Portable Network Graphics
+- **.AVIF** – AV1 Image Format
+- **.GIF** – Graphics Interchange Format
+- **.JPEG** / **.JPG** – Joint Photographic Expert Group image format
+- **.PNG** – Portable Network Graphics
+- **.SVG** – Scalable Vector Graphics
+- **.WEBP** – Web Picture Format
+
+### 1.10.4 iframe
+
+An iframe is HTML element that allows you to place or embed content from another website into a webpage. Therefore, it's running the HTML, CSS, and JavaScript of the embedded webpage.
+```html
+<iframe src="https://meta.com" width="320" height="520">
+
+</iframe>
+```
+
+While iframe is very useful. It security has been a concern since its inception because it's vulnerable to malicious code and injection. Fortunately, there are some attributes that can be applied to limit the behavior of the iframe. Such as not allow camera and microphone access or not allow downloads or pop-up windows.
+
+#### 1.10.4.1 Allow
+
+It specifies what features or permissions are available to the frame, for instance, access to the microphone, camera, other APIs and so on. For example:
+
+`allow="fullscreen”` the fullscreen mode can be activated
+`allow=“geolocation”` lets you access the user’s location
+
+```html
+<iframe src="https://example.com/…" allow="camera; microphone"> </iframe>
+```
+
+#### 1.10.4.2 Name and title
+
+This attribute let's you add a description to the iframe for accessibility purposes. The value of this attribute should accurately describe the iframe's content.
+
+```html
+<iframe src="history.html" title="An embedded document about the history of my family" name="my frame"> </iframe>
+```
+
+#### 1.10.4.3 referrerpolicy
+
+A referrer is the HTTP header that lets the page know who is loading it. This attribute indicates which referrer information to send when loading the frame resource. The common values are:
+
+`no-referrer` The referrer header will not be sent.
+`origin` The referrer will be limited to the origin of the referring page
+`strict-origin` The origin of the document is sent as the referrer only when using the same protocol security level (HTTPS to HTTPS)
+
+#### 1.10.4.4 Sandbox
+
+To enforce greater security, a sandbox applies extra restrictions to the content in the <iframe>. To lift particular restrictions, an attribute value (permission token) is used. The common permission tokens are listed below:
+
+`allow-downloads` Allows the user to download an item
+`allow-forms` Allows the user to submit forms
+`allow-modals` The resource can open modal windows
+`allow-orientation-lock` Lets the resource lock the screen orientation
+`allow-popups` Allows popups to open
+`allow-presentation` Allows a presentation session to start
+`allow-scripts` Lets the resource run scripts without creating popup windows
+
+> When the value of this attribute is empty, all restrictions are applied. To apply more than one permission, use a space-separated list.
+
+```html
+<iframe src="my_iframe_sandbox.html" sandbox="allow-forms allow-scripts"> </iframe>
+```
+
+#### 1.10.4.4 src and srcdoc
+
+##### src
+
+The URL of the page to embed in the <iframe>. Using the value about:blank would embed an empty page.
+
+##### srcdoc
+
+Let's you specify the inline HTML to embed in the <iframe>. When defined, this attribute would override the src attribute.
+
+#### 1.10.4.5 loading
+
+This attribute let's you specify if the iframe should be loaded immediately when the web page loads `eager` or loaded when iframe is displayed in the browser `lazy`. This allows you to defer loading iframe content if it is further down your web page and outside of the display area when the page is initially loaded.
+
+```html
+<iframe src="my_iframe_src.html" loading="lazy" > </iframe>
+```
+
+### 1.11 Canvas
+
+There are many authoring tools available to produce animated and video game content for the web browser. But all of these are underpinned by one of four technologies GIF. WebP 2D canvas and WebGL.
+
+The 2D Canvas allows 2D graphics to be drawn in the web browser. It's popular for building 2D video games and animations. WebGL will always use the GPU, but the 2D canvas will not always use the GPU.
+
+The WebGL API allows 3D graphics to be drawn in the web browser. It's popular for building 3D video games and animations. WebGL will always use the GPU.
