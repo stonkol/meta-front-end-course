@@ -713,3 +713,23 @@ There are many authoring tools available to produce animated and video game cont
 The 2D Canvas allows 2D graphics to be drawn in the web browser. It's popular for building 2D video games and animations. WebGL will always use the GPU, but the 2D canvas will not always use the GPU.
 
 The WebGL API allows 3D graphics to be drawn in the web browser. It's popular for building 3D video games and animations. WebGL will always use the GPU.
+
+### 1.12 Additional Resources
+
+[html media](https://html.com/media/)
+
+[choosing-correct-embed-code](https://studio.support.brightcove.com/publish/choosing-correct-embed-code.html)
+
+[Images in HTML](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Images_in_HTML)
+
+[iframes in HTML](https://www.educba.com/iframes-in-html/)
+
+[HTML5 Canvas](https://www.tutorialrepublic.com/html-tutorial/html5-canvas.php)
+
+[HTML5 Media](https://html.spec.whatwg.org/multipage/media.html)
+
+## 2. CSS Web Layout
+
+The browser window that is visible to the user on the screen is called the view ports. An important property is the display property. What does it do you ask? The `display` property specifies the type of box that you want to use for a given html element.
+
+The code changes the property of the display box to a block type layouts created using the block type are good but evolving requirements led to the development of CSS web layouts such as `flex box` and `grid`, which helped create rules for multiple elements.
