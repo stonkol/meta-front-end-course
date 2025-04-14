@@ -1,0 +1,36 @@
+.row {
+    display: flex;
+    align-items: stretch;
+}
+
+.label {
+    flex: 0 0 auto;
+    font-family: Verdana;
+}
+
+.row .container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.row .dish {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.one {
+    background-color: red;
+    flex-basis: 15%;
+}
+
+.two {
+    background-color: blue;
+    flex-basis: 50%;
+}
+
+.three {
+    background-color: green;
+    flex-basis: 35%;
+}
