@@ -808,3 +808,73 @@ The problem to solve is to make your app work across a range of viewports. There
 how do you make things good? How do you take into account? The capabilities of the device you're building for and make it better than it would have been if you just made it work.
 
 It's good to be aware of how your products make people feel.
+
+You make something, and you have no idea how people are going to use it, but that's the fun part.
+
+Be aware of when your website breaks. The goal isn't to make it work for a phone and a desktop and a TV. The goal is to just make it always work.
+
+## 2.4 Selectors
+
+Selectors are used to select elements in a document. They can be used to apply styles to elements, or to select elements for other purposes, such as adding event listeners.
+
+### 2.4.1 Basic Selectors
+- Universal selector `* {}`: Select all elements.
+- Element selectors `div {}`: Select elements based on their tag name.
+- Class selectors `.container`: Select elements based on their class attribute.
+- ID selectors `#green-button`: Select elements based on their ID attribute.
+
+### 2.4.2 Variations of simple selectors
+- Two classes `.alpha.beta {}`: All elements with classes alpha and beta
+- Two elements `div, p {}`: All `<div>` and `<p>` elements.
+- Element and class `div.alpha {}`: All `<div>` elements with class alpha
+
+### 2.4.3 Descendant selectors/combinators
+- Descendant `div p`: All `<p>` descendants of `<div>`
+- Child `div > p`: All `<p>` direct descendants of `<div>`
+- Combinator selectors `div+a`: `<a>` element directly after `<div>`
+- Sibling selectors `div~p`: All `<p>` element iterations after `<div>`
+
+### 2.4.4 Pseudo-class
+
+Pseudo-classes are state-based selectors, which means that they allow you to select elements based on their state. For example:
+1. `:hover`: Select elements when the user hovers over them.
+2. `:focus`: Select elements when they have focus.
+3. `:visited`: Select elements when they have been visited.
+4. `:active`: Select elements when they are being activated.
+5. `:enabled` and `:disabled`: Select elements when they are enabled/disabled.
+6. `:checked` and `:unchecked`: Select elements when they are checked.
+7. `:empty`: Select elements that have no children.
+8. `:first-child`: Select elements that are the first child of their parent.
+9. `:valid` and `:invalid`
+10. `:indetermined`: Select elements when they are indeterminate.
+11. `::first-letter`, `::first-line`: are used to style the first letter or line of an element.
+12. `::before`, `::after`: are used to insert content before or after an element.
+13. `::placeholder`: is used to style the placeholder text.
+14. `::selection`: is used to style the selected text.
+15: `::marker `:Markers are typically used to add style elements to a list, for instance, to color bullet points.
+
+```css
+selector:pseudo-class{
+    property: value;
+}
+```
+
+```css
+a:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+```
+```css
+.mybutton:active {
+    background-color: #ccc;
+    color: #fff;
+}
+```
+
+To prevent overwriting one of the rules, you must place them in the following order in the CSS file: `link, visited, hover, active.` (LVHA)
+
+### 2.4.5  Attribute selectors
+
+1. `[href] {}`: Selects all elements with a href attribute
+2. `[lang="fr"] {}`: Selects all elements with lang attribute that has a value of "fr"
