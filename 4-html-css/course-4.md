@@ -836,21 +836,31 @@ Selectors are used to select elements in a document. They can be used to apply s
 
 ### 2.4.4 Pseudo-class
 
-Pseudo-classes are state-based selectors, which means that they allow you to select elements based on their state. For example:
+Pseudo-classes are state-based selectors, which means that they allow you to select elements based on their state.
+
+#### 2.4.4.1 Cursor state
 1. `:hover`: Select elements when the user hovers over them.
-2. `:focus`: Select elements when they have focus.
-3. `:visited`: Select elements when they have been visited.
-4. `:active`: Select elements when they are being activated.
-5. `:enabled` and `:disabled`: Select elements when they are enabled/disabled.
-6. `:checked` and `:unchecked`: Select elements when they are checked.
-7. `:empty`: Select elements that have no children.
-8. `:first-child`: Select elements that are the first child of their parent.
-9. `:valid` and `:invalid`
-10. `:indetermined`: Select elements when they are indeterminate.
-11. `::first-letter`, `::first-line`: are used to style the first letter or line of an element.
-12. `::before`, `::after`: are used to insert content before or after an element.
-13. `::placeholder`: is used to style the placeholder text.
-14. `::selection`: is used to style the selected text.
+1. `:focus`: Select elements when they have focus.
+1. `:active`: Select elements when they are being activated.
+
+#### 2.4.4.2 Link state
+1. `:visited`: Select elements when they have been visited.
+
+#### 2.4.4.3 Toggle States
+1. `:enabled` and `:disabled`: Select elements when they are enabled/disabled.
+1. `:checked` and `:unchecked`: Select elements when they are checked.
+1. `:empty`: Select elements that have no children.
+1. `:indetermined`: Select elements when they are indeterminate.
+1. `:valid` and `:invalid`
+
+#### 2.4.4.4 first-xx
+8. `:first-child`: elements that are the first child of their parent.
+11. `::first-letter`, `::first-line`: used to style the first letter/line of an element.
+12. `::before`, `::after`: used to insert content before or after an element.
+
+#### 2.4.4.5 Others
+13. `::placeholder`: used to style the placeholder text.
+14. `::selection`: used to style the selected text.
 15: `::marker `:Markers are typically used to add style elements to a list, for instance, to color bullet points.
 
 ```css
@@ -877,4 +887,9 @@ To prevent overwriting one of the rules, you must place them in the following or
 ### 2.4.5  Attribute selectors
 
 1. `[href] {}`: Selects all elements with a href attribute
-2. `[lang="fr"] {}`: Selects all elements with lang attribute that has a value of "fr"
+2. `[lang="fr"] {}`: Selects all elements with lang attribute that has a value of `"fr"`
+3. `[input~=hello] {}`: Elements with input attribute containing the whitespace separated substring "hello"
+4. `[lang|=en] {}`: Elements with lang attribute value equal to `"en"` or `"en-"`.
+5. `a[href^="https"] {}`: Every `<a>` element with href attribute value begins with "https"
+6. `a[href$=".docx"] {}`: Every `<a>` element with href attribute value ends with ".docx".
+7. `a[href*="meta"] { }`: Every `<a>` element with href attribute value containing "meta".
