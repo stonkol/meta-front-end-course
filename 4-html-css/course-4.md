@@ -1019,19 +1019,168 @@ Additional property under transform:transform-origin determines the anchor point
 }
 ```
 
-## 2.7 CSS Animation
+## 2.7 CSS Animation and @keyframes
 
+### 2.7.1 Animation property shorthand
+
+The animation property is a shorthand for the sub-properties below:
 1. `animation: none;`: Removes any animation.
-2. `animation: myAnimation 2s ease-in-out infinite;`: Applies a custom animation named "myAnimation" over 2 seconds with an ease-in-out timing function and repeats indefinitely.
-3. `animation: myAnimation 2s ease-in-out forwards;`: Applies a custom animation named "myAnimation" over 2 seconds with an ease-in-out timing function and stops at the last keyframe.
-4. `animation: myAnimation 2s ease-in-out backwards;`: Applies a custom animation named "myAnimation" over 2 seconds with an ease-in-out timing function and starts from the first keyframe.
-5. `animation: myAnimation 2s ease-in-out both;`: Applies a custom animation named "myAnimation" over 2 seconds with an ease-in-out timing function and starts from the first keyframe and stops at the last keyframe.
-6. `animation: myAnimation 2s ease-in-out alternate;`: Applies a custom animation named "myAnimation" over 2 seconds with an ease-in-out timing function and alternates between the first and last keyframes.
-7. `animation: myAnimation 2s ease-in-out alternate-reverse;`: Applies a custom animation named "myAnimation" over 2 seconds with an ease-in-out timing function and alternates between the first and last keyframes in reverse order.
-8. `animation: myAnimation 2s ease-in-out alternate-reverse infinite;`: Applies a custom animation named "myAnimation" over 2 seconds with an ease-in-out timing function and alternates between the first and last keyframes in reverse order indefinitely.
+1. animation-name
+1. animation-duration
+1. animation-timing-function
+1. animation-delay
+1. animation-iteration-count
+1. animation-direction
+1. animation-fill-mode
+1. animation-play-state
 
-## 2.8 CSS keyframes
+### 2.7.2 Multiple Animations
 
-1. `@keyframes myAnimation { from { transform: translateX(0); } to { transform: translateX(100px); } }`: Defines a custom animation named "myAnimation" that translates an element horizontally from 0px to 100px.
-2. `@keyframes myAnimation { 0% { transform: translateX(0); } 100% { transform: translateX(100px); } }`: Defines a custom animation named "myAnimation" that translates an element horizontally from 0px to 100px.
-3. `@keyframes myAnimation { 0% { transform: translateX(0); } 50% { transform: translateX(50px); } 100% { transform: translateX(100px); } }`: Defines a custom animation named "myAnimation" that translates an element horizontally from 0px to 50px and then to 100px.
+1. `animation: myAnimation 2s ease-in-out infinite;`
+  - Applies a custom animation named "myAnimation" over 2 seconds with an ease-in-out timing function and repeats indefinitely.
+1. `animation: myAnimation 2s ease-in-out forwards;`
+  - Applies a custom animation named "myAnimation" over 2 seconds with an ease-in-out timing function and stops at the last keyframe.
+4. `animation: myAnimation 2s ease-in-out backwards;`
+  - Applies a custom animation named "myAnimation" over 2 seconds with an ease-in-out timing function and starts from the first keyframe.
+5. `animation: myAnimation 2s ease-in-out both;`
+  - Applies a custom animation named "myAnimation" over 2 seconds with an ease-in-out timing function and starts from the first keyframe and stops at the last keyframe.
+6. `animation: myAnimation 2s ease-in-out alternate;`
+  - Applies a custom animation named "myAnimation" over 2 seconds with an ease-in-out timing function and alternates between the first and last keyframes.
+7. `animation: myAnimation 2s ease-in-out alternate-reverse;`
+  - Applies a custom animation named "myAnimation" over 2 seconds with an ease-in-out timing function and alternates between the first and last keyframes in reverse order.
+8. `animation: myAnimation 2s ease-in-out alternate-reverse infinite;`
+  - Applies a custom animation named "myAnimation" over 2 seconds with an ease-in-out timing function and alternates between the first and last keyframes in reverse order indefinitely.
+
+### 2.7.3 @keyframes
+
+#### a. `from` -> `to` keyframe
+
+Defines a custom animation named "myAnimation" that translates an element horizontally from 0px to 100px.
+```css
+@keyframes myAnimation {
+    from { transform: translateX(0); }
+    to { transform: translateX(100px); }
+}
+```
+
+#### b. Two keyframes
+
+Defines a custom animation named "myAnimation" that translates an element horizontally from 0px to 100px.
+```css
+@keyframes myAnimation {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(100px); }
+}
+```
+
+#### c. Three keyframes
+
+Defines a custom animation named "myAnimation" that translates an element horizontally from 0px to 50px and then to 100px.
+```css
+@keyframes myAnimation {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(50px); }
+    100% { transform: translateX(100px); }
+}
+```
+
+#### d. Back and forth
+
+Defines a custom animation named "myAnimation" that changes to green at 50% and blue at 100%.
+```css
+@keyframes myAnimation {
+    0%, 100% {
+        background-color: blue;
+    }
+    50% {
+        background-color: green;
+    }
+}
+```
+
+## 2.8 Preprocessors: sass, scss, Stylus
+
+Preprocessors provide audit functionality on top of the CSS features already present. Some of the features of preprocessors include the option to create variables, loops, and if else statements.
+
+Different preprocessors each have their own syntax and configurations for adding these features. Some of the most commonly used preprocessors include **Sass**, **LESS**, **Stylus** and **PostCSS**. The use of these preprocessors requires the installation of a compiler on top of your web server.
+
+In the early days of CSS, the main problem developers faced was the difficulty of managing the code. The way CSS was designed made the code very long, messy and complex. It also made it difficult to troubleshoot. Preprocessors have their own scripting language that adds logical structures, automation properties, reusability and bloating of the code.
+
+### 2.8.1 SASS and SCSS
+
+There are two syntaxes available for Sass. The first, known as SCSS (Sassy CSS) and used throughout this reference, is an extension of the syntax of CSS. This means that every valid CSS stylesheet is a valid SCSS file with the same meaning. This syntax is enhanced with the Sass features described below. Files using this syntax have the .scss extension.
+
+##### CSS
+```css
+body {
+    font: 100% Arial;
+    color: lightblue;
+}
+```
+
+##### SCSS
+```scss
+$font-stack: Arial;
+$primary-color: lightblue;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+}
+```
+
+##### SASS
+```sass
+$font-stack: Arial
+$primary-color: lightblue
+
+body
+  font: 100% $font-stack
+  color: $primary-color
+```
+
+The variables have been defined at the top with labels such as `$font-stack` and `$primary-color`. This is done with the `$` suffix. The result for both will be the same, and it is not hard to imagine how much time this can save for the developer in complex code blocks where there are a number of occurrences of `lightblue` color. These variables are placed at the top of the SCSS page.
+
+#### 2.8.1.1 Syntax: `@mixin` and `@include`
+
+There are two directives `@mixin` and `@include`:
+1. In the first step, you will add properties that you want to reuse inside `@mixin`.
+1. In the second step, you use the second directive `@include` and add the mixin identifier that you have created using the `@mixin` directive.
+```scss
+@mixin some-rules {
+    color: lightblue;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+div {
+    @include some-rules;
+}
+```
+
+#### 2.8.1.2 Syntax: `@import` and `@extend`
+
+Similar to these, there are a couple of other directives that are also used
+
+1. @import allows the import of rules from another file.
+1. @extend allows all the rules from a specific selector to be added inside another selector.
+
+### 2.8.2 Stylus CSS
+
+```stylus
+body
+  font 100% Arial
+  color lightblue
+```
+
+It is not hard to miss the simplicity of the code without the colons, brackets or semicolons. But you should note that it is still allowed to use all of them in Stylus without any error. Similarly, you can also use ‘$’ or any other symbol before variables, but you are not ‘required’ to do so.
+
+The preprocessors, as mentioned, allow the use of functions. Here is an example of this using Stylus.
+
+```stylus
+add(a, b)
+  a + b
+
+div
+  margin add(10px, 20px)
+```
