@@ -822,6 +822,7 @@ Selectors are used to select elements in a document. They can be used to apply s
 - Element selectors `div {}`: Select elements based on their tag name.
 - Class selectors `.container`: Select elements based on their class attribute.
 - ID selectors `#green-button`: Select elements based on their ID attribute.
+- Title selectors `title {}`: Select elements based on their title attribute.
 
 ### 2.4.2 Variations of simple selectors
 - Two classes `.alpha.beta {}`: All elements with classes alpha and beta
@@ -838,51 +839,48 @@ Selectors are used to select elements in a document. They can be used to apply s
 
 Pseudo-classes are state-based selectors, which means that they allow you to select elements based on their state.
 
-#### 2.4.4.1 Cursor state
-1. `:hover`: Select elements when the user hovers over them.
-1. `:focus`: Select elements when they have focus.
-1. `:active`: Select elements when they are being activated.
+#### 2.4.4.1 Input
+1. **:hover**: Select elements when the user hovers over them.
+1. **:focus**: Select elements when they have focus.
+1. **:active**: Select elements when they are being activated.
+1. **:invalid**: Select elements when they are invalid.
+1. **:required**: Select elements when they are required.
+1. **:valid**: Select elements when they are valid.
 
-#### 2.4.4.2 Link state
-1. `:visited`: Select elements when they have been visited.
+#### 2.4.4.2 Link
+1. **:visited**: Select elements when they have been visited.
+1. **:link**: All unvisited links.
 
 #### 2.4.4.3 Toggle States
-1. `:enabled` and `:disabled`: Select elements when they are enabled/disabled.
-1. `:checked` and `:unchecked`: Select elements when they are checked.
-1. `:empty`: Select elements that have no children.
-1. `:indetermined`: Select elements when they are indeterminate.
-1. `:valid` and `:invalid`
+1. **:enabled** and **:disabled**: Select elements when they are enabled/disabled.
+1. **:checked** and **:unchecked**: Select elements when they are checked.
+1. **:indetermined**: Select elements when they are indeterminate.
 
-#### 2.4.4.4 first-xx
-8. `:first-child`: elements that are the first child of their parent.
-11. `::first-letter`, `::first-line`: used to style the first letter/line of an element.
-12. `::before`, `::after`: used to insert content before or after an element.
+#### 2.4.4.4 Positioned
+
+1. **:first-child**: elements that are the first child of their parent.
+1. **::first-letter**, **::first-line**: used to style the first letter/line of an element.
+1. **div:nth-child(3)**: All the `<p>` elements that are the third child of a parent element.
+1. **div:nth-last-child(3)**: All the `<div>` elements which are the third child of a parent element, counting from last child element.
+1. **p:nth-last-of-type(2)**: The second sibling from the last child of a parent element.
+1. **p:last-child**: All the `<p>` elements who are the last child of a parent element.
+1. **p:last-of-type**: All the `<p>` elements who are the last `<p>` element of a parent element.
+1. **::before**, **::after**: used to insert content before or after an element.
+1. **:empty**: Select elements that have no children.
 
 #### 2.4.4.5 Others
-13. `::placeholder`: used to style the placeholder text.
-14. `::selection`: used to style the selected text.
-15: `::marker `:Markers are typically used to add style elements to a list, for instance, to color bullet points.
 
-```css
-selector:pseudo-class{
-    property: value;
-}
-```
+1. **::placeholder**: used to style the placeholder text.
+1. **::selection**: used to style the selected text.
+1: **::marker**: Markers are typically used to add style elements to a list, for instance, to color bullet points.
+1. **:not(div)**: All the elements that are not a `<div>` element.
+1. **p:only-of-type**: All the `<p>` elements which are only `<p>` elements inside its parent
+1. **p:only-child**: All the `<p>` elements which are only child of a parent element
+1. **:fullscreen**: All the elements that are in fullscreen mode.
+1. **:root**: All the elements that are the root element of a document.
 
-```css
-a:hover {
-    background-color: #f0f0f0;
-    color: #333;
-}
-```
-```css
-.mybutton:active {
-    background-color: #ccc;
-    color: #fff;
-}
-```
-
-To prevent overwriting one of the rules, you must place them in the following order in the CSS file: `link, visited, hover, active.` (LVHA)
+> [!caution] TIP
+> To prevent overwriting one of the rules, you must place them in the following order in the CSS file: `link, visited, hover, active.` (LVHA)
 
 ### 2.4.5  Attribute selectors
 
@@ -893,3 +891,147 @@ To prevent overwriting one of the rules, you must place them in the following or
 5. `a[href^="https"] {}`: Every `<a>` element with href attribute value begins with "https"
 6. `a[href$=".docx"] {}`: Every `<a>` element with href attribute value ends with ".docx".
 7. `a[href*="meta"] { }`: Every `<a>` element with href attribute value containing "meta".
+
+### 2.4.6 Calculate specificity of the selector
+
+TO calculate the specificity of the selector `ul#alpha li.visited`
+
+#### We break it down into its components
+
+Based on the specificity rules:
+
+	1.	ID Selectors: `#alpha` contributes 1 point to the ID column.
+	2.	Class Selectors and Pseudo-classes: `.visited` contributes 1 point to the Class column.
+	3.	Type Selectors (Elements): `ul` and `li` contribute 2 points to the Type column.
+
+#### Specificity Calculation
+
+The specificity is expressed as a three-part value: **ID-Class-Type**.
+
+	•	ID: 1 (from `#alpha`)
+	•	Class: 1 (from `.visited`)
+	•	Type: 2 (from `ul` and `li`)
+
+Thus, the specificity of the selector `ul#alpha li.visited` is **1-1-2**.
+
+## 2.5 Text Effects
+
+### 2.5.1 Text Decoration
+
+1. `text-decoration: underline;`: Underlines the text.
+2. `text-decoration: line-through;`: Strikes through the text.
+3. `text-decoration: overline;`: Places a line above the text.
+4. `text-decoration: none;`: Removes any text decoration.
+
+### 2.5.2 Text Transform
+
+1. `text-transform: uppercase;`: Converts text to uppercase.
+2. `text-transform: lowercase;`: Converts text to lowercase.
+3. `text-transform: capitalize;`: Capitalizes the first letter of each word.
+4. `text-transform: none;`: Removes any text transformation.
+
+### 2.5.3 Text Shadow
+
+1. `text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);`: Adds a shadow effect to the text.
+2. `text-shadow: none;`: Removes any text shadow.
+
+### 2.5.4 Text Alignment
+
+1. `text-align: left;`: Aligns text to the left.
+2. `text-align: right;`: Aligns text to the right.
+3. `text-align: center;`: Centers text.
+4. `text-align: justify;`: Justifies text.
+5. `text-align: start;`: Aligns text to the start edge.
+6. `text-align: end;`: Aligns text to the end edge.
+7. `text-align: initial;`: Resets text alignment to its initial value.
+8. `text-align: inherit;`: Inherits text alignment from its parent element.
+9. `text-align: justify-all;`: Justifies text in all lines.
+10. `text-align: match-parent;`: Matches the text alignment of the parent element.
+11. `text-align: match-parent;`: Matches the text alignment of the parent element.
+
+## 2.6 CSS Transform and Transition
+
+### 2.6.1 Transform
+
+1. `transform: none;`: Removes any transform.
+1. `transform: scale(2);`: Scales an element by a factor of 2.
+1. `transform: translate(10px, 20px);`: Moves an element by 10px horizontally and 20px vertically.
+1. `transform: skew(30deg, 15deg);`: Skews an element by 30 degrees horizontally and 15 degrees vertically.
+1. `transform: rotate(45deg);`: Rotates an element by 45 degrees.
+1. `transform: matrix(1.0, 2.0, 3.0, 4.0, 5.0, 6.0);`: Applies a 2D transformation matrix.
+
+### 2.6.2 Transform 3D
+
+1. `transform: scale3d(2, 1, 0.3);`: Scales an element by a factor of 2 in the x-axis, 1 in the y-axis, and 0.3 in the z-axis.
+1. `transform: translate3d(10px, 20px, 30px);`: Moves an element by 10px horizontally, 20px vertically, and 30px in depth.
+1. `transform: rotate3d(3,2,1, 100deg);`: The respective values represent x, y, z co-ordinate and degree of rotations
+
+### 2.6.3 Transition
+
+1. `transition: all 0.5s ease;`: Applies a smooth transition to all properties over 0.5 seconds.
+2. `transition: none;`: Removes any transition.
+3. `transition: all 0.3s ease-in-out;`: Applies a smooth transition to all properties over 0.3 seconds with an ease-in-out timing function.
+4. `transition: all 0.2s linear;`: Applies a smooth transition to all properties over 0.2 seconds with a linear timing function.
+5. `transition: all 0.1s cubic-bezier(0.42, 0, 0.58, 1);`: Applies a smooth transition to all properties over 0.1 seconds with a cubic-bezier timing function.
+6. `transition: all 0.05s step-start;`: Applies a smooth transition to all properties over 0.05 seconds with a step-start timing function.
+7. `transition: all 0.025s step-end;`: Applies a smooth transition to all properties over 0.025 seconds with a step-end timing function.
+8. `transition: all 0.0125s step-middle;`: Applies a smooth transition to all properties over 0.0125 seconds with a step-middle timing function.
+
+### 2.6.4 will-change
+
+- More info at [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/will-change)
+
+The `will-change` CSS property hints to browsers how an element is expected to change. These kinds of optimizations can increase the responsiveness of a page by doing potentially expensive work before they are actually required.
+
+Don't apply will-change to too many elements.
+
+```css
+will-change: transform, opacity;
+```
+
+> [!warning] Warning
+> `will-change` is intended to be used as a last resort, in order to try to deal with existing performance problems. It should not be used to anticipate performance problems.
+
+### 2.6.5 CPU-accelarated transitions
+
+#### Avoid
+
+1. Avoid animating properties that cause layout or paint (like `width`, `height`, `top`, `left`) if you want GPU acceleration benefits.
+
+#### Use
+1. Transitions involving `transform` or `opacity` typically benefit from GPU acceleration, resulting in smoother animations and less CPU load.
+1. Use 3D transform functions (`translate3d`, `translateZ`) instead of 2D ones (`translateX`, `translateY`) to hint the browser to use the GPU.
+1. Use the `will-change` property to inform the browser which properties will change, allowing it to optimize rendering ahead of time:
+
+### 2.6.7 Multiple transform
+
+Multiple transform over the same element:
+`transform: rotate(45deg) scale(1.5) translate(45px);`
+
+Additional property under transform:transform-origin determines the anchor point for the centering of transform.
+
+```css
+.sample-class {
+    transform-origin: right bottom;
+}
+.sample-class {
+    transform-origin: 10px 10px;
+}
+```
+
+## 2.7 CSS Animation
+
+1. `animation: none;`: Removes any animation.
+2. `animation: myAnimation 2s ease-in-out infinite;`: Applies a custom animation named "myAnimation" over 2 seconds with an ease-in-out timing function and repeats indefinitely.
+3. `animation: myAnimation 2s ease-in-out forwards;`: Applies a custom animation named "myAnimation" over 2 seconds with an ease-in-out timing function and stops at the last keyframe.
+4. `animation: myAnimation 2s ease-in-out backwards;`: Applies a custom animation named "myAnimation" over 2 seconds with an ease-in-out timing function and starts from the first keyframe.
+5. `animation: myAnimation 2s ease-in-out both;`: Applies a custom animation named "myAnimation" over 2 seconds with an ease-in-out timing function and starts from the first keyframe and stops at the last keyframe.
+6. `animation: myAnimation 2s ease-in-out alternate;`: Applies a custom animation named "myAnimation" over 2 seconds with an ease-in-out timing function and alternates between the first and last keyframes.
+7. `animation: myAnimation 2s ease-in-out alternate-reverse;`: Applies a custom animation named "myAnimation" over 2 seconds with an ease-in-out timing function and alternates between the first and last keyframes in reverse order.
+8. `animation: myAnimation 2s ease-in-out alternate-reverse infinite;`: Applies a custom animation named "myAnimation" over 2 seconds with an ease-in-out timing function and alternates between the first and last keyframes in reverse order indefinitely.
+
+## 2.8 CSS keyframes
+
+1. `@keyframes myAnimation { from { transform: translateX(0); } to { transform: translateX(100px); } }`: Defines a custom animation named "myAnimation" that translates an element horizontally from 0px to 100px.
+2. `@keyframes myAnimation { 0% { transform: translateX(0); } 100% { transform: translateX(100px); } }`: Defines a custom animation named "myAnimation" that translates an element horizontally from 0px to 100px.
+3. `@keyframes myAnimation { 0% { transform: translateX(0); } 50% { transform: translateX(50px); } 100% { transform: translateX(100px); } }`: Defines a custom animation named "myAnimation" that translates an element horizontally from 0px to 50px and then to 100px.
