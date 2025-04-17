@@ -1,19 +1,114 @@
-* {
-  margin: 0;
-  padding: 0;
+/* –––––––––––––– CSS RESET –––––––––––– */
+/* Set box-sizing globally */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
+/* Remove default margin and padding */
 html,
-body {
-  width: 100%;
-  display: flex;
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+dl,
+dd,
+ol,
+ul,
+figure,
+figcaption,
+fieldset,
+legend {
+  margin: 0;
+  padding: 0;
 }
 
-img {
+/* Core body defaults */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+}
+
+/* Remove list styles on ul, ol elements */
+ol,
+ul {
+  list-style: none;
+}
+
+/* HTML5 element display */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+menu,
+nav,
+section {
+  display: block;
+}
+
+/* Media defaults */
+img,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
   max-width: 100%;
 }
 
+/* Form element resets */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  appearance: none;
+}
+
+/* Anchor defaults */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Focus management */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* –––––––––– BODY ––––––––––– */
+body {
+  height: 100vh;
+}
 .wrapper-body {
   width: 100%;
   max-width: 900px;
@@ -24,8 +119,12 @@ img {
   height: 100%;
   max-width: 900px;
   margin: 0 auto; /* Centers horizontally */
-  padding: 20px; /* Optional inner spacing */
-  background: #f5f5f5; /* Optional background */
+  background: #fefefe; /* Optional background */
+}
+
+/* ––––––––––– HEADER –––––––––––– */
+header {
+  width: 100%;
 }
 
 #logo {
@@ -34,27 +133,44 @@ img {
   width: 100px;
 }
 
-/* ––––––––––– HEADER –––––––––––– */
-header {
-  width: 100%;
-}
 nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  width: 100%;
   background-color: darkcyan;
+}
+nav ul {
   color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  width: 100%;
+  height: 100%;
+}
+nav ul li {
+  padding: 5px 15px;
+  border-radius: 7px;
+}
+nav ul li:hover {
+  color: darkcyan;
+  background-color: #fff;
 }
 
+/* ––––––––––– MAIN –––––––––––– */
+
+main {
+  width: 100%;
+  max-height: 100vh;
+  padding: 20px;
+}
+
+/* ––––––––––– FOOTER –––––––––––– */
 footer {
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  border-radius: 15%;
-  padding: 25px;
+  padding: 20px;
   color: azure;
+  background: darkcyan;
 }
