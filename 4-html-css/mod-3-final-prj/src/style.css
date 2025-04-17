@@ -153,12 +153,16 @@ nav ul {
   height: 100%;
 }
 nav ul li {
-  padding: 5px 15px;
   border-radius: 7px;
 }
 nav ul li:hover {
   color: darkcyan;
   background-color: #fff;
+}
+nav ul li a {
+  padding: 5px 15px;
+  /* width: 100%;
+  height: 100%; */
 }
 
 /* ––––––––––– MAIN –––––––––––– */
@@ -179,12 +183,54 @@ nav ul li:hover {
 #promotion-wrapper {
   background-color: aliceblue;
 }
+#promotion {
+  display: block;
+  margin: 20px auto;
+  width: 90%;
+  height: 200px;
+}
+
+#promotion img {
+  width: 100%;
+}
+
+products-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.content-wrapper h1 {
+  font-size: 2.3rem;
+}
 .content-wrapper h2 {
-  color: aquamarine;
+  font-size: 1.5rem;
+}
+
+#articles {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+article {
+  flex-grow: 1;
+  /* flex: 1; */
+}
+button {
+  background-color: darkcyan;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: cadetblue;
 }
 
 /* ––––––––––– FOOTER –––––––––––– */
 footer {
+  margin-top: 30px;
   height: 100%;
   width: 100%;
   display: flex;
@@ -194,4 +240,27 @@ footer {
   padding: 20px;
   color: white;
   background: darkcyan;
+}
+
+footer ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+footer ul li {
+  margin: 0 10px;
+}
+footer ul li a {
+  color: azure;
+}
+footer ul li a:hover {
+  color: aqua;
+  /* text-decoration: underline; */
+}
+
+#copyright {
+  color: darkseagreen;
 }

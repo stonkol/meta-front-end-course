@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lucky Shrub</title>
+    <title>Lucky Shrub – Home Page</title>
     <link rel="stylesheet" href="src/style.css" />
   </head>
   <body>
@@ -23,10 +23,10 @@
       </header>
       <main class="content">
         <div class="content-wrapper" id="promotion-wrapper">
-          <h2>Promotion</h2>
-          <div id="promotion">
+          <h1>Promotion</h1>
+          <a href="src/promotion.html" id="promotion">
             <img src="src/promotion.png" alt="promotion" />
-          </div>
+          </a>
         </div>
         <div class="content-wrapper" id="products-wrapper">
           <h1>Products</h1>
@@ -52,16 +52,34 @@
                 <p>This is the content of the article.</p>
               </div>
             </article>
-            <button>
-              <a href="src/products.html" class="view-products"
-                >View All Products</a
-              >
-            </button>
           </div>
+          <button>
+            <a href="src/products.html" class="view-products"
+              >View All Products</a
+            >
+          </button>
         </div>
       </main>
       <footer>
-        <h3>Footer Banners</h3>
+        <ul id="address">
+          <li>
+            Address:
+            <a href="https://maps.app.goo.gl/s1GMz5dv9Bh3S4JNA"
+              >940 N Olsen Ave, Tucson, AZ 85719</a
+            >
+          </li>
+          <li>Hours: Monday-Friday 9am-5pm</li>
+        </ul>
+
+        <ul id="contact-wrap">
+          <li><a href="mailto:info@luckyshrub.com">Email Us</a></li>
+          <li><a href="tel:+1234567890">Call Us</a></li>
+          <li><a href="https://www.facebook.com/luckyshrub">Facebook</a></li>
+          <li>
+            <a href="https://www.instagram.com/luckyshrub">Instagram</a>
+          </li>
+        </ul>
+        <div id="copyright">Copyright Lucky Shrub &copy; 2025</div>
       </footer>
     </div>
   </body>
