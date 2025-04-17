@@ -108,6 +108,8 @@ a {
 /* –––––––––– BODY ––––––––––– */
 body {
   height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: darkcyan;
 }
 .wrapper-body {
   width: 100%;
@@ -122,6 +124,11 @@ body {
   background: #fefefe; /* Optional background */
 }
 
+h1,
+h2 {
+  margin-bottom: 10px;
+}
+
 /* ––––––––––– HEADER –––––––––––– */
 header {
   width: 100%;
@@ -129,7 +136,7 @@ header {
 
 #logo {
   display: block;
-  margin: 0 auto;
+  margin: 20px auto;
   width: 100px;
 }
 
@@ -156,10 +163,24 @@ nav ul li:hover {
 
 /* ––––––––––– MAIN –––––––––––– */
 
-main {
+/* main */
+.content {
   width: 100%;
   max-height: 100vh;
+}
+
+.content .content-wrapper {
   padding: 20px;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+#promotion-wrapper {
+  background-color: aliceblue;
+}
+.content-wrapper h2 {
+  color: aquamarine;
 }
 
 /* ––––––––––– FOOTER –––––––––––– */
@@ -171,6 +192,6 @@ footer {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  color: azure;
+  color: white;
   background: darkcyan;
 }

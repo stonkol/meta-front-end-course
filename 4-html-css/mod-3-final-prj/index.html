@@ -22,13 +22,15 @@
         </nav>
       </header>
       <main class="content">
-        <div class="content-wrapper">
-          <h1>Products</h1>
-          <div class="promotion">
-            <h1>Promotion</h1>
+        <div class="content-wrapper" id="promotion-wrapper">
+          <h2>Promotion</h2>
+          <div id="promotion">
             <img src="src/promotion.png" alt="promotion" />
           </div>
-          <div class="products">
+        </div>
+        <div class="content-wrapper" id="products-wrapper">
+          <h1>Products</h1>
+          <div id="articles">
             <article class="product">
               <img src="src/product-a.png" alt="product-a" />
               <div>
@@ -50,11 +52,16 @@
                 <p>This is the content of the article.</p>
               </div>
             </article>
+            <button>
+              <a href="src/products.html" class="view-products"
+                >View All Products</a
+              >
+            </button>
           </div>
         </div>
       </main>
       <footer>
-        <h2>Footer Banners</h2>
+        <h3>Footer Banners</h3>
       </footer>
     </div>
   </body>
