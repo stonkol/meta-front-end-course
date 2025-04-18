@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Little Lemon - Mediterranean cuisine with a modern twist. Fresh ingredients, authentic recipes, and a warm atmosphere.">
+    <meta name="keywords" content="Little Lemon, restaurant, Mediterranean, cuisine, fresh, organic, dining">
+    <meta name="author" content="Little Lemon">
+    <meta property="og:title" content="Little Lemon Restaurant">
+    <meta property="og:description" content="Mediterranean cuisine with a modern twist. Fresh ingredients, authentic recipes, and a warm atmosphere.">
+    <meta property="og:image" content="/placeholder.svg?height=1200&width=630&query=little lemon restaurant facade">
+    <meta property="og:url" content="https://littlelemon.com">
+    <meta name="theme-color" content="#4a6741">
+
+    <title>Little Lemon | Mediterranean Cuisine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/attachments/gen-images/public/images/anime-header-lemon-DhIZ85UtzVjqDJiMo1CvFsJbEWuDeM.png" type="image/svg+xml">
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="page-loader">
+        <div class="loader-content">
+            <img src="https://rhas92.github.io/Littlelemon/images/Logofooter1.png" alt="Little Lemon Logo" class="loader-logo">
+            <div class="loader-bar"><div class="loader-progress"></div></div>
+        </div>
+    </div>
+
+    <header class="site-header" id="header">
+        <div class="header-announcement">
+            <p>Now offering outdoor seating! <a href="#" class="text-link">Reserve a table</a></p>
+        </div>
+        <div class="header-main">
+            <div class="container">
+                <div class="logo-container">
+                    <a href="index.html" class="logo-link" aria-label="Little Lemon Home">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/attachments/gen-images/public/images/anime-header-lemon-DhIZ85UtzVjqDJiMo1CvFsJbEWuDeM.png" alt="Little Lemon Logo" class="logo">
+                        <span class="logo-text">LITTLE LEMON</span>
+                    </a>
+                </div>
+
+                <nav class="main-nav" aria-label="Main navigation">
+                    <button class="menu-toggle" aria-expanded="false" aria-controls="main-menu" aria-label="Toggle menu">
+                        <span class="hamburger">
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                        </span>
+                    </button>
+
+                    <ul id="main-menu" class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link active" aria-current="page">Home</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Menu</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Reservations</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-actions">
+                    <button class="btn-icon" aria-label="Search">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </button>
+                    <a href="#" class="btn btn-primary btn-sm">Book a Table</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-media">
+                <video autoplay muted loop playsinline class="hero-video">
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-serving-a-dish-in-a-restaurant-7632-large.mp4" type="video/mp4">
+                </video>
+                <div class="hero-overlay"></div>
+            </div>
+
+            <div class="container">
+                <div class="hero-content">
+                    <h1 id="hero-title" class="hero-title">
+                        <span class="hero-title-line">Mediterranean</span>
+                        <span class="hero-title-line">Cuisine With a</span>
+                        <span class="hero-title-line accent">Modern Twist</span>
+                    </h1>
+
+                    <p class="hero-subtitle">Experience the authentic flavors of the Mediterranean with our chef's special creations</p>
+
+                    <div class="hero-actions">
+                        <a href="#" class="btn btn-primary btn-lg">View Our Menu</a>
+                        <a href="#" class="btn btn-outline btn-lg">Make a Reservation</a>
+                    </div>
+
+                    <div class="hero-promo">
+                        <div class="promo-badge">
+                            <span class="promo-text">30% OFF</span>
+                            <span class="promo-subtext">This Weekend</span>
+                        </div>
+                        <div class="countdown" id="weekend-countdown">
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="countdown-days">2</span>
+                                <span class="countdown-label">Days</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="countdown-hours">12</span>
+                                <span class="countdown-label">Hours</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="countdown-minutes">45</span>
+                                <span class="countdown-label">Minutes</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="countdown-seconds">30</span>
+                                <span class="countdown-label">Seconds</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-indicator">
+                <span class="scroll-text">Scroll to explore</span>
+                <span class="scroll-icon"></span>
+            </div>
+        </section>
+
+        <section class="about-section" aria-labelledby="about-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Our Story</span>
+                    <h2 id="about-title" class="section-title">The Little Lemon Experience</h2>
+                    <p class="section-subtitle">A culinary journey through the Mediterranean</p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-image-container">
+                        <img src="https://plus.unsplash.com/premium_photo-1676651533764-ee16dbfd2113?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Chef preparing Mediterranean dishes" class="about-image">
+                        <div class="about-image-accent"></div>
+                    </div>
+
+                    <div class="about-content">
+                        <p class="about-lead">Little Lemon brings the essence of Mediterranean cuisine to your table with a contemporary approach.</p>
+
+                        <p>Founded in 2010 by award-winning chef Maria Rossi, Little Lemon has become a culinary landmark known for its commitment to authentic flavors and innovative presentations.</p>
+
+                        <p>We source only the freshest ingredients from local farmers and Mediterranean importers to ensure each dish captures the true essence of the region.</p>
+
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">12+</span>
+                                <span class="stat-label">Years of Excellence</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">4.9</span>
+                                <span class="stat-label">Customer Rating</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">30+</span>
+                                <span class="stat-label">Signature Dishes</span>
+                            </div>
+                        </div>
+
+                        <a href="#" class="btn btn-text">Learn more about our story <span class="btn-arrow">→</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="specialties-section" aria-labelledby="specialties-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Chef's Selection</span>
+                    <h2 id="specialties-title" class="section-title">Our Specialties</h2>
+                    <p class="section-subtitle">Signature dishes crafted with passion</p>
+                </div>
+
+                <div class="specialties-tabs">
+                    <div class="tabs-nav" role="tablist">
+                        <button class="tab-btn active" id="tab-starters" role="tab" aria-selected="true" aria-controls="panel-starters">Starters</button>
+                        <button class="tab-btn" id="tab-mains" role="tab" aria-selected="false" aria-controls="panel-mains">Main Courses</button>
+                        <button class="tab-btn" id="tab-desserts" role="tab" aria-selected="false" aria-controls="panel-desserts">Desserts</button>
+                        <button class="tab-btn" id="tab-drinks" role="tab" aria-selected="false" aria-controls="panel-drinks">Drinks</button>
+                    </div>
+
+                    <div class="tabs-content">
+                        <div class="tab-panel active" id="panel-starters" role="tabpanel" aria-labelledby="tab-starters">
+                            <div class="dishes-grid">
+                                <article class="dish-card">
+                                    <div class="dish-image-container">
+                                        <img src="https://images.unsplash.com/photo-1606735584785-1848fdcaea57?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Greek Salad" class="dish-image">
+                                        <span class="dish-badge">Popular</span>
+                                    </div>
+                                    <div class="dish-content">
+                                        <h3 class="dish-title">Greek Salad</h3>
+                                        <p class="dish-description">Fresh cucumbers, crispy lettuce, tomatoes, olives, feta cheese, and our house dressing.</p>
+                                        <div class="dish-meta">
+                                            <span class="dish-price">$12.99</span>
+                                            <span class="dish-tags">
+                                                <span class="dish-tag">Vegetarian</span>
+                                                <span class="dish-tag">Gluten-Free</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article class="dish-card">
+                                    <div class="dish-image-container">
+                                        <img src="https://images.unsplash.com/photo-1506280754576-f6fa8a873550?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bruschetta" class="dish-image">
+                                    </div>
+                                    <div class="dish-content">
+                                        <h3 class="dish-title">Bruschetta</h3>
+                                        <p class="dish-description">Grilled bread rubbed with garlic and topped with diced tomatoes, fresh basil, and olive oil.</p>
+                                        <div class="dish-meta">
+                                            <span class="dish-price">$9.99</span>
+                                            <span class="dish-tags">
+                                                <span class="dish-tag">Vegetarian</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article class="dish-card">
+                                    <div class="dish-image-container">
+                                        <img src="https://images.unsplash.com/photo-1711469136380-4095240dcf31?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Hummus Platter" class="dish-image">
+                                    </div>
+                                    <div class="dish-content">
+                                        <h3 class="dish-title">Hummus Platter</h3>
+                                        <p class="dish-description">Creamy hummus served with warm pita bread, olive oil, and a sprinkle of paprika.</p>
+                                        <div class="dish-meta">
+                                            <span class="dish-price">$11.99</span>
+                                            <span class="dish-tags">
+                                                <span class="dish-tag">Vegan</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+
+                        <!-- Other tab panels would be here but are omitted for brevity -->
+                    </div>
+                </div>
+
+                <div class="specialties-action">
+                    <a href="#" class="btn btn-primary">View Full Menu</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="reservation-section" aria-labelledby="reservation-title">
+            <div class="container">
+                <div class="reservation-grid">
+                    <div class="reservation-content">
+                        <span class="section-tag">Book a Table</span>
+                        <h2 id="reservation-title" class="section-title">Make a Reservation</h2>
+                        <p class="reservation-text">Reserve your table online and enjoy a seamless dining experience at Little Lemon. For special requests or larger groups, please contact us directly.</p>
+
+                        <div class="reservation-features">
+                            <div class="feature-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                <span>Quick Confirmation</span>
+                            </div>
+                            <div class="feature-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                <span>Special Occasions</span>
+                            </div>
+                            <div class="feature-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                                <span>Secure Booking</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reservation-form-container">
+                        <form class="reservation-form" id="reservation-form">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Full Name</label>
+                                <input type="text" id="name" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="date" class="form-label">Date</label>
+                                    <input type="date" id="date" class="form-control" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="time" class="form-label">Time</label>
+                                    <select id="time" class="form-control" required>
+                                        <option value="">Select time</option>
+                                        <option value="17:00">5:00 PM</option>
+                                        <option value="17:30">5:30 PM</option>
+                                        <option value="18:00">6:00 PM</option>
+                                        <option value="18:30">6:30 PM</option>
+                                        <option value="19:00">7:00 PM</option>
+                                        <option value="19:30">7:30 PM</option>
+                                        <option value="20:00">8:00 PM</option>
+                                        <option value="20:30">8:30 PM</option>
+                                        <option value="21:00">9:00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="guests" class="form-label">Number of Guests</label>
+                                    <select id="guests" class="form-control" required>
+                                        <option value="">Select guests</option>
+                                        <option value="1">1 Person</option>
+                                        <option value="2">2 People</option>
+                                        <option value="3">3 People</option>
+                                        <option value="4">4 People</option>
+                                        <option value="5">5 People</option>
+                                        <option value="6">6 People</option>
+                                        <option value="7+">7+ People</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="occasion" class="form-label">Occasion (Optional)</label>
+                                    <select id="occasion" class="form-control">
+                                        <option value="">Select occasion</option>
+                                        <option value="birthday">Birthday</option>
+                                        <option value="anniversary">Anniversary</option>
+                                        <option value="business">Business Meal</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="special-requests" class="form-label">Special Requests (Optional)</label>
+                                <textarea id="special-requests" class="form-control" rows="3"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block">Confirm Reservation</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials-section" aria-labelledby="testimonials-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Guest Experiences</span>
+                    <h2 id="testimonials-title" class="section-title">What Our Guests Say</h2>
+                    <p class="section-subtitle">Authentic reviews from our valued customers</p>
+                </div>
+
+                <div class="testimonials-carousel" id="testimonials-carousel">
+                    <div class="testimonials-track">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                            <blockquote class="testimonial-quote">
+                                "The food at Little Lemon is absolutely amazing! The flavors are authentic and the service is impeccable. I especially loved the Greek Salad and the Moussaka."
+                            </blockquote>
+                            <div class="testimonial-author">
+                                <img src="/placeholder.svg?height=60&width=60&query=woman portrait professional" alt="Sarah Johnson" class="author-image">
+                                <div class="author-info">
+                                    <cite class="author-name">Sarah Johnson</cite>
+                                    <span class="author-meta">Regular Customer</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                            <blockquote class="testimonial-quote">
+                                "I've been to many Mediterranean restaurants, but Little Lemon stands out with its fresh ingredients and creative dishes. The atmosphere is also perfect for a date night."
+                            </blockquote>
+                            <div class="testimonial-author">
+                                <img src="/placeholder.svg?height=60&width=60&query=man portrait professional" alt="Michael Chen" class="author-image">
+                                <div class="author-info">
+                                    <cite class="author-name">Michael Chen</cite>
+                                    <span class="author-meta">Food Blogger</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                            <blockquote class="testimonial-quote">
+                                "The atmosphere is cozy and welcoming. Perfect for a family dinner or a date night. The staff was attentive and the food was delicious. Will definitely come back!"
+                            </blockquote>
+                            <div class="testimonial-author">
+                                <img src="/placeholder.svg?height=60&width=60&query=woman portrait professional" alt="Emma Rodriguez" class="author-image">
+                                <div class="author-info">
+                                    <cite class="author-name">Emma Rodriguez</cite>
+                                    <span class="author-meta">First-time Visitor</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-controls">
+                        <button class="carousel-arrow prev" aria-label="Previous testimonial">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        </button>
+                        <div class="carousel-dots"></div>
+                        <button class="carousel-arrow next" aria-label="Next testimonial">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-section" aria-labelledby="gallery-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Visual Journey</span>
+                    <h2 id="gallery-title" class="section-title">Our Food Gallery</h2>
+                    <p class="section-subtitle">A feast for your eyes before the real feast</p>
+                </div>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://plus.unsplash.com/premium_photo-1674498270281-e1b1e8d3ea48?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Mediterranean seafood dish" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption">Fresh Seafood Platter</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://plus.unsplash.com/premium_photo-1675277534005-bf9c098729fd?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Greek moussaka" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption">Traditional Moussaka</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://plus.unsplash.com/premium_photo-1687870051820-1f84b0fb3eae?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Mediterranean mezze platter" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption">Mezze Selection</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1594981449006-3bb015dd305a?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Baklava dessert" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption">Honey Baklava</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Restaurant interior" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption">Our Dining Space</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://plus.unsplash.com/premium_photo-1663091154505-95be72cf7d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Chef cooking" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption">Behind the Scenes</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="gallery-action">
+                    <a href="#" class="btn btn-outline">View More Photos</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="cta-title">Ready to Experience Little Lemon?</h2>
+                    <p class="cta-text">Join us for an unforgettable Mediterranean dining experience. Book your table today or order online for delivery.</p>
+                    <div class="cta-actions">
+                        <a href="#" class="btn btn-primary btn-lg">Reserve a Table</a>
+                        <a href="#" class="btn btn-outline btn-lg">Order Online</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/attachments/gen-images/public/images/anime-footer-logo-of6YnrmVycGeucHgHWcis5lKY8ZyGZ.png" alt="Little Lemon Logo">
+                    </a>
+                    <p class="footer-tagline">Mediterranean cuisine with a modern twist</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Pinterest">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12h8"></path><path d="M12 8v8"></path><circle cx="12" cy="12" r="10"></circle></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-nav">
+                    <h3 class="footer-heading">Navigation</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">Menu</a></li>
+                        <li><a href="#">Reservations</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h3 class="footer-heading">Contact Us</h3>
+                    <address class="footer-address">
+                        <p>123 Mediterranean Avenue</p>
+                        <p>Chicago, IL 60601</p>
+                        <p><a href="tel:+13125551234">(312) 555-1234</a></p>
+                        <p><a href="mailto:info@littlelemon.com">info@littlelemon.com</a></p>
+                    </address>
+                </div>
+
+                <div class="footer-hours">
+                    <h3 class="footer-heading">Opening Hours</h3>
+                    <ul class="hours-list">
+                        <li><span>Monday - Friday:</span> 2:00 PM - 10:00 PM</li>
+                        <li><span>Saturday:</span> 2:00 PM - 11:00 PM</li>
+                        <li><span>Sunday:</span> 2:00 PM - 9:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="copyright">© 2023 Little Lemon Restaurant. All rights reserved.</p>
+                <ul class="legal-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Accessibility</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <div class="newsletter-modal" id="newsletter-modal" aria-hidden="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <button class="modal-close" aria-label="Close modal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <h3 id="modal-title" class="modal-title">Join Our Newsletter</h3>
+                    <p class="modal-text">Subscribe to receive special offers, event invitations, and culinary insights from our chef.</p>
+                    <form class="newsletter-form">
+                        <div class="form-group">
+                            <input type="email" placeholder="Your email address" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Subscribe</button>
+                    </form>
+                    <p class="modal-disclaimer">We respect your privacy. Unsubscribe at any time.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Page Loader
+        document.addEventListener('DOMContentLoaded', () => {
+            const loader = document.querySelector('.page-loader');
+            const progress = document.querySelector('.loader-progress');
+
+            // Simulate loading progress
+            let width = 0;
+            const interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loader.style.opacity = '0';
+                        setTimeout(() => {
+                            loader.style.display = 'none';
+                            // Trigger entrance animations after loader is gone
+                            document.body.classList.add('loaded');
+                        }, 500);
+                    }, 400);
+                } else {
+                    width += 5;
+                    progress.style.width = width + '%';
+                }
+            }, 50);
+
+            // Initialize all components
+            initStickyHeader();
+            initMobileMenu();
+            initCountdown();
+            initTabs();
+            initTestimonialCarousel();
+            initGallery();
+            initNewsletterModal();
+            initCustomCursor();
+        });
+
+        // Sticky Header
+        function initStickyHeader() {
+            const header = document.getElementById('header');
+            const headerHeight = header.offsetHeight;
+            let lastScrollTop = 0;
+
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                if (scrollTop > headerHeight) {
+                    header.classList.add('sticky');
+
+                    if (scrollTop > lastScrollTop) {
+                        // Scrolling down
+                        header.classList.add('header-hidden');
+                    } else {
+                        // Scrolling up
+                        header.classList.remove('header-hidden');
+                    }
+                } else {
+                    header.classList.remove('sticky');
+                }
+
+                lastScrollTop = scrollTop;
+            });
+        }
+
+        // Mobile Menu
+        function initMobileMenu() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mainNav = document.querySelector('.main-nav');
+
+            menuToggle.addEventListener('click', () => {
+                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                menuToggle.setAttribute('aria-expanded', !isExpanded);
+                mainNav.classList.toggle('nav-open');
+                document.body.classList.toggle('menu-open');
+            });
+        }
+
+        // Countdown Timer
+        function initCountdown() {
+            const daysEl = document.getElementById('countdown-days');
+            const hoursEl = document.getElementById('countdown-hours');
+            const minutesEl = document.getElementById('countdown-minutes');
+            const secondsEl = document.getElementById('countdown-seconds');
+
+            // Set the countdown date (next weekend)
+            const now = new Date();
+            const dayOfWeek = now.getDay();
+            const daysUntilWeekend = dayOfWeek <= 5 ? 5 - dayOfWeek : 5 + (7 - dayOfWeek);
+
+            const weekend = new Date(now);
+            weekend.setDate(now.getDate() + daysUntilWeekend);
+            weekend.setHours(17, 0, 0, 0); // 5 PM
+
+            function updateCountdown() {
+                const currentTime = new Date();
+                const diff = weekend - currentTime;
+
+                if (diff <= 0) {
+                    // Weekend is here
+                    daysEl.textContent = '0';
+                    hoursEl.textContent = '0';
+                    minutesEl.textContent = '0';
+                    secondsEl.textContent = '0';
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                daysEl.textContent = days;
+                hoursEl.textContent = hours < 10 ? '0' + hours : hours;
+                minutesEl.textContent = minutes < 10 ? '0' + minutes : minutes;
+                secondsEl.textContent = seconds < 10 ? '0' + seconds : seconds;
+            }
+
+            // Update the countdown every second
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+
+        // Tabs
+        function initTabs() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabPanels = document.querySelectorAll('.tab-panel');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Deactivate all tabs
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        btn.setAttribute('aria-selected', 'false');
+                    });
+
+                    tabPanels.forEach(panel => {
+                        panel.classList.remove('active');
+                    });
+
+                    // Activate clicked tab
+                    button.classList.add('active');
+                    button.setAttribute('aria-selected', 'true');
+
+                    const panelId = button.getAttribute('aria-controls');
+                    const panel = document.getElementById(panelId);
+                    panel.classList.add('active');
+                });
+            });
+        }
+
+        // Testimonial Carousel
+        function initTestimonialCarousel() {
+            const track = document.querySelector('.testimonials-track');
+            const slides = document.querySelectorAll('.testimonial-card');
+            const dotsContainer = document.querySelector('.carousel-dots');
+            const prevButton = document.querySelector('.carousel-arrow.prev');
+            const nextButton = document.querySelector('.carousel-arrow.next');
+
+            if (!track || slides.length === 0) return;
+
+            let currentIndex = 0;
+            const slideWidth = slides[0].offsetWidth;
+            const slideMargin = parseInt(window.getComputedStyle(slides[0]).marginRight);
+            const totalSlides = slides.length;
+
+            // Create dots
+            slides.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.classList.add('carousel-dot');
+                dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(index));
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = document.querySelectorAll('.carousel-dot');
+
+            function goToSlide(index) {
+                if (index < 0) index = totalSlides - 1;
+                if (index >= totalSlides) index = 0;
+
+                track.style.transform = `translateX(-${index * (slideWidth + slideMargin)}px)`;
+
+                // Update dots
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+
+                currentIndex = index;
+            }
+
+            prevButton.addEventListener('click', () => goToSlide(currentIndex - 1));
+            nextButton.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+            // Auto-advance slides
+            setInterval(() => {
+                goToSlide(currentIndex + 1);
+            }, 5000);
+        }
+
+        // Gallery
+        function initGallery() {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            galleryItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    // Could implement lightbox functionality here
+                    item.classList.toggle('expanded');
+                });
+            });
+        }
+
+        // Newsletter Modal
+        function initNewsletterModal() {
+            const modal = document.getElementById('newsletter-modal');
+            const closeBtn = modal.querySelector('.modal-close');
+
+            // Show modal after 5 seconds
+            setTimeout(() => {
+                modal.classList.add('show');
+                modal.setAttribute('aria-hidden', 'false');
+            }, 5000);
+
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('show');
+                modal.setAttribute('aria-hidden', 'true');
+            });
+
+            // Close when clicking outside
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal.querySelector('.modal-overlay')) {
+                    modal.classList.remove('show');
+                    modal.setAttribute('aria-hidden', 'true');
+                }
+            });
+        }
+
+        // Custom Cursor
+        function initCustomCursor() {
+            const cursor = document.querySelector('.cursor');
+
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+
+            document.addEventListener('mousedown', () => {
+                cursor.classList.add('cursor-active');
+            });
+
+            document.addEventListener('mouseup', () => {
+                cursor.classList.remove('cursor-active');
+            });
+
+            // Add hover effect to interactive elements
+            const interactiveElements = document.querySelectorAll('a, button, .gallery-item, .dish-card');
+
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.classList.add('cursor-hover');
+                });
+
+                el.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('cursor-hover');
+                });
+            });
+        }
+    </script>
+</body>
+</html>
