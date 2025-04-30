@@ -589,3 +589,1063 @@ export default Sidebar;
 ### Conclusion
 
 All my components are now using the data they received from their parent components using their respective props objects. The props object can be defined as a parameter within a function component.
+
+
+## 1.10 Introducing JSX
+
+What is it that makes JSX so special? In one word, expressiveness. Developers can express what they want to react to render using a very expressive syntax, almost identical to HTML or XML. For example, you can add navigation function to a website by creating a nav component. Then place the HTML semantic nav element, and an unordered list inside. Because this is React, the list values can be made dynamic by passing values as props.
+
+This is what makes JSX so powerful, like the fact that you can insert specific JSX expressions such as variables and props. Anything that's placed inside the curly braces of the code is essentially regular JavaScript code.
+
+Because is aJS file you cannot use the keyword `class` to work with CSS classes in your HTML elements. you must use a slightly different keyword called `className` instead.
+
+## 1.11 Props and children
+
+To understand the concept of `props.children`, consider the following real-life situation: you have a couple of apples, and you have a couple of pears. You'd like to carry the apples some distance, so obviously, you'll use a bag. It's not a "bag for apples", and it's not a "bag for pears." It's just a bag.
+```jsx
+function Apples(props) {
+  return (
+    <div className="promo-section">
+        <div>
+            <h2>These apples are: {props.color}</h2>
+            </div>
+            <div>
+            <h3>There are {props.number} apples.</h3>
+        </div>
+    </div>
+  )
+}
+export default Apples
+```
+
+There is also a Pears component:
+```jsx
+function Pears(props) {
+  return (
+    <h2>I don't like pears, but my friend, {props.friend}, does</h2>
+  )
+}
+```
+
+### 1.10.1 The Bag
+
+You want a `Bag` component, which can be used to "carry" Apples or Pears. How would you do that? This is where `props.children` comes in. You can define a `Bag` component as follows:
+```jsx
+function Bag(props) {
+    const bag = {
+        padding: "20px",
+        border: "1px solid gray",
+        background: "#fff",
+        margin: "20px 0"
+    }
+    return (
+        <div style={bag}>
+            {props.children}
+        </div>
+    )
+}
+export default Bag
+```
+
+the Bag component is: it adds a wrapping div with a specific styling, and then gives it props.children as its content.
+
+### 1.10.1 What is this props.children?
+
+Consider a very simple example:
+```jsx
+<Example>
+    Hello there
+</Example>
+```
+
+The `Hello there` text is a child of the Example JSX element. The Example JSX Element above is an "invocation" of the `Example.js` file, which, in modern React, is usually a function component.
+
+This `Hello there` text can be passed as a **named prop** when rendering the `Example` component.
+```jsx
+<Example children="Hello there" />
+```
+
+In JSX, to surround the Hello there text in an h3 HTML element
+```jsx
+<Example children={<h3>Hello there</h3>} />
+```
+
+What if the `<h3>Hello there</h3`> was a separate component, for example, named `Hello`? In that case, you'd have to update the code like this:
+```jsx
+<Example children={<Hello />} />
+```
+
+You could even make the `Hello` component more dynamic, by giving it its own prop:
+```jsx
+<Example children={<Hello message="Hello there" />} />
+```
+
+how can you make the `Bag`, `Apples`, and `Pears` examples from the beginning of this reading work? Here's how you'd render the `Bag` component with the `Apples` component as its `props.children`:
+```jsx
+<Bag children={<Apples color="yellow" number="5" />} />
+```
+
+And here's how you'd render the Bag component, wrapping the Pears component:
+```jsx
+<Bag children={<Pears friend="Peter" />} />
+```
+
+While the above syntax might look strange, it's important to understand what is happening. Effectively, the above syntax is the same as the two examples below.
+```jsx
+<Bag>
+    <Apples color="yellow" number="5" />
+</Bag>
+
+<Bag>
+    <Pears friend="Peter" />
+</Bag>
+```
+
+You can even have multiple levels of nested JSX elements, or a single JSX element having multiple children, such as, for example:
+```jsx
+<Trunk>
+    <Bag>
+        <Apples color="yellow" number="5" />
+        <Pears friend="Peter" />
+    </Bag>
+</Trunk>
+```
+So, in the above structure, there's a Trunk JSX element, inside of which is a single Bag JSX element, holding an Apples and a Pears JSX element.
+
+Another important concept that you need to be aware of: finding the right amount of modularization.
+
+## 1.11 Styling JSX elements
+
+There are various ways to style JSX elements.
+
+### 1.11.1 The simple way – `link`
+
+Probably the simplest way to do this is using the `link` HTML element in the head of the `index.html` file in which your React app will mount.
+
+The `href` attribute loads some CSS styles, probably with some CSS classes, and then, inside the function component's declarations, you can access those CSS classes using the `className` attribute.
+
+```jsx
+function Promo(props) {
+    return (
+        <div className="promo-section">
+            <div>
+                <h1>{props.heading}</h1>
+            </div>
+            <div>
+                <h2>{props.promoSubHeading}</h2>
+            </div>
+        </div>
+    );
+}
+```
+
+The CSS file:
+```css
+.promo-section {
+    font-weight: bold;
+    line-height: 20px;
+}
+```
+
+### 1.11.2 Second way – inline styles
+
+You can start updating the `Promo` component by adding the JavaScript expression syntax:
+```jsx
+<h1 style={}>
+```
+
+This means that whatever code you add inside these opening and closing curly braces is to be parsed as regular JavaScript. Now let’s add a **style object literal** inside of these curly braces:
+```jsx
+<h1 style={{color:"tomato",fontSize:"40px"}}>
+```
+
+Full code:
+```jsx
+function Promo(props) {
+    return (
+        <div className="promo-section">
+            <div>
+                <h1 style={{color:"tomato", fontSize:"40px"}}>
+                    {props.heading}
+                </h1>
+            </div>
+        </div>
+    );
+}
+
+export default Promo;
+```
+
+### 1.11.3 The Third way – using variables
+
+you can also save it in a variable, and then use that variable instead of passing an object literal.
+```jsx
+function Promo(props) {
+    const styles = {
+        color: "tomato",
+        fontSize: "40px"
+    }
+
+    return (
+        <div>
+            <h2 style={styles}>{props.promoSubHeading}</h2>
+        </div>
+    );
+}
+```
+
+## 1.12 Practical styling
+
+How to take CSS style rules from an external file named index.CSS and add it inside a component as an internal style.
+
+### 1.12.1 Move the .css into .js file
+
+You want a styling from the `style.css`
+
+#### 1. move the `aside{}` part of the .css file to `sidebar.js`
+```css
+aside {
+  background: azure;
+  margin-left: 5px;
+}
+```
+
+#### 2. After move, you need to add a `const` to `aside`
+#### 3. Replace the `;` at the ned of each line with `,`
+#### 4. Replace the hyphenated names like `-` with camelCase (margin-left -> marginLeft)
+#### 5. Add `" "` to the declarations
+#### 6. Inside the a site tag, add a style: `style={asideStyle}`
+
+```jsx
+function Sidebar(){}
+  const asideStyle = {
+    background: "azure",
+    marginLeft: "5px"
+  }
+
+  return (
+    <aside style={asideStyle}
+      className="sidebar-component">
+      <h2>Sidebar content here</h2>
+    </aside>
+  )
+}
+
+export default styles;
+```
+
+## 1.13 JSX syntax and the arrow function
+
+Here are some alternative approaches, specifically by using function expressions and arrow functions.
+
+### 1.13.1 Function Expressions
+
+Let’s start with a function declaration used as a component in React:
+```jsx
+function Nav(props) {
+    return (
+        <ul>
+            <li>{props.first}</li>
+        </ul>
+    )
+}
+```
+
+This component's code returns a list item containing the value of the `first` prop. Now, let's change this function declaration to a function expression:
+
+```jsx
+const Nav = function(props){
+  return (
+    <ul>
+      <li>{props.first}</li>
+    </ul>
+  )
+}
+```
+
+The only thing that's changed is that you’re now using an anonymous (nameless) function, and assigning this anonymous function declaration to a variable `const`, and the name `Nav`.
+
+### 1.13.2 Components as Arrow Functions
+
+Arrow functions are a core feature of the `ES6` version of JavaScript. One of the main benefits of using arrow functions is its **shorter syntax**.
+
+#### first way to write – full
+
+```jsx
+const Nav = (props) => {
+  return (
+    <ul>
+      <li>{props.first}</li>
+    </ul>
+  )
+}
+```
+
+- The arrow itself can be thought of as the replacement for the function keyword.
+- The parameters that this arrow function accepts are listed before the arrow itself.
+`const example = function() {}` -- converted to -> `const example = () => {}`
+
+#### first way to write – without parentheses
+
+Another important rule regarding arrow functions is that using the parentheses is optional if there's a single parameter that a function accepts:
+
+```jsx
+const Nav = props => {
+ ...
+}
+```
+
+#### first way to write – one line
+
+Another interesting thing about arrow functions is the implicit return. It only works if it's on the same line of code as the arrow itself.
+
+```jsx
+const Nav = () => <ul><li>Home</li></ul>
+```
+
+### 1.13.3 Using Arrow Functions in Other Situations
+
+In React, arrow functions can be used in many different situations. For example, the `forEach()` built-in array method.
+
+ES5 syntax:
+```jsx
+[10, 20, 30].forEach(function(item) {
+        return item * 10
+    }
+)
+```
+
+The arrow way (ES6 syntax):
+```jsx
+[10, 20, 30].forEach(item => item *10)  // 100, 200, 300
+```
+
+The `forEach()` method accepts a single parameter: **an anonymous function**. If you write this anonymous function in ES5 syntax, then it would contain a return statement:
+```jsx
+function(item) {
+    return item * 10
+}
+```
+
+ES6 function instead:
+```jsx
+item => item * 10
+```
+
+## 1.14 Embedded JSX expressions
+
+Embedded expressions allow developers:
+
+1. to insert the values of JavaScript variables into the HTML of the resulting React elements.
+2. to embed the outputs of functions.
+
+### Example 1 – names
+```jsx
+function formatName(firstName, surname){
+  return firstName + ' ' + surname;
+}
+```
+
+### Example 2 – profile picture
+
+Expressions can also be used for HTML attributes. This is useful if you need to insert the address of a person's profile picture
+
+```jsx
+const url = "photo.png";
+
+const result = <img src={url}></img>
+```
+
+> [!note]
+> The double-quotes are not needed for the attribute value as JSX will automatically add these.
+
+This is just one example of how JSX is an efficient way of outputting HTML elements that contain JavaScript variable content
+
+## 1.15 Ternary operators and functions in JSX
+
+become familiar with how to use ternary expressions to achieve a random return, as well as how to invoke functions inside of JSX expressions.
+
+### 1.15.1 A different way of writing an if...else conditional
+
+```jsx
+name == Bob ? "Yes, it is Bob" : "I don't know this person";
+```
+
+This, in essence, is how the ternary operator works. It's just some shorthand syntax that I can use as a replacement for the `if` statement. To prove that this is really the case, here's my starting if...else example, written as a ternary operator:
+```jsx
+let name = 'Bob';
+name == 'Bob' ? console.log('Hello, Bob') : console.log('Hello, Friend');
+```
+
+### 1.15.2 Using ternary expressions in JSX
+
+Let’s examine an example of a component which uses a ternary expression to **randomly** change the text that is displayed.
+
+```jsx
+function Example() {
+    return (
+        <div className="heading">
+            <h1>{Math.random() >= 0.5 ? "Over 0.5" : "Under 0.5"}</h1>
+        </div>
+    );
+};
+```
+
+This is how you can use a ternary expression to check for a condition right inside a component and return a value dynamically.
+
+### 1.15.3 Using function calls in JSX
+
+Another way to work with an expression in JSX is to invoke a function. Function invocation is an expression because every expression returns a value, and function invocation will always return a value, even when that return value is `undefined`.
+```jsx
+function Example2() {
+    return (
+        <div className="heading">
+            <h1>Here's a random number from 1 to 10:
+                { Math.floor(Math.random() * 10) + 1 }
+            </h1>
+        </div>
+    );
+};
+```
+
+You can also extract this functionality into a separate function:
+```jsx
+function Example3() {
+
+    const getRandomNum = () => Math.floor(Math.random() * 10) + 1
+
+    return (
+        <div className="heading">
+            <h1>Here's a random number from 1 to 10: { getRandomNum() }</h1>
+        </div>
+    );
+};
+```
+
+#### 1.15.3.1 function declaration
+
+The `getRandomNum()` function can also be written as a function declaration, or as a function expression. It does not have to be an arrow function.
+
+```jsx
+// Function expression
+// (cannot call before definition. Not hoisted, Can be anonymous, can be passed as arguments or returned from functions)
+const getRandomNumExpression = function() {
+    return Math.floor(Math.random() * 10) + 1;
+}
+
+// Function declaration
+// (cannot call before definition. Not hoisted, Always named, available in the scope)
+function getRandomNumDeclaration() {
+    return Math.floor(Math.random() * 10) + 1;
+}
+
+console.log(getRandomNumExpression()); // works only after definition
+```
+
+**Function declarations** are automatically moved (hoisted) to the top of their scope during the compilation phase. So you can call a function declared with the `function` keyword **even before** its actual definition appears in the code. In contrast, **function expressions** are not hoisted the same way. Trying to call a function expression before its definition will result in an error.
+
+## 1.16 Expressions as props
+
+Expressions as props can be, among other things, ternary operators, function calls, or some arithmetic operations.
+
+```jsx
+const bool = false;
+
+function Example(props) {
+    return (
+
+        <h2>The value of the toggleBoolean prop is: {props.toggleBoolean.toString()}
+        // `.toString()` converting its boolean value to a string
+        </h2>
+    );
+};
+
+export default function App() {
+    return (
+        <div className="App">
+            <Example toggleBoolean={!bool} />
+        </div>
+    );
+};
+```
+
+Here’s an extension of the above code which shows more ways to work with expressions as props in React. Here is several props are being passed to the `Example` component, and rendering each of these props’ values to the screen.
+```jsx
+const bool = false;
+const str1 = "just";
+
+function Example(props) {
+    return (
+        <div>
+            <h2>
+                The value of the toggleBoolean prop is:{props.toggleBoolean.toString()}
+            </h2>
+            <p>The value of the math prop is: <em>{props.math}</em></p>
+            <p>The value of the str prop is: <em>{props.str}</em></p>
+        </div>
+    );
+};
+
+export default function App() {
+    return (
+        <div className="App">
+            <Example
+                toggleBoolean={!bool}
+                math={(10 + 20) / 3}
+                str={str1 + ' another ' + 'string'}
+            />
+        </div>
+    );
+};
+```
+The `Example` component, three props are being passed to it:
+
+1. The `toggleBoolean`
+1. the `math` prop – you can add arithmetic operators and numbers inside JSX, and it will be evaluated just like it does in plain JavaScript.
+1. the `str` prop – you can concatenate strings, as well as strings and variables
+
+## 1.17 Embedding in attributes
+
+how to embed a JS expression in an attribute, including adding additional styling and importing additional assets and utilize additional assets within an app by importing components.
+
+In order to use the image I need to import it into the app component. I then add a new function in the App.js file named logo.
+```jsx
+import avatar from './avatar.png'
+
+function Logo(props) {
+  // The logo function accepts the props object and inside of the logo function I declare a userPic const and assign it a JSX element.
+  const userPic = <img src={avatar} />;
+  return userPic;
+}
+
+function App(){
+  return (
+    <div>
+      <h1>Hello world</h1>
+      <Logo /> //display the avatar using the Logo func
+    </div>
+  );
+}
+export default App;
+```
+
+# 2. Data and State
+
+## 2.1 Dynamic Events
+
+### 2.1.1 Types of Events
+
+**Events** are the process by which JavaScript interacts with HTML and can occur when the user or the browser manipulates a page.
+
+Because events usually rely on some interaction, they need to *wait and listen* in the background for that interaction to occur before they can be triggered.
+
+You might want to *listen* for a click event on an Add to Cart button. Once you capture such an event, you might want to run some js code.
+
+```js
+<button onclick="addCart()">Add to cart</button>
+```
+
+#### html vs react's JSX
+
+In React code, events are handled using JSX event attributes. In React events are handle a bit different. On html is lower case `onclick=""`, while on JSX is camelCase `onClick=""`
+
+#### JSX Mouse Events
+
+```jsx
+onClick
+onContextMenu
+onDoubleClick
+onDrag
+onDrop
+onDragEnd
+onDrop
+onMouseDown
+onMouseEnter
+onMouseLeave
+onMouseOver
+...
+```
+
+#### JSX Clipboard Events
+
+```jsx
+onCopy
+onCut
+onPaste
+```
+
+### 2.1.2 Eventful Issues
+
+The JavaScript language comes with a built-in error handling syntax, the try...catch syntax.
+
+To handle this TypeError, you can update the code with a try...catch block that instructs the code to continue running after the error is encountered:
+
+On JS
+```js
+try {
+    (5).toUpperCase();
+}
+catch(e) {
+    console.log(`Oops, you can't uppercase a number.
+        Trying to do it resulted in the following`, e);
+
+}
+```
+
+On React, an error in the code, such as the one above, will result in the error overlay showing in the app in the browser.
+```jsx
+function NumBillboard(props) {
+ return (
+   <>
+     <h1>{prop.num}</h1>
+   </>
+ )
+}
+export default NumBillboard;
+```
+
+Since event-handling errors occur after the UI has already been rendered, all you have to do is use the error-handling mechanism that already exists in JavaScript – that is, you just use the try...catch blocks.
+
+Contrary to plain js, you cannot invoke an event-handling function to handle an event such as the onClick. That’s one of the differences between JSX and plain JavaScript syntax.
+
+### 2.1.3 Common event handling
+
+Everytime you mouse over on the button will console.log "mouse over"
+```jsx
+function Brn(){
+  const clickHandler =
+    () => console.log('mouse over')
+  return (
+    <button onMouseOver={clickHandler}>
+      Click me
+    </button>
+  )
+}
+```
+
+### 2.1.4 Syntax for handlers
+
+Every time you click or tap a button, scroll down the page, etc, you need to use **event handlers** that will then execute an action.
+
+For example, suppose you use a button to open a menu.
+
+1. Clicking the button is the **event**.
+2. The **event handler** is on click.
+3. The **action** that follows the event is opening the menu.
+
+The equivalent code in JavaScript consists of two primary steps:
+1. First, you should use JavaScript to plug into these specific HTML element on what you'd like to listen to for an event.
+2. once you've got an access to an HTML elements with JavaScript, you can then use the built-in add EventListener method on the document object to attach a specific event listener.
+
+When you apply this method to the previous example, HTML is removed from the equation, but the code on the other hand, is a bit more complicated.
+```js
+const jsBtn = document.getElementById('js-btn')
+jsBtn.addEventListener('click', function() {
+  console.log('clicked')
+})
+```
+
+#### On React
+
+The biggest difference in syntax involves the use of the `addEventListener` method. Avoiding manipulating the DOM directly as much as possible. You should set everything up declaratively (describe updates to React and let it figure out the rest).
+
+This is best done using event attribute, unfortunately, one-to-one mapping between HTML event attributes and JSX event attributes means it's easier to learn.
+
+Event handling in React is overall quite similar to HTML. But note that there is no function invocation syntax in event handling attribute in React. In other words, while in plain JavaScript, you would need to pass an invocation to an event handling function as a value to the on click events. In React, you should not invoke a function. Instead, you just pass a reference to the event handling function without invoking it. Here is an example:
+
+On html:
+```html
+<button id="js-btn" onclick="clickHandler()">
+  Click me!
+</button>
+```
+
+On React
+```jsx
+<button onClick={clickHandler}>
+  Click me!
+</button>
+```
+### 2.1.5 Event handling and embedded expressions
+
+#### Handling events using inline anonymous ES5 functions
+
+This approach allows you to directly pass in an ES5 function declaration as the` onClick` event-handling attribute’s value:
+```js
+<button onClick={function() {console.log('first example')}}>
+    An inline anonymous ES5 function event handler
+</button>
+```
+
+> [!caution]
+> It's **not** a common approach and you will not find such code very often in React apps.
+
+#### Handling events using inline anonymous ES6 functions (arrow functions)
+
+You can directly pass in an ES6 function declaration as the `onClick` event-handling attribute’s value:
+```js
+<button onClick={() => console.log('second example')}>
+    An inline anonymous ES6 function event handler
+</button>
+```
+#### Handling events using separate function declarations
+
+You declare a separate ES5 function declaration, and then you reference its name in the event-handling onClick attribute, as follows:
+```js
+function App() {
+  function thirdExample() {
+    console.log('third example');
+  };
+  return (
+   <div className="thirdExample">
+      <button onClick={thirdExample}>
+        using a separate function declaration
+      </button>
+    </div>
+  );
+};
+export default App;
+```
+
+This syntax makes sense to be used when your onClick logic is too complex to easily fit into an anonymous function (although this example is not that complex).
+
+#### Handling events using separate function expressions
+
+> [!tip] function expression vs function declaration
+> An **function expression** do not start with `function`.
+
+You’re then using this const variable’s name to handle the onClick event, so this is an example of handling events using a separate function expression.
+
+```js
+function App() {
+ const fourthExample = () => console.log('fourth example');
+
+  return (
+    <div className="fourthExample">
+      <button onClick={fourthExample}>
+        using a separate function expression
+      </button>
+    </div>
+  );
+};
+export default App;
+```
+
+The syntax in this example is very common in React. It uses arrow functions, but also allows us to handle situations where our separate function expression spans multiple lines of code.
+
+### 2.1.6 User events
+
+Let's say that you have a component that uses state to keep a Boolean value of dark mode on. Based on whether the value of this variable is true or false, your component will render, either as a dark theme or as a light theme. Additionally, it's possible to switch the theme with a button click.
+
+#### ModeToogler.js
+```jsx
+function ModeToggler(){
+  const darkMode = true;
+  const darkMode = <h1>Dark Mode is On</h1>
+  const lightMode = <h1>Light Mode is On</h1>
+
+  return (
+    <div>
+      {darkModeOn ? 'Dark Mode' : 'Light Mode'} // <h1>Dark Mode is On</h1>
+    </div>
+  )
+}
+export default ModeToggler
+```
+
+#### Implement the dark mode toggle
+
+```js
+function ModeToggler(){
+  let darkMode = true;
+  const darkMode = <h1>Dark Mode is On</h1>
+  const lightMode = <h1>Light Mode is On</h1>
+
+  function handleClick(){
+    darkModeOn = !darkModeOn;
+    darkModeOn == true ? console.log("Dark Mode is on") : console.log("Light Mode is on");
+  }
+  return (
+    <div>
+      {darkModeOn ? 'Dark Mode' : 'Light Mode'} // <h1>Dark Mode is On</h1>
+    </div>
+  )
+}
+export default ModeToggler
+```
+
+### 2.1.7 Dynamic events
+
+```jsx
+function App() {
+
+  function handleClick() {
+    let randomNum = Math.floor(Math.random() * 3) + 1;
+    console.log(randomNum);
+    let userInput = prompt('type a number');
+    alert(`Computer number: ${randomNum}, Your guess: ${userInput}`);
+  }
+
+  return (
+    <div>
+      <h1>Task: Add a button and handle a click event</h1>
+      <button onClick={handleClick}>Guess the number between 1 and 3</button>
+    </div>
+  );
+}
+export default App;
+```
+
+## 2.2 Data and Everns
+
+### 2.2.1 Parent-child data flow
+
+You can establish a single source of truth that contains the two strings that store the values for the texts, "99 percent of all items" and "everything must go". This will be contained within the parent component so that any data needed can be passed onto the child component using props.
+
+```js
+// you create a single source of truth, a JavaScript object named data. Data is an object that will contain two properties named heading and callToAction, both represented as strings.
+const data = {
+    heading: "99% off all items!"
+    callToAction: "Everythin must go!"
+}
+function Promo(){
+    return(
+        <div>
+            <PromoHeading
+            heading = {data.heading}
+            callToAction={data.callToAction}
+            />
+        </div>
+    )
+}
+```
+
+The values of the props object are determined in the parent component when you add the specific JSX element that should be rendered.
+
+You make the change at the data source, the parent, and the updates will be applied to the child automatically. The prop states always flow from the parent to the child component, and using props helps you avoid the need to change the data in several places.
+
+### 2.2.2 Data flow in React
+
+In React, data always moves in one direction: from parent components down to their children. This is called unidirectional data flow.
+
+- The parent component holds the data (called state).
+- The parent passes this data to its child components using something called props.
+- The child components can use this data, but cannot change it directly-props are read-only for children.
+
+#### Why is this helpful?
+
+- **Easier to understand**: You always know where data comes from (the parent), so it’s simpler to trace and debug.
+
+- **Predictable**: Since children can’t change the data, you don’t have to worry about unexpected changes from different places.
+
+- **Efficient**: Only the parts of your app that need to update will re-render, making your app faster.
+
+#### Example
+
+##### Parent component:
+
+```jsx
+function Dog() {
+    return (
+        <Puppy name="Max" bowlShape="square" bowlStatus="full" />
+    );
+};
+```
+
+`Dog` gives the name, bowl shape, and bowl status to `Puppy` as props.
+
+##### Child component:
+
+```jsx
+function Puppy(props) {
+    return (
+        <div>
+            {props.name} has <Bowl bowlShape="square" bowlStatus="full" />
+        </div>
+    );
+};
+```
+
+`Puppy` receives these props and passes some of them further down to `Bowl`.
+
+##### Grandchild component:
+
+```jsx
+function Bowl(props) {
+    return (
+        <span>
+            {props.bowlShape}-shaped bowl, and it's currently {props.bowlStatus}
+        </span>
+    );
+};
+```
+
+`Bowl` uses the props to display information.
+
+##### Key Points
+
+- Props are like packages of data that go from parent to child.
+- Children cannot change props-they can only use them.
+- If a child needs to change data, it must ask the parent (usually by calling a function the parent provides).
+
+### 2.2.3 Children and Data
+
+Is like the money only flowing from the employer to the employee, or the customer to the restaurant and never the opposite. Money is like `props`
+
+data in react can be two types `props` data and `state` data.
+
+1. `Props data` is data outside the components that it receives and works with but cannot mutate. It belongs to the parent that renders the components.
+1. `State data` is data inside the components that it controls and can mutate. It belongs to the component itself.
+
+### 2.2.4 Hooks
+
+Keeping track of state across components can become quite a task and this is where React's hooks can help. One key benefit of hooks is that they solve the problem of unnecessary code reuse across components.
+
+They let you hook into React state and lifestyle features from components.
+
+1. first thing you need to do is import the useState from React so that it's available for use: `importReact, {useState} from 'react`
+1. Declare an state variable within a component `const [state, setState] = useState(initialState)`
+
+---
+
+#### Example
+
+```jsx
+`const [showMenu, setShowMenu] = useState(false);
+````
+
+1. Creates a state variable with an initial value -> `showMenu`
+1. Creates a function to set that state variable's value -> `SetShowMenu`
+
+- The function setShowMenu is used to update the value of show menu bypassing the Boolean value to it.
+
+The `useState` hook should be called at the **top level** of your component.  You can use the useState hook to track any type of data. It could be strings, numbers, arrays, Booleans or objects. Hooks can be called only from React functions.
+
+You can also build your own hooks, which will let you extract custom component logic into reusable functions.
+
+### 2.2.5 Using Hooks
+
+Let’s say you have a component with an input text field. The user can type into this text field. The component needs to keep track of what the user types within this text field. You can add state and use the useState hook, to hold the string.
+
+As the user keeps typing, the local state that holds the string needs to get updated with the latest text that has been typed.
+
+```jsx
+import { useState } from 'react';
+
+export default function InputComponent() {
+    // The state variable `inputText` and `setText` method are used to set the current text that is typed.
+    // The useState hook is initialized at the beginning of the component.
+    // By default, inputText is set as “hello”.
+    const [inputText, setText] = useState('hello');
+
+    // As the user types, the `handleChange` function, reads the latest input value from the browser’s input DOM element, and calls the `setText` function, to update the local state of `inputText`.
+    function handleChange(e){
+        setText(e.target.value);
+    }
+
+    return (
+        <>
+            <input value={inputText} onChange={handleChange} />
+            <p>You typed: {inputText}</p>
+            // clicking the reset button will update the inputText back to “hello”.
+            <button onClick={() => setText('hello')}>
+                Reset
+            </button>
+        </>
+    );
+}
+```
+
+let's define a React component and call it InputComponent. This component renders three things:
+
+1. An input text field
+1. Any text that has been entered into the field
+1. A Reset button to set the field back to its default state
+
+As the user starts typing within the text field, the current text that was typed is also displayed.
+
+#### The rules of Hooks
+
+- You can only call hooks at the top level of your component or your own hooks.
+- You cannot call hooks inside loops or conditions.
+- You can only call hooks from React functions, and not regular JavaScript functions.
+
+#### 3x input text fields within a single component
+
+To demonstrate, let’s extend the previous example, to include three input text fields within a single component. This could be a registration form with fields for first name, last name and email.
+
+You do not need to have three separate state variables in this case, and instead you can consolidate them all together into one form object for better readability.
+
+In addition to the useState hook, there are other hooks that come in handy such as useContext, useMemo, useRef, etc. When you need to share logic and reuse the same logic across several components, you can extract the logic into a custom hook.
+
+```jsx
+const[form, setForm] =useState({
+    firstName:'Luke',
+    lastName:'Jones',
+    email:'lukeJones@sculpture.com',
+});
+```
+
+
+#### The useRef hook
+
+We use the `useRef` hook to access a child element directly.
+
+When you invoke the `useRef` hook, it will return a `ref` object. The `ref` object has a property named current.
+
+```jsx
+function TextInputWithFocusButton(){
+    const inputEl = useRef(null);
+    const onButtonClick = () => {
+        // `current` points to the mounted text input element
+        inputEl.current.focus();
+    };
+    return (
+        <>
+            <input ref={inputEl} type="text"/>
+            <button onClick={onButtonClick}>Focus the input</button>
+        </>
+    )
+}
+```
+
+### 2.2.6 What is state?
+
+Like `props`, React have another way to do this by using a similar concept called States, which also allows you to easily change how the component behaves in order to suit a given need.
+
+The main way to change `State` is to alter these variables. When a component is created, it gets an initial `State`. The `State` is used to initialize the component's properties.
+
+#### State and Stateless component
+
+Components can be either stateful or stateless
+
+##### Stateless component
+
+```jsx
+function App(){
+    return <h1>A completely stateless component</h1>
+}
+```
+
+##### Stateful component
+
+```jsx
+function App(){
+    const [ word, setWord ] = React.useState("Hello");
+
+    return (
+        <div>
+            <h1>A state v alue: {word}</h1>
+        </div>
+    )
+}
+```
+
+##### ES6 array destructuring
+
+With its ES6 version, JavaScript introduced the concept of array destructuring, which allows you to assign several variables from the array using a single line of code. In other words, you can assign apple, pear, and plum to the fruit 1, fruit 2 and fruit 3 variables quickly instead of one at a time.
+
+```js
+const fruits = ['apple', 'pear', 'plum'];
+const [fruit1, fruit2, fruit3] = fruits;
+```
