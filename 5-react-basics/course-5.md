@@ -1635,7 +1635,7 @@ function App(){
 
     return (
         <div>
-            <h1>A state v alue: {word}</h1>
+            <h1>A state value: {word}</h1>
         </div>
     )
 }
@@ -1649,3 +1649,166 @@ With its ES6 version, JavaScript introduced the concept of array destructuring, 
 const fruits = ['apple', 'pear', 'plum'];
 const [fruit1, fruit2, fruit3] = fruits;
 ```
+
+#### More about
+
+Hooks can call other hooks, and their names start with “use” by convention (e.g., `useState`, `useEffect`).
+
+The `useState` Hook allows you to declare a state variable and a function to update it. It takes an initial state value as an argument and returns an array with two elements:
+
+- The current state value.
+- A setter function to update the state.
+
+```jsx
+import React, { useState } from 'react';
+
+function Example() {
+    // Here, `count` holds the current state, initially 0, and `setCount` is used to update that state. When the state updates, React re-renders the component to reflect the new state.
+    const [count, setCount] = useState(0); // count is the state variable, setCount updates it
+
+    return (
+        <div>
+        <p>You clicked {count} times</p>
+        <button onClick={() => setCount(count + 1)}>Click me</button>
+        </div>
+    );
+}
+```
+
+### 2.2.7 Observing state
+
+### 2.2.8 React State (dialogue exercises)
+
+#### 1. Exercise One
+
+You have a simple React component that displays a button. When you click the button, it toggles a lightbulb on and off. How would you use the useState hook to represent the state of the lightbulb (on or off)?
+
+```jsx
+import React, { useState } from 'react';
+
+function BulbState(){
+    const [bulb, setBulb] = useState(true)
+    return (
+        <div>
+            <h1>A state value: {word}</h1>
+        </div>
+    )
+}
+```
+
+#### 2. Exercise two
+
+Think about the button in our example. How would you create a function that toggles the bulb state from true (on) to false (off) and vice versa each time the button is clicked?
+
+```jsx
+function ToggleBulbState(){
+    <div>
+        <button onClick= {() => setBulb(!bulb)}> Toggle Button
+        </button>
+    </div>
+}
+```
+
+### 2.2.9 Managing State
+
+As for React applications grow in complexity, so too can the complexity of managing state across components.
+
+#### Example
+
+Think about an app that track a daily meal that a person consumes. The app then updates to show how many meals that are still left to be consumed for the day.
+
+This app tracts a daily meal plan and the user can click on each individual meal as they've consumed it. The app then updates to show how many meals that are still left to be consumed for the day.
+
+##### Structure
+
+The app consists of three components:
+
+- root component call `App.js`
+- child component `mealsList`
+- child component `counter`
+
+##### How it works
+
+1. The `app` component imports the `mealsList` and `Counter` components and renders them on the screen.
+1. The `mealsList` component uses `useState` to hook to a list of today's meals which are stored in an array.
+1. The array elements are saved inside the `todaysMeals` variable.
+1. The `meals` state variable is initialized to hold this value.
+
+###### Problem
+
+While this coding components structure may look good, there is a bit of a problem. The `counter` component needs to get state information from the `mealsList` components, but both components are rendered by the `app` component. In other words, the mealsList and the counter components are **siblings** and not in a **parent-child** relationship.
+
+However, this approach can lead to **prop drilling**, where state and functions are passed through many layers of components, making the code harder to maintain and scale. Prop drilling can clutter the app with unnecessary state in top-level components and complicate updates, especially as the application grows.
+
+A more scalable solution for sharing state across unrelated components is to use React’s **Context API**. The Context API allows you to store shared state in a context provider and access it from any component that needs it, eliminating the need for prop drilling and simplifying state management for global or widely-shared data. This approach keeps state management clean and maintainable as your app grows, ensuring components only access the state they need without unnecessary complexity.
+
+### 2.2.10 Prop Drilling
+
+It is a situation where you are passing data from a parent to a child component, then to a grandchild component, and so on, until it reaches a more distant component further down the component tree, where this data is required.
+
+Here is a simplified, not real example to make an idea:
+```jsx
+// The top-most component of this app is the App component. The App component returns the Main component. The Main component accepts a single attribute, named msg, as in “message”.
+// At the very top of the app, the Main function declares how the Main component should behave. The Main component is responsible for rendering the Header component. Note that when the Header component is rendered from inside Main, it also receives the msg prop.
+
+function Main(props) {
+    return <Header msg={props.msg} />;
+}
+
+// At the very top of the app, the Main function declares how the Main component should behave. The Main component is responsible for rendering the Header component. Note that when the Header component is rendered from inside Main, it also receives the msg prop.
+function Header(props){
+    return (
+        <div style={{border: '1px solid black'}}>
+            <h1>Header here</h1>
+            <Wrapper msg={props.msg} />
+        </div>
+    );
+};
+
+function Wrapper(props) {
+  return (
+    <div style={{ border: "10px solid lightgray" }}>
+      <h2>Wrapper here</h2>
+      <Button msg={props.msg} />
+    </div>
+  );
+};
+
+function Button(props) {
+  return (
+    <div style={{ border: "20px solid orange" }}>
+      <h3>This is the Button component</h3>
+      <button onClick={() => alert(props.msg)}>Click me!</button>
+    </div>
+  );
+};
+
+function App() {
+  return (
+    <Main
+      msg="I passed through the Header and the Wrapper and I reached the Button component"
+    />
+  );
+};
+
+export default App;
+
+```
+
+In the Wrapper component’s function declaration, there’s an h2 that reads “Wrapper here”, in addition to the rendering of the Button component, which also receives the msg attribute.
+
+Finally, the Button component’s function declaration is coded to receive the props object, then inside of the wrapping div, show an h3. The h3 reads “This is the Button component”, and then, under that, there’s a button element with an onClick event-handling attribute. This is passed to an arrow function which should alert the string that comes from the props.msg prop.
+
+All this code results in the following UI rendered on the screen:
+
+![All this code results in the following UI rendered on the screen: | 400](https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/t4YGmODQTWeLgrOyLlRaoA_111a4b0a44f94ec98ffb87335e6c1de1_Prop-drilling-1.png?expiry=1746489600000&hmac=f6oDZbaZiw_KC1_8ecPUmcLbB2VJWW-JRGXJOESgfjA)
+
+This screenshot illustrates the boundaries of each component. The Main component can’t be found in the UI because it’s just rendering the Header component. The Header component then renders the Wrapper component, and the Wrapper component then renders the Button component.
+
+![img](https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/ZibLS0MSTN-r6guXOmKRgw_6e6cdcb2fbc84a4f8b2f9d90bf0307e1_Prop-drilling-2.png?expiry=1746489600000&hmac=pqSGSC-6uoJGtz23TkZm_DWyqz0Dv1PYBNkw1pVprtE)
+
+The alert’s message reads “I passed through the Header and the Wrapper and I reached the Button component”.
+
+That’s really all there is to it. Props drilling simply means passing a prop through props objects through several layers of components. The more layers there are, the more repetitive and unnecessary this feels. There are various ways to deal with this, as you’ll learn in the lesson items that follow.
+
+###
