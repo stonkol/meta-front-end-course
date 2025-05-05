@@ -1811,4 +1811,133 @@ The alert’s message reads “I passed through the Header and the Wrapper and I
 
 That’s really all there is to it. Props drilling simply means passing a prop through props objects through several layers of components. The more layers there are, the more repetitive and unnecessary this feels. There are various ways to deal with this, as you’ll learn in the lesson items that follow.
 
-###
+### 2.2.11 React state management
+
+#### 1. Prop Drilling vs. Context API
+
+- **Prop drilling** involves passing state through multiple component layers (like a bus stopping at every level).
+- **Context API** allows direct state access anywhere (like “teleporting” to the needed component), centralizing state management.
+
+#### 2. Context Setup
+
+- **Create Context**: Use `React.createContext()` to define a context (e.g., `MealsContext`).
+- **Provider Component**: Wrap components needing state access with a provider (e.g., `<MealsProvider>`). This component holds the state and passes it via a `value` prop.
+- **Consumer Components**: Use `useContext(MealsContext)` in child components (e.g., `MealsList`, `Counter`) to directly access the state.
+
+#### 3. Example Implementation
+
+- A `MealsProvider` stores an array of meals (`todayMeals`) and shares it via `MealsContext.Provider`.
+- Components like `MealsList` map over the meals array, while `Counter` accesses the same state without prop drilling.
+
+#### 4. Enhancing with `useReducer`
+
+- For complex state logic, `useReducer` replaces `useState`, accepting a `reducer` function and initial state.
+- Reducer Function: Handles actions (e.g., `ADD_CUSTOMER`, `REFUEL`) to update state predictably.
+- Dispatch Method: Triggers state changes (e.g., `dispatch({ type: 'ADD_CUSTOMER' })`).
+
+#### 5. Practical Use Case
+
+- A rideshare app demo uses `useReducer` to manage a wallet balance:
+- Initial state: `100`.
+- Actions: Increase balance on “New Customer,” decrease on “Refuel Tank”.
+
+#### 6. Benefits
+
+- Centralized State: Avoid prop drilling and lift state only once.
+- Scalability: Combine `useReducer` with Context API for complex apps.
+- Reusability: Components access state independently, improving maintainability.
+
+### 2.2.12 Important notes from passing state
+
+1. The Context API in React is a feature that allows you to manage and share state across your application without prop drilling, making it an alternative approach to state management in React.
+1. You should use array destructuring with `useState` to access the state variable and its setter function.
+1. By convention, if your state variable is called `user`, the updater function returned by `useState` should be named `setUser`.
+1. “Lifting up state” means moving state to the nearest common ancestor so multiple child components can access and update it.
+1. A negative effect of lifting up state is prop drilling, where you have to pass props through many layers of components.
+
+### 2.2.13 Stateful vs. stateless
+
+Differences between types of state and choose the best types to suit a given need.
+
+A common approach for organizing components in React is to have a stateful component as the parent which then sends its states down to several **stateless** components that then receive the state and render it on the screen.
+
+> you should never change the values of props in children components as they are immutable.
+
+#### **Stateful** component
+
+It holds states as internal data and states changes based on the way the app is built, often as a result of user actions.
+**Use**: when your component needs to maintain its own state in order to work
+
+#### **Stateless** component
+
+It doesn't store any states and changes must be inherited through props.
+**Use**: when your component doesn't need to maintain its own state in order to work
+
+#### Example
+
+```jsx
+export function App(props){
+    // the useState hook defines and keeps the states that will be passed to the child component as the props object.
+    const [date] = React.useState(new Date());
+
+    return (
+        <div>
+            // The app component renders the child component and passes the date to it in a string format as a prop named `message`.
+            <Child message={date.toLocaleTimeString ()} />
+        </div>
+    )
+}
+```
+
+> a prop doesn't always need to pass an state.
+> JS values and functions can also be passed, It's still data but it's props data rather than state data.
+
+#### More notes
+
+1. A **stateless component**, also known as a functional component, is a function that takes in props and returns UI, but does not manage or track its own internal state.
+
+1. A **stateful component**, also known as a class component, manages its own state, but it is not required to have a props object. Props are used to receive data from parent components, but a component can have state without receiving any props
+
+1. Passing a props object does not make a component stateful. To make a component stateful, you need to add state management (using `useState` or a class with `this.state`), not just props.
+
+1. Lifting state up typically involves moving state management to a common ancestor, which can result in a previously stateful child becoming stateless, or a previously stateless parent becoming stateful. A child component (stateful or not) does not control the state of its parent; state flows down from parent to child in React.
+
+1. Props can be any value (functions, strings, numbers, objects, etc.), not just state. You can pass static or computed values as props.
+
+### 2.2.14 Notes from module quiz: data and state
+
+1. Data in React flows from parent to child components (one-way data flow). One-way data flow means data moves from parent (top) to child (bottom) in the component tree, making the flow predictable and easier to debug.
+
+1. State is internal to a component and can be changed (mutated) by that component.
+
+1. Prop drilling describes passing props through many layers of components, even if intermediate components don’t need them.
+
+1. The useState hook lets you hook into React state and lifecycle features from a component.
+
+1. The Context API allows you to avoid having to pass state down through multiple levels of components.
+
+### 2.2.15 Additional Resources
+
+[React docs website URL which discusses the issue in depthOpens in a new tab](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html)
+
+[Data flows downOpens in a new tab](https://reactjs.org/docs/state-and-lifecycle.html#the-data-flows-down)
+
+[The Power Of Not Mutating DataOpens in a new tab](https://reactjs.org/docs/optimizing-performance.html#the-power-of-not-mutating-data)
+
+[Add Inverse Data FlowOpens in a new tab](https://reactjs.org/docs/thinking-in-react.html#step-5-add-inverse-data-flow)
+
+[Component stateOpens in a new tab](https://reactjs.org/docs/faq-state.html)
+
+[State: A Component's MemoryOpens in a new tab](https://beta.reactjs.org/learn/state-a-components-memory)
+
+[Sharing State Between ComponentsOpens in a new tab](https://beta.reactjs.org/learn/sharing-state-between-components)
+
+[State as a SnapshotOpens in a new tab](https://beta.reactjs.org/learn/state-as-a-snapshot)
+
+[Basic useState examplesOpens in a new tab](https://beta.reactjs.org/apis/usestate#examples-basic)
+
+[Synchronizing with effects - putting it all togetherOpens in a new tab](https://beta.reactjs.org/learn/synchronizing-with-effects#putting-it-all-together)
+
+[Fetch APIOpens in a new tab](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
+
+[The event loop in JavaScriptOpens in a new tab](https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop)
