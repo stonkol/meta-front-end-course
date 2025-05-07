@@ -1941,3 +1941,154 @@ export function App(props){
 [Fetch APIOpens in a new tab](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 
 [The event loop in JavaScriptOpens in a new tab](https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop)
+
+# 3. Nav, Updating and Assets in React.js
+
+## 3.1 Linking and Routing
+
+### 3.1.1 Basic Types of Navigation
+
+- **Establishing Best Practices:**
+  Over time, the web development community identified and adopted a set of best practices, making the web a mature and more user-friendly medium. This process mirrored the evolution of other technologies, such as aviation, where initial experimentation gave way to standardized, effective designs.
+
+- **Focus on Usability:**
+  Modern web navigation emphasizes utility and clarity. As Stephen Krug’s book *Don’t Make Me Think* suggests, developers should avoid confusing users with unconventional navigation patterns. Familiarity and ease of use are prioritized.
+
+- **Common Navigation Patterns:**
+  - **Horizontal navigation bar (navbar):** Typically at the top of the page.
+  - **Vertical navigation menu (sidebar):** Placed on the side, often for larger menus.
+  - **Burger menu:** A button (three horizontal lines) that reveals a hidden menu, common on mobile.
+  - **Mega menu:** A large dropdown, often used on e-commerce sites.
+  - **Footer navigation:** Links organized in columns at the bottom of the page.
+
+  These patterns can be combined on the same site for different contexts or screen sizes.
+
+- **Navigation in React:**
+  - Visually, navigation in React apps looks similar to traditional HTML/CSS sites.
+  - Technically, React apps load everything inside a single `<div>`. Navigation doesn’t load new HTML pages but instead updates the content of that div using React’s virtual DOM.
+  - This creates the illusion of moving between pages, even though the app remains on a single page.
+  - To achieve this, developers use libraries like **React Router**, which handle URL changes and component rendering to simulate multi-page navigation.
+
+---
+
+- **In summary:**
+    Web navigation has evolved from experimental designs to standardized, user-friendly patterns. React apps implement navigation differently under the hood, relying on virtual DOM updates and routing libraries to provide a seamless, multi-page experience within a single-page application.
+
+### 3.1.2 Navigation
+
+#### Before Single-Page Apps (SPAs)
+
+Most websites were multi-page applications. That is, when a user clicks on a link, the browser navigates to a new webpage, sends a request to the web server. This can make your application resource intensive to the Web Server. CPU time is spent rendering dynamic pages and network bandwidth is used sending entire webpages back for every request. To solve this problem, many web developers develop their web applications as SPAs.
+
+#### SPAs
+
+Nowadays, SPAs are everywhere, social network, email provider, map apps, etc. They have excellent user experiences, and their performance is optimized for fast loading times and smooth interactions.
+
+A SPA allows user to interact with the website without downloading entire new webpages. Instead, it rewrites the current webpage as the user interacts with it.
+
+#### How Does a SPA work
+
+When the user navigates to the web application in the browser, the Web Server will return the necessary resources to run the application. There are two approaches to serving code and resources when the browser requests the application:
+
+1. It return and load all necessary HTML, CSS and JavaScript immediately. This is known as **bundling**.
+2. It return only the minimum HTML, CSS and JavaScript needed to load the application. Additional resources are downloaded as required by the application. Thank to **lazy loading** or **code splitting**.
+
+#### An Example of a Single-Page App
+
+**In a traditional website**:
+
+1. when the button is clicked
+1. the browser send a `POST` request to the server.
+1. The web server return a new web page containing the button and movie name (the web browser renders the new page).
+
+**In a SPA**:
+
+1. when the button is clicked
+1. the browser send a `POST` request to a server.
+1. The web server return a JSON object.
+1. The app reads the object and updates the `Label` with the movie name.
+
+#### Practical Diff SPAs and MPAs (Multi-Page Apps)
+
+![spa](https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/MP8GJ9hFSl2uMbTT30z8qA_3d00baacc29141538c905f4784b593e1_Slide5.jpeg?expiry=1746662400000&hmac=81vyRrOV5JZBRr4dAdSErUUnVRwjtPG5ASwDQKbfZ3Q)
+
+![mpa](https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/CBDkIw93SeGXFAMaPDEVfw_e2d57e707dc446ab97c64fd1a15abde1_Slide6.jpeg?expiry=1746662400000&hmac=pdq7w3S5Oynt3UDuDjhxgU0_IWr5ntYMnQuQQiklw90)
+
+##### In a traditional website
+
+1. when the user clicks the Profile link
+1. the browser sends the request to the server.
+1. The server generates the HTML page and sends it back to the web browser.
+1. The web browser then renders the new web page.
+
+##### In a SPA
+
+1. when the user clicks the Profile link.
+1. The browser sends the request to the server.
+1. The server sends back a JSON object.
+1. The browser updates the web page by inserting the template with the variables replaced by the values in the JSON object.
+
+#### Anchor Tag Elements in Single-Page Elements
+
+A single-page application can’t have regular anchor tag elements as a traditional web app can. 'cause the default behavior of an anchor tag is to load another HTML file from a server and refresh the page. This page refresh is not possible in a SPA that's powered by a library such as React because a total page refresh is not the way that a SPA works.
+
+Instead, a SPA comes with its own special implementation of anchor tags and links, which only give an illusion of loading different pages to the end user when in fact, they simply load different components into a single element of the real DOM into which the virtual DOM tree gets mounted and updated.
+
+### 3.1.3 The navbar
+
+Homepage and Aboutme are both imported into the app component and referenced using anchor tags. However, with the default React library, these anchor tags won't work as expected. This is because React can't imitate multi-page websites. However, I can make this possible with the help of another library known as React Router.
+
+However, I can make this possible with the help of another library known as **React Router**. As you may have guessed from the name React Router gives you more control over the routing of components.
+
+#### Usage
+
+1. You need to install the React Router library using npm:
+    ```jsx
+    `npm install react-router-dom@6`
+    ```
+2. Import and use the necessary components from the library to create your routing system:
+    ```jsx
+    import { BrowserRouter } from `react-router-dom`;
+    ```
+
+#### On the index.js
+
+```jsx
+import { BrowserRouter } from `react-router-dom`;
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+    // put the tags to use
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+);
+```
+
+#### On the App.js
+
+```jsx
+import Homepage from "./Homepage"
+import AboutMe from "./AboutMe"
+import {Routes, Route, Link} from "react-router-dom";
+
+function App(){
+    return (
+        <div className="App">
+            <nav className="navbar">
+                <Link to="/">Home</Link>
+                <Link to="/about">About</Link>
+            </nav>
+            <Routes>
+                <Route path="/" element={<Homepage />} />
+                // "localhost:3000/" will show the home page
+
+                <Route path="/about" element={<AboutMe />} />
+                // localhost:3000/about will show the about me page
+            </Routes>
+        </div>
+    )
+}
+```
+
+### 3.1.4 Conditional rendering
