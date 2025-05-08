@@ -2092,3 +2092,123 @@ function App(){
 ```
 
 ### 3.1.4 Conditional rendering
+
+React dynamically changes webpage content by rendering different components based on conditions, rather than loading new pages. To control what gets displayed, you use conditional rendering-often with js’s ternary operator-which lets you show one component if a condition is true, and another if it’s false.
+
+This is commonly used with state variables (like toggles) to respond to user events.
+
+#### Example 1
+
+For example, a productivity app might display `“Get it done!”` on workdays and `“Get some rest”` on weekends, using the ternary operator to check the day and render the appropriate message component.
+
+```jsx
+function CurrentMessage(){
+    const day = new Date().getDay();
+
+    return(
+        {day >= 1 && day <= 5
+            ? <Workdays />
+            : <Weekends />
+                ...
+        }
+    )
+}
+```
+
+Instead of calculating it directly, you could use some historical data instead, and perhaps get that data from a user via an input, from a parent component.
+
+```jsx
+function CurrentMessage(props) {
+    if (props.day >= 1 && props.day <= 5) {
+        return <Workdays />
+    }
+    return <Weekends />
+}
+```
+
+#### Example 2
+
+```jsx
+function IsSummer(){
+    const summer = true;
+
+    return (
+        {summer
+            ? <h1>Go to beach</h1>
+            : <h1>Watch TV <h1/>
+            ...
+        }
+    )
+}
+```
+
+#### Conditional rendering with the help of element variables
+
+To further improve your `CurrentMessage` component, you might want to use element variables. This is useful in some cases, where you want to streamline your render code - that is, when you want to separate the conditional logic from the code to render your UI.
+
+```jsx
+function CurrentMessage({day}) {
+    const weekday = (day >= 1 && day <= 5);
+    const weekend = (day >= 6 && day <= 7);
+    let message;
+
+    if (weekday) {
+        message = <Workdays />
+    } else if (weekend) {
+        message = <Weekends />
+    } else {
+        message = <ErrorComponent />
+    }
+
+    return (
+        <div>
+        {message}
+        </div>
+    )
+}
+```
+
+#### Conditional rendering with `AND` `&&` operator
+
+```jsx
+function LogicalAndExample(){
+    const val = prompt('Anything but a 0')
+
+    return (
+        <div>
+            <h1>Please don't type in a zero</h1>
+            {val && <h2>Yay, no 0 was typed in!<h2/>}
+        </div>
+    )
+}
+```
+
+1. Ask the user to type into the prompt, specifying that you require anything other than a zero character; and you save the input into the val value.
+
+2. In the return statement, an h1 heading is wrapped inside a div element, and then curly braces are used to include a JSX expression. Inside this JSX expression is a single && operator, which is surrounded by some code both on its left and on its right sides; on the left side, the val value is provided, and on the right, a piece of JSX is provided.
+
+### 3.1.5 Conditional Components
+
+On websites, it may show a `Log in` button and once you’ve logged in, it changes to a `Log out` button. This is often done using something called conditional rendering.
+
+By using conditions, you can return different child components. This is often done using the props that are passed into the parent component, but can also be done based on component state.
+
+#### Example
+
+Let’s say you have two child components called LoginButton and LogoutButton; each displaying their corresponding button.
+
+In the parent component, named LogInOutButton, you can check the props passed into the parent component and return a different child component based on the value of the props. In this example, the props contains a property named isLoggedIn. When this is set to true, the LogoutButton component is returned. Otherwise, the LoginButton component is returned.
+
+```jsx
+function LogInOutButton(props) {
+const isLoggedIn = props.isLoggedIn;
+  if (isLoggedIn) {
+    return <LogoutButton />;
+  } else {
+  return <LoginButton />;
+}
+```
+
+### 3.1.6 Single view conditional updates
+
+> The logical AND operator is used to conditionally render some JSX elements based on whether a value to the LEFT of the AND operator evaluates to true.
