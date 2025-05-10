@@ -2212,3 +2212,119 @@ const isLoggedIn = props.isLoggedIn;
 ### 3.1.6 Single view conditional updates
 
 > The logical AND operator is used to conditionally render some JSX elements based on whether a value to the LEFT of the AND operator evaluates to true.
+
+## 3.2 Using Assets in React
+
+### 3.2.1 Intro
+In React, assets can be things like images, style sheets, fonts, media files, or basically any file that's needed by your app at runtime.
+
+The general rule for asset storage is that if your app can compile without it, you can keep it in the public folder. For instance, favicon is in the public folder because no component depends on it.
+
+#### Method one: import
+
+To add an asset file to a component, you first need to import it:
+```jsx
+import cat from './assets/images/cat.jpg'
+```
+
+Then Use it in your code
+```jsx
+    ...
+<img src={cat} alt="A pic of a fat cat"/>
+    ...
+```
+
+#### Method Two: require
+
+Don't need to put import at the beggining of your code
+```jsx
+<img src={require('./assets/images/cat.jpg')} alt="A pic of a fat cat"/>
+```
+
+### 3.2.2 Bundling assets
+
+Bundling is a process that takes all the imported files in an app and joins them into a single file. Several tools can perform this bundling. Since, in this course, you have used the create-react-app to build various React apps, you will focus on webpack.
+
+**Webpack** is a module bundler. It will take various kinds of files, such as SVG and JPG, CSS and SCSS files, JS/TS files, and it will bundle them together so that a browser can understand that bundle and work with it.
+
+#### Why is this important?
+
+For a simple minimal website with one css, js and html is not neccesary, but  modern web development can get complex. Here is an example of the first few lines of code in a single file of a React application:
+
+```jsx
+import React from 'react';
+import '@atlaskit/css-reset';
+import styled from 'styled-components';
+import './index.css';
+import { ThemeProvider } from './contexts/theme';
+import { DragDropContext } from 'react-beautiful-dnd';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Nav from './components/Nav';
+import data from './data';
+import Loading from './components/Loading';
+```
+
+The imports here are from fictional libraries and resources because the specific libraries are not necessary. All these different imports can be of various file types: .js, .svg, .css, and so on. All the imported files might have their own imported files, and even those might have their imports.
+
+This means that depending on other files, all of these files can create a **dependency graph**. The order in which all these files are loading is essential. That dependency graph can get so complex that it becomes almost impossible for a human to structure a complex project and bundle all those dependencies properly.
+
+#### What webpack does?
+
+So, webpack builds a dependency graph and bundles modules into one or more files that a browser can consume. While it is doing that, it also does the following:
+
+1. It converts modern JS code - which can only be understood by modern browsers - into older versions of JavaScript so that older browsers can understand your code. This process is known as transpiling. For example, you can transpile ES7 code to ES5 code using webpack.
+1. It optimizes your code to load as quickly as possible when a user visits your web pages.
+1. It can process your SCSS code into the regular CSS, which browsers can understand.
+1. It can build source maps of the bundle's building blocks
+1. It can produce various kinds of files based on rules and templates. This includes HTML files, among others.
+
+Another significant characteristic of webpack is that it helps developers create modern web apps. It helps you achieve this using two modes: production mode or development mode.
+
+This works great for smaller apps, but if you have a more extensive app, this approach is likely to affect your site’s speed. The longer it takes for a web app to load, the more likely the visitor will leave and move on to another unrelated website. There are several ways to tackle this issue of a large bundle.
+
+One such approach is code-splitting, a practice where a module bundler like webpack splits the single bundle file into multiple bundles, which are then loaded on an as-needed basis. With the help of code-splitting, you can lazy load only the parts that the visitor to the app needs to have at any given time. This approach significantly reduces the download times and allows React-powered apps to get much better speeds.
+
+#### There are other ways to tackle these problems.
+
+An example of a viable alternative is SSR (Server-side rendering).
+
+With SSR, React components are rendered to HTML on the server, and the visitor downloads the finished HTML code. An alternative to SSR is client-side rendering, which downloads the index.html file and then lets React inject its own code into a dedicated HTML element (the **root** element in create-react-app). In this course, you’ve only worked with client-side rendering.
+
+Sometimes, you can combine client-side rendering and server-side rendering. This approach results in what’s referred to as **isomorphic apps**.
+
+### 3.2.3 Using embedded assets
+
+You can import an image like you would any other module. To use it, just evaluate it as a JSX expression (that is, enclose it inside curly braces).
+
+There are three ways to import images to React:
+
+#### 1. Import method
+
+```jsx
+import rooftops from './assets/images/rooftops.jpg';
+```
+
+Then use it in your JSX code:
+
+```jsx
+<img height={200} src={rooftops} alt="an image of Rooftops" />
+```
+
+#### 2. Require method
+
+Dont need to use import the image on the top
+```jsx
+<img height={200} src={require("./assets/images/rooftops.jpg")} alt="an image of Rooftops" />
+```
+
+Then use it in your JSX code:
+
+```jsx
+<img height={200} src={rooftops} a  lt="an image of Rooftops" />
+```
+
+#### 3. Load from a URL
+
+```jsx
+<img height={200} src="https://example.com/assets/images/rooftops.jpg" alt="an image of Rooftops" />
+```
