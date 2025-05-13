@@ -2328,3 +2328,96 @@ Then use it in your JSX code:
 ```jsx
 <img height={200} src="https://example.com/assets/images/rooftops.jpg" alt="an image of Rooftops" />
 ```
+
+#### 4. Load an img
+
+```jsx
+import logo from"./assets/logo.png"
+
+function App() {
+
+  return (
+    <div className="App">
+      <h1>Task: Add an image below</h1>
+      <img src={logo} alt="Logo" />
+    </div>
+  );
+};
+export default App;
+```
+
+#### 5. Load Video
+
+##### local file
+Can work similar to img by importing it with `import` when it is a local file.
+
+##### Remote
+
+But when is from a remote source, you need to roll out your own solutions, recommended for the video platform itself, like youtube.
+
+It may be recommended to add it as a separate React component if you are going to use multiple times in your application. So you'd be able to easily switch one video with another by passing the unique ID of a given video as a prop.
+
+You can use some third-party **linpm package**
+
+#### 6. Load Audio
+
+```jsx
+function App(){
+    const bird1 = new Audio("https://example.com/assets/audio/bird1.mp3");
+    const bird2 = new Audio("https://example.com/assets/audio/bird2.mp3");
+
+    function toggle1(){
+        if (bird1.paused){
+            bird1.play();
+        } else {
+            bird1.pause();
+        }
+    }
+
+    function toggle2(){
+        if (bird2.paused){
+            bird2.play();
+        } else {
+            bird2.pause();
+        }
+    }
+
+    return(
+        <div>
+            <button onCLick={toggle1}>Caspian Tern 1</button>
+            <button onCLick={toggle2}>Caspian Tern 2</button>
+        </div>
+    );
+};
+export default App;
+```
+
+### 3.2.4 How to install npm modules
+
+You can find this package on the npmjs.org website at the following [URL](https://www.npmjs.com/package/react-player)
+
+```sh
+npm install react-player
+```
+
+#### Implement the package
+
+There are a few ways that you can import and use the installed package:
+
+1. To get the entire package's functionality, use the following import:
+    ```jsx
+    import ReactPlayer from "react-player";
+    ...
+    ```
+2. only planning to use videos from a site like YouTube, to reduce bundle size, you can use the following import:
+    ```jsx
+    import ReactPlayer from "react-player/youtube";
+    ```
+
+### 3.2.5 Additional Resources
+
+1. [webpack docsOpens in a new tab](https://webpack.js.org/guides/getting-started/)
+1.[webpack asset managementOpens in a new tab](https://webpack.js.org/guides/asset-management/)
+1. [npm docsOpens in a new tab](https://docs.npmjs.com/)
+1. [ReactPlayer on npmOpens in a new tab](https://www.npmjs.com/package/react-player)
+1. [Video and audio content on the webOpens in a new tab](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Video_and_audio_content)

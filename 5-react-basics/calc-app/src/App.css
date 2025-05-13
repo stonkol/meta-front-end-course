@@ -1,0 +1,33 @@
+* {
+    font-family: sans-serif;
+}
+body {
+    background-color: #fff5f5;
+}
+input,
+button {
+    font-size: 20px;
+    padding: 10px;
+}
+input {
+    border-radius: 15px;
+    display: block;
+    font-size: 1.8em;
+    width: 250px;
+    margin-bottom: 20px;
+}
+button {
+    border-radius: 7px;
+    border: 1px solid gray;
+    background: whitesmoke;
+    margin-right: 10px;
+}
+button:nth-last-child(2),
+button:nth-last-child(1) {
+    background: tomato;
+    color: white;
+}
+button:hover {
+    background: lightyellow;
+    color: brown;
+}

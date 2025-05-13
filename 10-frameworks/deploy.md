@@ -1,3 +1,5 @@
+# Deploy
+
 # Vercel
 
 How to use [Vercel](https://vercel.com)
@@ -88,3 +90,5 @@ else
   echo "Deployment failed: $errorMessage"
 fi
 ```
+
+# Netlify
