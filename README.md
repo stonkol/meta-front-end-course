@@ -1,4 +1,8 @@
+<div align="center">
+
 # meta-front-end-course
+
+</div>
 
 [coursera link](https://www.coursera.org/professional-certificates/meta-front-end-developer#courses)
 
