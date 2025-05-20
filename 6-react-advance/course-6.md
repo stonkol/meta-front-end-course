@@ -633,7 +633,214 @@ Explanation: Both are plain JS objects but only state is mutable within a compon
 
 # 2. React Hooks
 
-## 2.1 Intro Hooks
+## 2.1.1 Intro Hooks
+
+Array destructuring
+```jsx
+let veggies = [parsley, onion, carrot];
+const [v1,v2, v3] = veggies;
+```
+
+When the structuring objects, you have to destructure a property of an object using that exact properties name as the name of the destructured variable. This makes objects a lot stricter in terms of what you can name your destructured variables. For that reason, react uses the array data structure for the used state hooks return value.
+
+### How useState works
+
+useState lets you add and update data (state) in your React components.
+
+When you call  `useState, it gives you two things:
+1. The current value of your state.
+2. A function to update that value.
+
+```jsx
+const [vg1, vg2, vg3] = ["Carrot", "Briccoli", "Peas"];
+```
+
+### How to Use useState
+
+1. Import useState
+```jsx
+import React, { useState } from 'react';
+```
+
+2. Set up state
+```jsx
+const [restaurantName, setRestaurantName] = useState("Lemon");
+// restaurantName is "Lemon" at first
+// setRestaurantName is the function to change it
+```
+
+3. Update state
+    Never change the state variable directly.
+    Always use the setter function(`setRestaurantName`).
+    ```jsx
+    setRestaurantName("Little Lemon");
+    ```
+
+### Full code
+
+```jsx
+import {useState} from 'react';
+
+function App (){
+    const [pizzaName, setPizzaName] = useState("Hawaian");
+
+    function updatePizzaName(){
+        setPizzaName("Pepperoni");
+    }
+
+    return (
+        <div>
+            <p>your pizza: </p>
+            <h2>{pizzaName}</h2>
+            <button onClick={updatePizzaName}>Update Restaurant Name</button>
+        </div>
+    );
+}
+```
+
+## 2.1.2 Working with complex data in useState
+
+The correct way to update the state object in React when using useState
+Is to copy the state object and then update the copy. This usually involves using the spread operator -> `...`.
+```jsx
+imprt {useState} from 'react';
+
+export default function App(){
+    const [greeting, setGreeting]= useState ({ geet: "Hello, World"});
+    console.log(greeting, setGreeting);
+
+    function updateGreeting(){
+        const newGreeting = {...greeting};
+        newGreeting.greet = "Hello, WWW";
+        setGreeting(newGreeting);
+    }
+
+    return (
+        <div>
+            <h1>{greeting.greet}</h1>
+            <button onClick={updateGreeting}>Update greeting</button>
+        </div>
+    );
+}
+```
+
+Updating the state using arrow function:
+```jsx
+import {useState } from 'react';
+
+export default function App(){
+    const [greeting, setGreeting] - useState({
+        greet:"Hello",
+        place:"World"
+    })
+    console.log(greeting,setGreeting);
+
+    function updateGreeting(){
+        setGreeting(prevState => {
+            return {...prevState, place: "WWW"}
+        });
+    }
+
+    return (
+        <div>
+            <h1>{greeting.greet}, {greeting.place}</h1>
+            <button onClick={updateGreeting}>Update greeting</button>
+        </div>
+    );
+}
+```
+The reason this works is because it uses the previous state, which is named prevState, and this is the previous value of the greeting variable. In other words, it makes a copy of the prevState object, and updates only the place property on the copied object. It then returns a brand-new object:
+
+```js
+const a = { foo: 1, bar: { a: 2 } };
+const b = { ...a };
+
+b.foo = 2;       // Changes b.foo only; a.foo remains 1
+b.bar.a = 3;     // Changes b.bar.a AND a.bar.a, because bar is shared
+```
+**foo**: a primitive value 1
+**bar**: a nested object { a: 2 }
+
+The spread operator `(...a)` creates a *shallow copy* of `a`.
+Changing `b.foo` to 2 affects only `b` because `foo` was copied by value.
+Since `bar` was copied by reference (shallow copy), both `a.bar` and `b.bar` point to the same nested object.
+
+### 2.1.3 Managing state
+
+```jsx
+import { useState } from "react";
+
+export default function App() {
+  const [giftCard, setGiftCard] = useState(
+    {
+        firstName: "Jennifer",
+        lastName: "Smith",
+        text: "Free dinner for 4 guests",
+        valid: true,
+        instructions: "To use your coupon, click the button below.",
+    }
+  );
+
+  function spendGiftCard() {
+    setGiftCard(prevState => {
+        return {
+          ...prevState,
+          text: "Your coupon has been used.",
+          valid: false,
+          instructions: "Please visit our restaurant to renew your gift card.",
+        }
+    });
+  }
+
+  return (
+    <div style={{padding: '40px'}}>
+      <h1>
+        Gift Card Page
+      </h1>
+      <h2>
+        Customer: {giftCard.firstName} {giftCard.lastName}
+      </h2>
+      <h3>
+        {giftCard.text}
+      </h3>
+      <p>
+        {giftCard.instructions}
+      </p>
+      {
+        giftCard.valid && (
+          <button onClick={spendGiftCard}>
+            Spend Gift Card
+          </button>
+        )
+      }
+    </div>
+  );
+}
+```
+
+### 2.1.4 What are side effects
+
+Impure functions have side effects and pure don't have.
+
+A pure function should receive specific input. That is a specific parameter will always return the exact same output
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
