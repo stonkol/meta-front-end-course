@@ -820,11 +820,25 @@ export default function App() {
 
 ### 2.1.4 What are side effects
 
-Impure functions have side effects and pure don't have.
+Impure functions have side effects, and pure don't have.
 
-A pure function should receive specific input. That is a specific parameter will always return the exact same output
+#### Pure Function
+A pure function should receive specific input. That is a specific parameter will always return the exact same output, no matter how many times get invoked.
 
+```jsx
+function EstablishedYear(props){
+    return <h1>Established year: {props.year}</h1>
+}
 
+function App(){
+    return <EstablishedYear year={2003} />
+}
+
+export default App;
+```
+
+#### Impure Function
+It will invoke console.log, invoke fetch, invoke geolocation
 
 
 

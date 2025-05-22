@@ -18,15 +18,15 @@
 
 [coursera link](https://www.coursera.org/learn/introduction-to-version-control?specialization=meta-front-end-developer)
 
-## 4. HTML and CSS in depth
+## 4. HTML and CSS in depth [v]
 
 [course link](https://www.coursera.org/learn/html-and-css-in-depth?specialization=meta-front-end-developer)
 
-## 5. React Basis
+## 5. React Basis [v]
 
 [coursera link](https://www.coursera.org/learn/react-basics?specialization=meta-front-end-developer)
 
-## 6. Advanced React
+## 6. Advanced React [in progress]
 
 [coursera link](https://www.coursera.org/learn/advanced-react?specialization=meta-front-end-developer)
 
