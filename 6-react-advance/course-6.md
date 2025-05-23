@@ -889,9 +889,102 @@ useEffect(() => {
 React doesn’t limit you in the number of effects your component can have. In fact, it encourages you to group related logic together in the same effect and break up unrelated logic into different effects.
 ```jsx
 function MenuPage(props){
-    const [data, setData]
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        document.title = 'Little Lemon';
+    }, []);
+
+    useEffect(() => {
+        fetch(`https://caribou/menu/${id}`)
+            .then(response => response.json())
+            .then(json => setData(json));
+    }, [props.id]);
 }
 ```
+
+React will make sure to run the cleanup logic when it’s needed. The execution will always happen when the component unmounts. However, in effects that run after every render and not just once, React will also clean up the effect from the previous render before running the new effect next time.
+
+### 2.1.6 Using the useEffect hook
+
+```jsx
+import React from "react";
+import './App.css';
+
+function App() {
+    const [toggle, setToggle] = React.useState(false);
+
+    const clickHandler = () => {
+        setToggle(!toggle);
+    }
+
+    React.useEffect (() => {
+        document.title = toggle? "Welcome to Little Lemon": "Using the useEffect hook";
+    }, [toggle]);
+
+    return (
+        <div>
+            <h1>Using the useEffect hook</h1>
+            <button onClick ={clickHandler}>
+                Toggle message
+            </button>
+        </div>
+    )
+}
+```
+
+### 2.1.7 Knowledge check
+
+- The useEffect hook accepts a callback function and an array
+- the second argument of the useEffect() is the dependency array
+
+## 2.2 Rules of Hooks and Fetching Data with Hooks
+
+### 2.2.1 What are the rules of hooks?
+
+The four main rules of hooks:
+1. Only call hooks from a react component or custom hook
+2. Only call hooks at the top level of a component or custom hook
+3. You are allowed to call multiple state hooks or effect hooks inside a component
+4. Always make these  multiple hook calls in the same sequence.
+
+
+### 2.2.2 What you need to know before fetching data
+
+The Fetch function in JavaScript is a tool used to retrieve data from the web, typically by making server requests to get JSON data. To understand how Fetch works, it’s important to grasp how JavaScript handles tasks.
+
+JavaScript is **single-threaded**, meaning it can only do one thing at a time. Using a metaphor of a post office clerk, JavaScript handles tasks sequentially, which can cause delays if one task takes time. To overcome this, JavaScript delegates tasks to browser APIs (external helpers), allowing it to continue working on other things while waiting for responses. This delegation is called **asynchronous JavaScript**.
+
+In practice, when JavaScript calls the Fetch API to request data, it doesn’t wait for the response. Instead, it continues executing subsequent code. Once the Fetch API returns the data (e.g., from a third-party API like randomuser.me), JavaScript processes it and logs the result.
+
+The Fetch function acts as a *facade*, appearing as a JavaScript function but actually calling browser functionality outside of JavaScript itself.
+This asynchronous behavior allows JavaScript to efficiently handle web requests without blocking the main thread, which is crucial for responsive applications. Understanding this concept is essential before working with data fetching in frameworks like React.
+
+
+### 2.2.3 Data fetching using hooks
+
+
+.
+.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
