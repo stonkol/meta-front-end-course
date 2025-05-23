@@ -818,7 +818,7 @@ export default function App() {
 }
 ```
 
-### 2.1.4 What are side effects
+### 2.1.4 What are side effects?
 
 Impure functions have side effects, and pure don't have.
 
@@ -838,23 +838,60 @@ export default App;
 ```
 
 #### Impure Function
-It will invoke console.log, invoke fetch, invoke geolocation
 
+It perform side effects (actions that affect something outside the function itself) such as calling `console.log`, fetching data, or accessing browser APIs like geolocation. For example, a `ShoppingCart` function that logs the total to the console is impure because it depends on an external API.
 
+In React, to manage side effects properly and keep components predictable, impure actions should be contained using the `useEffect` hook. This hook accepts a callback function and a dependency array, allowing side effects to run at specific times during the component lifecycle.
 
+Using `useEffect` helps isolate side effects like logging or data fetching, making your React components cleaner and easier to maintain.
 
+### 2.1.5 What is the useEffect hook?
 
+The code you place inside the useEffect hook always runs after your component mounts or, in other words, after React has updated the DOM.
 
+In addition, depending on your configuration via the dependencies array, your effects can also run when certain state variables or props change.
 
+#### Table
+| Without `useEffect`                   | With `useEffect`                 |
+|---------------------------------------|----------------------------------|
+| Side effect (SE) runs on every render | SE runs when dependencies change |
+| Can cause unnecessary/repeated updates| Efficient, runs only when needed |
+| May block/interfere with rendering    | Runs asynchronously after render |
+| Harder to manage cleanup              | Supports cleanup functions       |
 
+#### 1. Without a dependency array:
+By default, if no second argument is provided to the useEffect function, the effect will run after every render.
+```jsx
+useEffect(()=>{
+    document.title = 'Little Lemon';
+});
+```
 
+#### 2. With an empty dependency array ([]):
+Runs only once, right after the component mounts.
+The effect will not run again on re-renders or updates.
+```jsx
+useEffect(()=>{
+    document.title = 'Little Lemon';
+}, []);
+```
 
+#### 3. With a dependency array ([something]):
+However it may cause performance issues. A way to instruct React to skip applying an effect is passing an array as a second parameter to `useEffect`. the integer variable version is passed as the second parameter. That means that the effect will only be re-run if the version number changes between renders.
+```jsx
+useEffect(() => {
+  document.title = `Little Lemon, v${version}`;
+}, [version]); // Only re-run the effect if version changes
+```
 
+#### 4. With multiple Effects to Separate Concerns
 
-
-
-
-
+React doesn’t limit you in the number of effects your component can have. In fact, it encourages you to group related logic together in the same effect and break up unrelated logic into different effects.
+```jsx
+function MenuPage(props){
+    const [data, setData]
+}
+```
 
 
 
