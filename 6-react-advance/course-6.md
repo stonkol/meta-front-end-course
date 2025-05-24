@@ -960,15 +960,76 @@ In practice, when JavaScript calls the Fetch API to request data, it doesn’t w
 The Fetch function acts as a *facade*, appearing as a JavaScript function but actually calling browser functionality outside of JavaScript itself.
 This asynchronous behavior allows JavaScript to efficiently handle web requests without blocking the main thread, which is crucial for responsive applications. Understanding this concept is essential before working with data fetching in frameworks like React.
 
-
 ### 2.2.3 Data fetching using hooks
 
+Compared to plain JS data fetching is not that different in React. Is that fetching data from a third-party API is considered a side-effect, therefore, you need to use useEffect hook to deal with using the Fetch API calls in React.
 
-.
-.
+#### 1. All in one
+Here is a code example where a component is fetching some data from an external API to display information about a cryptocurrency.
+```jsx
+export default function App() {
+  const [btcData, setBtcData] = useState({});
+  useEffect(() => {
+    fetch(`https://api.coindesk.com/v1/bpi/currentprice.json`)
+      .then((response) => response.json())
+      .then((jsonData) => setBtcData(jsonData.bpi.USD))
+      .catch((error) => console.log(error));
+  }, []);
 
+  return (
+    <>
+      <h1>Current BTC/USD data</h1>
+      <p>Code: {btcData.code}</p>
+      ...
+    </>
+  );
+}
+```
+This example above shows that in order to fetch data from a third party API, you need to pass an anonymous function as a call to the useEffect hook.
 
+#### 2. Separate the function and reference
 
+Alternatively, you might extract this anonymous function into a separate function expression or function declaration, and then just reference it.
+```jsx
+export default function App() {
+  const [btcData, setBtcData] = useState({});
+
+  const fetchData = () => {
+    fetch(`https://api.coindesk.com/v1/bpi/currentprice.json`)
+      .then((response) => response.json())
+      .then((jsonData) => setBtcData(jsonData.bpi.USD))
+      .catch((error) => console.log(error));
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return (
+    <>
+      <h1>Current BTC/USD data</h1>
+      <p>Code: {btcData.code}</p>
+      ...
+    </>
+  );
+}
+```
+The code essentially does the same thing, but this second example is cleaner and better organized.
+
+#### Pending Fallback
+Very often, the response from fetching third-party data might fail, or be delayed. That's why it can be useful to provide different renders, based on whether or not the data has been received.
+
+The simplest conditional rendering might involve setting up two renders, based on whether or not the data has been successfully fetched.
+```jsx
+return someStateVariable.length > 0 ? (
+    <div>
+        <h1>Data returned:</h1>
+        <h2>{someStateVariable.results[1].price}</h2>
+        <h3>{someStateVariable.results[1].description}</h3>
+    </div>
+    )    : (
+
+    )
 
 
 
