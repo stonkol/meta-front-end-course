@@ -1030,21 +1030,151 @@ return someStateVariable.length > 0 ? (
     )    : (
 
     )
+````
+
+### 2.2.4 Fetching data - Putting it all together
+
+The example app fetches user data asynchronously and initially displays a "data pending" message while waiting for the response. The developer uses browser dev tools to simulate a slow network to observe this loading state.
+
+```jsx
+function App(){
+    const [user, setUser] = React.useState([]);
+
+    const fetchData = () => {
+        fetch("https://randomuser.me/api/?results=1")
+            .then(response => response.json())
+            .then(data => setUser(data.results))
+    }
+
+    React.useEffect(() => {
+        fetchData();
+    }, []);
+
+    return Object.keys(user).length > 0 ? (
+        <div>
+            <h1>Data returned:</h1>
+            <h2>{someStateVariable.results[0].price}</h2>
+            <h3>{someStateVariable.results[0].description}</h3>
+        </div>
+    ) : (
+         <h1>Data returned</h1>
+    )
+}
+````
+
+The React app uses `useState` to hold the user data and `useEffect` to trigger the data fetch when the component mounts. The fetch function retrieves JSON data from the API and updates the state. Conditional rendering shows the loading message until data arrives, then displays the user’s first and last name.
 
 
+The fetchData function is initially fetching data from the randomuser.me API, next it retrieves a response from the API in JSON format, and finally updates the state variable with the returned data.
 
 
+### 2.2.4 Fetching data with useEffect
+
+The useEffect hook is indeed used for side effects, actions that affect something outside the scope of the component itself.
 
 
+### 2.2.5 Fetch data
 
+```jsx
+import React from "react";
 
+function App() {
+  const [user, setUser] = React.useState([]);
 
+  const fetchData = () => {
+    fetch("https://randomuser.me/api/?results=1")
+      .then((response) => response.json())
+      .then((data) => setUser(data));
+  };
 
+  React.useEffect(() => {
+    fetchData();
+  }, []);
 
+  return Object.keys(user).length > 0 ? (
+    <div style={{padding: "40px"}}>
+      <h1>Customer data</h1>
+      <h2>Name: {user.results[0].name.first}</h2>
+      <img src={user.results[0].picture.large} alt="" />
+    </div>
+  ) : (
+    <h1>Data pending...</h1>
+  );
+}
 
+export default App;
+```
 
+### 2.2.6 API
 
+Designing APIs is a collaborative, iterative process involving proposals, peer reviews, and refinements, ensuring clarity and consensus among front-end, back-end, and middleware engineers.
 
+Key principles in API design include:
+- **Type safety**: Ensuring the data returned matches expectations to prevent application failures.
+- **Future-proofing**: Balancing the anticipation of future needs without overcomplicating or delaying current development.
+- **Simplicity**: Avoiding overly complex designs to maintain readability, stability, and ease of maintenance.
+
+Not be intimidated by APIs, highlighting that learning API design broadens skills and employability. The advice is to focus on simplicity and stability to create effective, bug-free APIs.
+
+### 2.2.7 Rules of Hooks and Fetching Data with Hooks
+1. Hooks should not be called inside loops to ensure consistent hook order between renders.
+1. Hooks should not be called conditionally inside if statement, to maintain the same hook call order.
+1. Hooks should be called at the top level of your React function component, not inside nested functions.
+1. You can call multiple state hooks and effect hooks as needed, but always in the same order and not conditionally.
+
+### 2.2.8 Additional Resources
+
+- The [Rules of Hooks reading on React.devOpens in a new tab](https://reactjs.org/docs/hooks-rules.html) website gives you an overview of how to work with the hooks as recommended by the React Core team at Meta.
+- The [Fetching data with EffectsOpens in a new tab](https://beta.reactjs.org/apis/react/useEffect#fetching-data-with-effects) article on React docs discusses fetching data using a few different approaches, including using async / await syntax.
+- [How to use promises](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises) is a resource that describes the "behind-the-scenes" of how data fetching works in greater depth.
+- [async functionOpens in a new tab](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) is a resource on MDN that discusses the use of the async and await keywords as a more recent way to handle API requests in JavaScript
+
+## 2.3 Advance Hooks
+
+### 2.3.1 What is useReducer and vs w/ useState
+
+The **useState** hook is useful for simple state, but can became cumbersome with complex logic or when the next state depends on the previous state. In such cases, **useReducer** is a better choice. Unlike useState, useReducer uses a reducer function and an action object, allowing for more organized and scalable state management, especially when handling multiple actions.
+
+The example given is an expense tracker for the Little Lemon restaurant, where useReducer manages actions like buying ingredients and selling meals. Each action updates the state based on its type, and new actions (like a celebrity visit) can be easily added. Instead of calling setState, you dispatch actions to the reducer.
+
+### 2.3.2 useRef to access underlying DOM
+
+How to use React’s useRef hook to programmatically focus a cursor into an input field.
+
+Starting with a simple React app, an input and a button are added. The `useRef` hook is invoked to create a ref object, which is assigned to the input’s ref attribute. This ref’s current property points to the actual DOM node of the input.
+
+When the button is clicked, a handler calls `formInputRef.current.focus()`, moving the cursor focus into the input field without user interaction. This approach allows direct access to the DOM node and its methods, enabling precise control such as focusing the input programmatically.
+
+the functionality by clicking outside the input and then clicking the button to shift focus back to the input field.
+
+```js
+import React from 'react';
+
+function App(){
+    const formInputRef = React.useRef(null);
+
+    const focusInput = () => {
+        formInputRef.current.focus();
+    }
+
+    return (
+        <>
+            <h1>Using useRef to access underlying DOM</h1>
+            <input ref={formInputRef} type="text"/>
+            <button onClick={focusInput}>
+                Focus input
+            </button>
+        </>
+    )
+}
+export default App;
+```
+
+The returned value from the useRef hook invocation is an object.
+
+### 2.3.3 Custom hooks
+
+### 2.3.4
 
 
 
