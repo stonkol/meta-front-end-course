@@ -5,27 +5,27 @@ import Card from "./Card";
 
 const projects = [
   {
-    title: "React Space",
+    title: "E-commerce Platform",
     description:
-      "Handy tool belt to create amazing AR components in a React app, with redux integration via middleware️",
+      "A full-featured online store with cart functionality, user authentication, and payment processing",
     getImageSrc: () => require("../images/photo1.jpg"),
   },
   {
-    title: "React Infinite Scroll",
+    title: "Task Management App",
     description:
-      "A scrollable bottom sheet with virtualisation support, native animations at 60 FPS and fully implemented in JS land 🔥️",
+      "A productivity application for managing tasks with drag-and-drop interface and team collaboration features",
     getImageSrc: () => require("../images/photo2.jpg"),
   },
   {
-    title: "Photo Gallery",
+    title: "Portfolio Website",
     description:
-      "A One-stop shop for photographers to share and monetize their photos, allowing them to have a second source of income",
+      "A responsive portfolio website built with React and Chakra UI to showcase my projects and skills",
     getImageSrc: () => require("../images/photo3.jpg"),
   },
   {
-    title: "Event planner",
+    title: "Weather Dashboard",
     description:
-      "A mobile application for leisure seekers to discover unique events and activities in their city with a few taps",
+      "Real-time weather information application with 5-day forecast and location-based weather data",
     getImageSrc: () => require("../images/photo4.jpg"),
   },
 ];
